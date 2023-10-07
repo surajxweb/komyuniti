@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  background-color: #1a1c1e;
+  padding: 5px 10px;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  display: none;
+  top: 0;
+  z-index: 30;
+  /* position: fixed;
+  top: 0; */
+}
+
+.logoContainer {
+  width: 80px;
+}
+
+.logoContainer img {
+  width: 100%;
+  height: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.icon {
+  cursor: pointer;
+}

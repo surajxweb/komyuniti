@@ -3,22 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "pretty": "npx prettier . --write",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.25.3",
+    "@clerk/themes": "^1.7.7",
+    "@uploadthing/react": "^5.6.2",
+    "mongose": "^0.0.2-security",
+    "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.4"
+    "react-icons": "^4.11.0",
+    "svix": "^1.13.0",
+    "uploadthing": "^5.7.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "13.5.4"
+    "eslint-config-next": "13.5.4",
+    "prettier": "3.0.3",
+    "typescript": "^5"
   }
 }

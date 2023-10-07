@@ -1,0 +1,14 @@
+.container {
+  background-color: var(--background-nav-color);
+  padding: 20px;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+  z-index: 30;
+  flex-flow: column nowrap;
+  width: 30%;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

@@ -1,0 +1,57 @@
+.container {
+  background-color: var(--background-nav-color);
+  padding: 20px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 30;
+  flex-flow: column nowrap;
+  width: 22%;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.logoContainer {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.logoContainer img {
+  width: 100%;
+  height: auto;
+}
+
+.link {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 3% 5%;
+  border-radius: 20px;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.link:hover {
+  color: var(--link-color);
+  background-color: #131415;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-flow: column nowrap;
+}
+
+.logout {
+  height: 40px;
+}
+
+.selected {
+  color: var(--selected-color);
+}
