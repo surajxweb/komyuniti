@@ -1,13 +1,13 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Urbanist } from "next/font/google";
-import { dark } from '@clerk/themes';
+import { dark } from "@clerk/themes";
 import "../globals.css";
 
 const font = Urbanist({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Yass",
-  description: "Yet Another Social Site running on Next JS 13.",
+  title: "Komyuniti",
+  description: "Making social media more prive and community focused.",
 };
 
 export default function RootLayout({
@@ -16,10 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider 
-    appearance={{
-      baseTheme: dark
-    }}
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
     >
       <html lang='en'>
         <body className={font.className}> {children}</body>

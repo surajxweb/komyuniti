@@ -10,12 +10,12 @@
   flex-flow: column nowrap;
   width: 22%;
   height: 100vh;
+  overflow: scroll;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .logoContainer {
-  width: 100%;
-  margin: 0 auto;
+  width: 40%;
   padding: 0 10px;
 }
 
@@ -34,7 +34,7 @@
   padding: 3% 5%;
   border-radius: 20px;
   width: 100%;
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .link:hover {
