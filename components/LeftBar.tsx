@@ -14,13 +14,13 @@ import { HiOutlineLogin } from "react-icons/hi";
 import { HiHome } from "react-icons/hi";
 import { HiSearch } from "react-icons/hi";
 import { HiOutlineHeart } from "react-icons/hi";
-import { IoCreateOutline } from "react-icons/io5";
+import { HiPencil } from "react-icons/hi";
 import { MdGroups } from "react-icons/md";
 import { HiUser } from "react-icons/hi";
 import { BiMessageAltDots } from "react-icons/bi";
 import { dark } from "@clerk/themes";
 
-const TopBar = () => {
+const LeftBar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
@@ -46,7 +46,7 @@ const TopBar = () => {
           <div className={styles.options}>Messages</div>
         </Link>
         <Link href={"/"} className={styles.link}>
-          <IoCreateOutline size='2em' className={styles.icons} />
+          <HiPencil size='2em' className={styles.icons} />
           <div className={styles.options}>Create Post</div>
         </Link>
         <Link href={"/"} className={styles.link}>
@@ -80,4 +80,4 @@ const TopBar = () => {
   );
 };
 
-export default TopBar;
+export default LeftBar;

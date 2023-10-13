@@ -10,8 +10,6 @@ import { dark } from "@clerk/themes";
 
 const bodyfont = Urbanist({ subsets: ["latin"] });
 
-
-
 export default function RootLayout({
   children,
 }: {

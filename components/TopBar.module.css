@@ -1,7 +1,7 @@
 .container {
   width: 100%;
-  background-color: #1a1c1e;
-  padding: 5px 10px;
+  background-color: var(--background-nav-color);
+  padding: 0 10px;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -10,24 +10,26 @@
   display: none;
   top: 0;
   z-index: 30;
-  /* position: fixed;
-  top: 0; */
+  height: 60px;
+  flex-flow: row wrap;
 }
 
 .logoContainer {
-  width: 80px;
+  height: 40px;
 }
 
 .logoContainer img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 110%;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-}
-
-.icon {
+.icons {
   cursor: pointer;
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .container {
+    display: flex;
+  }
 }

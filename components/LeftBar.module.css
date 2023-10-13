@@ -55,3 +55,29 @@
 .selected {
   color: var(--selected-color);
 }
+
+@media (max-width: 1200px) {
+  .options {
+    display: none;
+  }
+  .container {
+    width: 10%;
+    align-items: center;
+  }
+
+  .link {
+    gap: 30px;
+    margin-top: 10px;
+  }
+
+  .logoContainer {
+    width: 130%;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    display: none;
+  }
+}

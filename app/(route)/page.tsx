@@ -10,25 +10,10 @@ export const metadata = {
 export default function Home() {
   return (
     <div className={styles.container}>
-      <h1>Your Timeline</h1>
-      <div
-        style={{
-          width: "100%",
-          height: "400px",
-          backgroundColor: "#222",
-          borderRadius: "20px",
-          marginTop: "20px",
-        }}
-      ></div>
-      <div
-        style={{
-          width: "100%",
-          height: "400px",
-          backgroundColor: "#222",
-          borderRadius: "20px",
-          marginTop: "20px",
-        }}
-      ></div>
+      <h1 className={styles.heading}>Your Timeline</h1>
+      <div className={styles.post}></div>
+      <div className={styles.post}></div>
+      <div className={styles.post}></div>
     </div>
   );
 }
