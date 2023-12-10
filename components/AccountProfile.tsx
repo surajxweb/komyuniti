@@ -8,6 +8,7 @@ import * as z from "zod";
 import styles from "./AccountProfile.module.css";
 import Image from "next/image";
 import camera from "../resources/camera.svg";
+import {useUploadThing} from "@/lib/uploadthing";
 
 import {
   Form,
@@ -21,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { ChangeEvent, useState } from "react";
+import { isBase64Image } from "@/lib/utils";
 
 interface Props {
   user: {
@@ -52,9 +54,18 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   function handleImage(e: ChangeEvent<HTMLInputElement>, fieldChange: (value: string) => void) {
     e.preventDefault();
     const fileReader = new FileReader();
-    if (e.target.files?.length) {
+    if (e.target.files  && e.target.files?.length > 0) {
         const file = e.target.files[0];
-        setFiles([file]);
+        setFiles(Array.from(e.target.files));
+
+        // if (!file.type.includes("image")) return;
+
+        fileReader.onload = async (event) => {
+            const imageDataUrl = event.target?.result?.toString() || "";
+        fieldChange(imageDataUrl)
+
+        }
+        fileReader.readAsDataURL(file);
     }
   }
 
@@ -63,6 +74,11 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    const blob = values.profile_photo;
+    const hasImageChanged = isBase64Image(blob);
+    if (hasImageChanged) {
+        const imgRes = 
+    }
   }
 
   return (
