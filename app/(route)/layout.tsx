@@ -8,7 +8,7 @@ import RightBar from "@/components/RightBar";
 import BottomBar from "@/components/BottomBar";
 import { dark } from "@clerk/themes";
 
-const bodyfont = Urbanist({ subsets: ["latin"] });
+const bodyfont = Urbanist({ subsets: ["latin"], weight: "500" });
 
 export default function RootLayout({
   children,

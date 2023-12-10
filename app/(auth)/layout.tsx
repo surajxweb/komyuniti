@@ -3,7 +3,7 @@ import { Urbanist } from "next/font/google";
 import { dark } from "@clerk/themes";
 import "../globals.css";
 
-const font = Urbanist({ subsets: ["latin"] });
+const font = Urbanist({ subsets: ["latin"], weight: "500" });
 
 export const metadata = {
   title: "Komyuniti",

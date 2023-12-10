@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background-nav-color: #131415;
   --link-color: #3c49ab;
@@ -21,4 +25,8 @@ a {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+  /* font-synthesis: none; */
+  letter-spacing: 1px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
