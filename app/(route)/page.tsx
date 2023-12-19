@@ -9,11 +9,11 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <h1 className={styles.heading}>Your Timeline</h1>
       <div className={styles.post}></div>
       <div className={styles.post}></div>
       <div className={styles.post}></div>
-    </div>
+    </main>
   );
 }

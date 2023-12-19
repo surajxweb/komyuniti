@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button";
 import * as z from "zod";
 import styles from "./AccountProfile.module.css";
 import Image from "next/image";
-import camera from "../resources/camera.svg";
-import {useUploadThing} from "@/lib/uploadthing";
+import camera from "../../resources/camera.svg";
+import { useUploadThing } from "@/lib/uploadthing";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   Form,
@@ -20,9 +21,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "../ui/textarea";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
+import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
   user: {
@@ -37,7 +39,10 @@ interface Props {
 }
 
 const AccountProfile = ({ user, btnTitle }: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [files, setFiles] = useState<File[]>([]);
+  const { startUpload } = useUploadThing("media");
 
   const form = useForm({
     resolver: zodResolver(UserValidation),
@@ -51,33 +56,54 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
   //image handeller
 
-  function handleImage(e: ChangeEvent<HTMLInputElement>, fieldChange: (value: string) => void) {
+  function handleImage(
+    e: ChangeEvent<HTMLInputElement>,
+    fieldChange: (value: string) => void
+  ) {
     e.preventDefault();
     const fileReader = new FileReader();
-    if (e.target.files  && e.target.files?.length > 0) {
-        const file = e.target.files[0];
-        setFiles(Array.from(e.target.files));
+    if (e.target.files && e.target.files?.length > 0) {
+      const file = e.target.files[0];
+      setFiles(Array.from(e.target.files));
 
-        // if (!file.type.includes("image")) return;
+      // if (!file.type.includes("image")) return;
 
-        fileReader.onload = async (event) => {
-            const imageDataUrl = event.target?.result?.toString() || "";
-        fieldChange(imageDataUrl)
-
-        }
-        fileReader.readAsDataURL(file);
+      fileReader.onload = async (event) => {
+        const imageDataUrl = event.target?.result?.toString() || "";
+        fieldChange(imageDataUrl);
+      };
+      fileReader.readAsDataURL(file);
     }
   }
 
   //submit handler.
-  function onSubmit(values: z.infer<typeof UserValidation>) {
+  async function onSubmit(values: z.infer<typeof UserValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
     const blob = values.profile_photo;
     const hasImageChanged = isBase64Image(blob);
     if (hasImageChanged) {
-        const imgRes = 
+      const imgResponse = await startUpload(files);
+      if (imgResponse && imgResponse[0].fileUrl) {
+        values.profile_photo = imgResponse[0].fileUrl;
+      }
+    }
+
+    // update user profile
+    await updateUser(
+      user.id,
+      values.username,
+      values.name,
+      values.bio,
+      values.profile_photo,
+      pathname
+    );
+
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else {
+      router.push("/");
     }
   }
 
@@ -182,7 +208,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           functionality.
         </FormDescription>
         <Button className={styles.submitButton} type='submit'>
-          Continue ✅
+          {btnTitle} ✅
         </Button>
       </form>
     </Form>

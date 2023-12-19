@@ -1,3 +1,4 @@
+"use client";
 import logo from "@/resources/logo3.webp";
 import styles from "./LeftBar.module.css";
 import Image from "next/image";
@@ -19,8 +20,10 @@ import { MdGroups } from "react-icons/md";
 import { HiUser } from "react-icons/hi";
 import { BiMessageAltDots } from "react-icons/bi";
 import { dark } from "@clerk/themes";
+import { usePathname, useRouter } from "next/navigation";
 
 const LeftBar = () => {
+  const pathname = usePathname();
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
@@ -29,31 +32,66 @@ const LeftBar = () => {
         </Link>
       </div>
       <div className={styles.nav}>
-        <Link href={"/"} className={`${styles.link} ${styles.selected}`}>
+        <Link
+          href={"/"}
+          className={`${styles.link} ${
+            pathname === "/" ? styles.selected : ""
+          }`}
+        >
           <HiHome size='2em' className={styles.icons} />
           <div className={styles.options}>Home</div>
         </Link>
-        <Link href={"/"} className={styles.link}>
+        <Link
+          href={"/search"}
+          className={`${styles.link} ${
+            pathname === "/search" ? styles.selected : ""
+          }`}
+        >
           <HiSearch size='2em' className={styles.icons} />
           <div className={styles.options}>Search</div>
         </Link>
-        <Link href={"/"} className={styles.link}>
+        <Link
+          href={"/activity"}
+          className={`${styles.link} ${
+            pathname === "/activity" ? styles.selected : ""
+          }`}
+        >
           <HiOutlineHeart size='2em' className={styles.icons} />
           <div className={styles.options}>Activity</div>
         </Link>
-        <Link href={"/"} className={styles.link}>
+        <Link
+          href={"/messages"}
+          className={`${styles.link} ${
+            pathname === "/messages" ? styles.selected : ""
+          }`}
+        >
           <BiMessageAltDots size='2em' className={styles.icons} />
           <div className={styles.options}>Messages</div>
         </Link>
-        <Link href={"/"} className={styles.link}>
+        <Link
+          href={"/create-post"}
+          className={`${styles.link} ${
+            pathname === "/create-post" ? styles.selected : ""
+          }`}
+        >
           <HiPencil size='2em' className={styles.icons} />
           <div className={styles.options}>Create Post</div>
         </Link>
-        <Link href={"/"} className={styles.link}>
+        <Link
+          href={"/communities"}
+          className={`${styles.link} ${
+            pathname === "/communities" ? styles.selected : ""
+          }`}
+        >
           <MdGroups size='2em' className={styles.icons} />
           <div className={styles.options}>Communities</div>
         </Link>
-        <Link href={"/"} className={styles.link}>
+        <Link
+          href={"/profile"}
+          className={`${styles.link} ${
+            pathname === "/profile" ? styles.selected : ""
+          }`}
+        >
           <HiUser size='2em' className={styles.icons} />
           <div className={styles.options}>Profile</div>
         </Link>

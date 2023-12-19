@@ -2,10 +2,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "../globals.css";
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
-import TopBar from "@/components/TopBar";
-import LeftBar from "@/components/LeftBar";
-import RightBar from "@/components/RightBar";
-import BottomBar from "@/components/BottomBar";
+import TopBar from "@/components/shared/TopBar";
+import LeftBar from "@/components/shared/LeftBar";
+import RightBar from "@/components/shared/RightBar";
+import BottomBar from "@/components/shared/BottomBar";
 import { dark } from "@clerk/themes";
 
 const bodyfont = Urbanist({ subsets: ["latin"], weight: "500" });

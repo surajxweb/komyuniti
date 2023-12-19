@@ -1,5 +1,7 @@
-import AccountProfile from "@/components/AccountProfile";
+import AccountProfile from "@/components/forms/AccountProfile";
+import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export const metadata = {
@@ -7,25 +9,15 @@ export const metadata = {
   description: "Making social media more private and community focused.",
 };
 
-// interface UserProperties {
-
-//       _id: string,
-//       _objectId :string,
-//       _username: string,
-//       _name: string,
-//       _bio: string,
-//       _image: string
-
-// }
-
 const Page = async () => {
   const user = await currentUser();
 
-  const userInfo = {};
+  const userInfo = await fetchUser(user?.id || "");
+  if (userInfo?.onboarded) redirect("/");
 
   const userData = {
-    id: "some data",
-    objectId: userInfo?._id,
+    id: user?.id || "",
+    objectId: userInfo?._id || "",
     username: userInfo?._username || user?.username,
     name: userInfo?._name || user?.firstName,
     bio: userInfo?._bio || "",
@@ -36,7 +28,7 @@ const Page = async () => {
     <div>
       <h1>Welcome to Komyuniti! </h1>
       <div>
-        <AccountProfile user={userData} btnTitle={"Submit"} />
+        <AccountProfile user={userData} btnTitle={"Continue to Komyuniti"} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 .container {
   background-color: var(--background-nav-color);
-  padding: 20px;
+  padding: 20px 0 20px 20px;
   top: 0;
   left: 0;
   display: flex;
@@ -32,14 +32,13 @@
   font-size: 16px;
   font-weight: bold;
   padding: 3% 5%;
-  border-radius: 20px;
   width: 100%;
   transition: all 0.3s;
 }
 
 .link:hover {
   color: var(--link-color);
-  background-color: #131415;
+  background-color: #1a1b1d;
 }
 
 .nav {
@@ -54,6 +53,8 @@
 
 .selected {
   color: var(--selected-color);
+  border-right: 3px solid var(--selected-color);
+  background-color: #202224;
 }
 
 @media (max-width: 1200px) {
