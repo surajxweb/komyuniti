@@ -13,17 +13,22 @@ const PostCard = ({content} : {content : any}) => {
 
   const createdAtDate = new Date(content.createdAt);
 
+  
+  let padZero = (num: number) => (num < 10 ? "0" + num : num.toString());
+
+
   const formattedDate =
-   
-    createdAtDate.getHours() +
+    padZero(createdAtDate.getHours()) +
     ":" +
-    createdAtDate.getMinutes() +
+    padZero(createdAtDate.getMinutes()) +
     " | " +
     createdAtDate.toLocaleString("en-US", { month: "short", day: "numeric" }) +
     ", " +
     createdAtDate.getFullYear();
 
-  
+  // Function to pad single digits with a leading zero
+   padZero = (num: number) => (num < 10 ? "0" + num : num.toString());
+
   return (
     <div className={styles.main}>
       <div className={styles.info}>
