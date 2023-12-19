@@ -17,12 +17,14 @@ const Page = async () => {
 
   const userData = {
     id: user?.id || "",
-    objectId: userInfo?._id || "",
-    username: userInfo?._username || user?.username,
-    name: userInfo?._name || user?.firstName,
-    bio: userInfo?._bio || "",
-    image: userInfo?._image || user?.imageUrl,
+    objectId: userInfo?._id.toString() || "",
+    username: userInfo?.username || user?.username,
+    name: userInfo?.name || user?.firstName,
+    bio: userInfo?.bio || "",
+    image: userInfo?.image || user?.imageUrl,
   };
+
+  
 
   return (
     <div>

@@ -80,7 +80,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   async function onSubmit(values: z.infer<typeof UserValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    // console.log(values);
     const blob = values.profile_photo;
     const hasImageChanged = isBase64Image(blob);
     if (hasImageChanged) {
@@ -90,15 +90,18 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       }
     }
 
+    console.log("submit ke time ka username: ", values.username);
+    
+
     // update user profile
-    await updateUser(
-      user.id,
-      values.username,
-      values.name,
-      values.bio,
-      values.profile_photo,
-      pathname
-    );
+    await updateUser({
+      userId: user.id,
+      username: values.username,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      path: pathname,
+    })
 
     if (pathname === "/profile/edit") {
       router.back();

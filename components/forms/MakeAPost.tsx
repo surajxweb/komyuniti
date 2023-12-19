@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import { updateUser } from "@/lib/actions/user.actions";
 import { PostValidation } from "@/lib/validations/post";
+import { createPost } from "@/lib/actions/post.actions";
 
 const MakeAPost = ({ userId }: { userId: string }) => {
   const router = useRouter();
@@ -38,6 +39,14 @@ const MakeAPost = ({ userId }: { userId: string }) => {
 
   async function onSubmit(values: z.infer<typeof PostValidation>) {
     console.log(values);
+    await createPost({
+      text: values.postText,
+      author: values.accountId,
+      communityId: null,
+      path: pathname,
+    });
+
+    router.push("/");
   }
 
   return (

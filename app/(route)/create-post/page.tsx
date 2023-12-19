@@ -12,11 +12,13 @@ const CreatePostPage = async () => {
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   console.log("ye dekho mai kaun hu: ", userInfo);
+  const userKaId = userInfo._id.toString();
+  console.log(userKaId);
 
   return (
     <div className={styles.container}>
       <div className={styles.heading}>What&#39;s new with you?</div>
-      <MakeAPost userId={user.id} />
+      <MakeAPost userId={userKaId} />
     </div>
   );
 };
