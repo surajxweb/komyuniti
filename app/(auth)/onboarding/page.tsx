@@ -24,8 +24,6 @@ const Page = async () => {
     image: userInfo?.image || user?.imageUrl,
   };
 
-  
-
   return (
     <div>
       <h1>Welcome to Komyuniti! </h1>

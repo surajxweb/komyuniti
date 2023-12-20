@@ -2,57 +2,82 @@
   width: 100%;
   background-color: #222;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 12px;
   padding: 10px 20px;
+}
+
+.link {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 .info {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 20px;
+  gap: 10px;
 }
 
 .dp img {
   border-radius: 50%;
   margin: 10px 0;
   border: 2px solid #b6b6b6;
-  height: 60px;
-  width: 60px;
+  height: 45px;
+  width: 45px;
   object-fit: cover;
   object-position: center;
 }
+.name_and_uname {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
 .name {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .uname {
   color: #b1b1b1;
+  font-size: 16px;
 }
 
 .cta {
+  display: flex;
+  gap: 5px;
+  align-items: center;
   margin-left: auto;
-  padding: 10px 20px;
+  padding: 5px 10px;
   color: #fff;
   background-color: #586aea;
   border: 1px solid #4350ad;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-family: inherit;
+}
+
+.options {
+  margin-left: auto;
 }
 
 .post {
   padding: 10px 0;
-  font-size: 24px;
-  color: #fff;
+  font-size: 20px;
+  color: #e0e0e0;
+  /* text-align: justify;
+  text-justify: inter-word; */
 }
 
 .actions {
+  width: 100%;
+
+  border-top: 1px solid #323232;
   display: flex;
   gap: 20px;
   padding: 10px 0;
+  margin-top: 5px;
 }
 
 .like,
@@ -68,9 +93,12 @@
   color: rgb(61, 65, 172);
 }
 
+.description {
+  font-size: 13px;
+  color: #ccc;
+  padding: 5px 0;
+}
+
 .date {
-  margin-left: auto;
-  padding: 10px 0;
   color: #b1b1b1;
-  text-align: right;
 }

@@ -91,7 +91,6 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     }
 
     console.log("submit ke time ka username: ", values.username);
-    
 
     // update user profile
     await updateUser({
@@ -101,7 +100,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       bio: values.bio,
       image: values.profile_photo,
       path: pathname,
-    })
+    });
 
     if (pathname === "/profile/edit") {
       router.back();

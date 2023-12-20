@@ -4,6 +4,10 @@
   padding: 20px;
 }
 
+.error {
+  padding: 10px 0px;
+}
+
 .heading {
   font-size: 30px;
 }

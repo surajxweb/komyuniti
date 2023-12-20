@@ -45,7 +45,7 @@ export async function fetchPosts() {
       .populate({
         path: "author",
         model: User,
-        select: "_id name username image"
+        select: "_id id name username image",
       })
       .populate({
         path: "children",
@@ -54,6 +54,11 @@ export async function fetchPosts() {
           model: User,
           select: "_id name parendId image",
         },
+      })
+      .populate({
+        path: "likes",
+        model: "User",
+        select: "name username",
       });
   } catch (error: any) {
     console.log("Nahi mila koi post, ye dekho: ", error);
