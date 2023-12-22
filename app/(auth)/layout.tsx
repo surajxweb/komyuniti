@@ -1,6 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Urbanist } from "next/font/google";
-import { dark } from "@clerk/themes";
+import { dark, neobrutalism } from "@clerk/themes";
 import "../globals.css";
 
 const font = Urbanist({ subsets: ["latin"], weight: "500" });
@@ -18,7 +18,20 @@ export default function RootLayout({
   return (
     <ClerkProvider
       appearance={{
-        baseTheme: dark,
+        elements: {
+          baseTheme: [dark],
+          card: {
+            backgroundColor: "#222222",
+          },
+          formButtonPrimary: {
+            fontSize: 14,
+            textTransform: "none",
+            backgroundColor: "#586aea",
+            "&:hover, &:focus, &:active": {
+              backgroundColor: "#4350ad",
+            },
+          },
+        },
       }}
     >
       <html lang='en'>

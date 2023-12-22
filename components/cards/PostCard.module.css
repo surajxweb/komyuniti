@@ -3,7 +3,7 @@
   background-color: #222;
   border-radius: 20px;
   margin-top: 12px;
-  padding: 10px 20px;
+  padding: 10px 20px 3px 20px;
 }
 
 .link {
@@ -75,9 +75,23 @@
 
   border-top: 1px solid #323232;
   display: flex;
-  gap: 20px;
+  align-items: center;
   padding: 10px 0;
   margin-top: 5px;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.likebar,
+.commentbar {
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  color: #b1b1b1;
 }
 
 .like,
@@ -85,18 +99,12 @@
   cursor: pointer;
 }
 
-.like:hover {
+.likebar:hover {
   color: rgb(200, 43, 43);
 }
 
-.comment:hover {
-  color: rgb(61, 65, 172);
-}
-
-.description {
-  font-size: 13px;
-  color: #ccc;
-  padding: 5px 0;
+.commentbar:hover {
+  color: rgb(61, 102, 172);
 }
 
 .date {

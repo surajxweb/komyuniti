@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./PostCard.module.css";
 import Image from "next/image";
@@ -15,13 +17,12 @@ interface Props {
   currentUserId?: string | undefined | null;
   parentId?: string;
   content: string;
-  author: {
-    _id: string;
-    name: string;
-    username: string;
-    image: string;
-    id: string;
-  };
+  author__id: string;
+  author_name: string;
+  author_username: string;
+  author_image: string;
+  author_id: string;
+
   community?: {
     _id: string;
     name: string;
@@ -42,19 +43,23 @@ const PostCard = ({
   currentUserId,
   parentId,
   content,
-  author,
   community,
   createdAt,
   comments,
   likes,
+  author__id,
+  author_name,
+  author_username,
+  author_image,
+  author_id,
 }: Props) => {
- 
-  
   const calculateTimeAgo = (timestamp: string) => {
     const postTime = new Date(timestamp);
     const currentTime = new Date();
 
-    const timeDifference = Math.floor((currentTime.getTime() - postTime.getTime()) / 1000); // in seconds
+    const timeDifference = Math.floor(
+      (currentTime.getTime() - postTime.getTime()) / 1000
+    ); // in seconds
 
     const secondsInMinute = 60;
     const secondsInHour = 3600;
@@ -82,41 +87,25 @@ const PostCard = ({
 
   const timeAgo = calculateTimeAgo(createdAt);
 
-
-  const isMyPost = currentUserId === author.id;
-  const description =
-    comments.length === 0 && likes.length === 0
-      ? "Be the first one to like and start a conversation."
-      : likes.length === 0 
-      ? "Be the first one to like."
-      : comments.length === 0
-      ? "Be the first one to start a conversation."
-      : comments.length !== 0
-      ? "Join the conversation."
-      : "";
-
-      console.log("ye time hai: ", createdAt.toString());
-      
+  const isMyPost = currentUserId === author_id;
 
   return (
     <div className={styles.main}>
       <div className={styles.info}>
-        <Link className={styles.link} href={`/${author.username}`}>
+        <Link className={styles.link} href={`/${author_username}`}>
           <div className={styles.dp}>
             <Image
-              src={author.image}
+              src={author_image}
               alt='author profile picture'
               height={100}
               width={100}
             />
           </div>
           <div className={styles.name_and_uname}>
-            <div className={styles.name}>{author.name}</div>
-            <div className={styles.uname}>@{author.username}</div>
-            <RxDotFilled color= "#b1b1b1" />
-      <div className={styles.date}>{timeAgo}</div>
-
-
+            <div className={styles.name}>{author_name}</div>
+            <div className={styles.uname}>@{author_username}</div>
+            <RxDotFilled color='#b1b1b1' />
+            <div className={styles.date}>{timeAgo}</div>
           </div>
         </Link>
         {!isMyPost && (
@@ -134,16 +123,15 @@ const PostCard = ({
         <div className={styles.post}>{content}</div>
       </Link>
       <div className={styles.actions}>
-        <div>
-        <FaRegHeart className={styles.like} size='1.5em' />
-
+        <div className={styles.likebar}>
+          <FaRegHeart className={styles.like} size='1.5em' />
+          <div>{`${likes.length} likes`}</div>
         </div>
-        <div>
-        <FaRegCommentAlt className={styles.comment} size='1.5em' />
-
+        <div className={styles.commentbar}>
+          <FaRegCommentAlt className={styles.comment} size='1.5em' />
+          <div>{`${comments.length} comments`}</div>
         </div>
       </div>
-      {!isMyPost && <div className={styles.description}>{description}</div>}
     </div>
   );
 };

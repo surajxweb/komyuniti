@@ -1,0 +1,69 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.image img {
+  width: 180px;
+  height: auto;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.name {
+  font-size: 30px;
+}
+
+.username {
+  font-size: 20px;
+}
+
+.bio {
+  font-size: 15px;
+}
+
+.edit {
+  font-size: 12px;
+  padding: 5px 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #586aea;
+  border: 1px solid #4350ad;
+  width: 120px;
+  justify-content: center;
+  border-radius: 7px;
+}
+
+.edit:hover {
+  background-color: #4c59bc;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px 0;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  width: 95%;
+}
+
+.data > * {
+  text-align: center;
+}
+
+.text {
+  margin-bottom: 5px;
+}

@@ -64,3 +64,65 @@ export async function fetchPosts() {
     console.log("Nahi mila koi post, ye dekho: ", error);
   }
 }
+
+export async function findPostById(id: string) {
+  try {
+    connectToDB();
+
+    // orphan posts
+    return await Post.findOne({ _id: id })
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id id name username image",
+      })
+      .populate({
+        path: "children",
+        populate: {
+          path: "author",
+          model: User,
+          select: "_id name parendId image",
+        },
+      })
+      .populate({
+        path: "likes",
+        model: "User",
+        select: "name username",
+      });
+  } catch (error: any) {
+    console.log("Nahi mila iss bande ka post, ye dekho: ", error);
+  }
+}
+
+export async function fetchPostsByUserId({ id }: { id: string }) {
+  try {
+    connectToDB();
+
+    // orphan posts
+    return await Post.find({
+      parentId: { $in: [null, undefined] },
+      "author.id": id,
+    })
+      .sort({ createdAt: "desc" })
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id id name username image",
+      })
+      .populate({
+        path: "children",
+        populate: {
+          path: "author",
+          model: User,
+          select: "_id name parendId image",
+        },
+      })
+      .populate({
+        path: "likes",
+        model: "User",
+        select: "name username",
+      });
+  } catch (error: any) {
+    console.log("Nahi mila koi post, ye dekho: ", error);
+  }
+}

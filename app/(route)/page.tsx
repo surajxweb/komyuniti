@@ -17,12 +17,13 @@ export default async function Home() {
   const posts = await fetchPosts();
   const user = await currentUser();
 
-  console.log(posts);
-
   const userInfo = await fetchUser(user?.id || "");
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   if (!user) return null;
+
+  console.log(posts);
+
 
   return (
     <div className={styles.container}>
@@ -32,22 +33,26 @@ export default async function Home() {
           No post found. Follow like minded people to read their stories.
         </div>
       ) : (
-        <>
+        <div>
           {posts?.map((post: any) => (
             <PostCard
               key={post._id}
-              id={post._id}
+              id={post._id.toString()}
               currentUserId={user?.id}
               parentId={post.parentId}
               content={post.text}
-              author={post.author}
               community={post.community}
               createdAt={post.createdAt}
               comments={post.children}
               likes={post.likes}
+              author_id={post.author.id}
+              author__id={post.author._id.toString()}
+              author_name={post.author.name}
+              author_username={post.author.username}
+              author_image={post.author.image}
             />
           ))}
-        </>
+        </div>
       )}
     </div>
   );

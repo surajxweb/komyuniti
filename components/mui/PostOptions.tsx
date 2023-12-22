@@ -33,7 +33,7 @@ export default function BasicMenu({ postId }: { postId: string }) {
   // custom functions
 
   return (
-    <div>
+    <>
       <ThemeProvider theme={theme}>
         <Button
           id='basic-button'
@@ -53,16 +53,11 @@ export default function BasicMenu({ postId }: { postId: string }) {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem onClick={handleClose}>
-            {" "}
-            Edit Post <AiFillEdit />
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            Delete Post <MdDelete />
-          </MenuItem>
+          <MenuItem onClick={handleClose}>Edit Post</MenuItem>
+          <MenuItem onClick={handleClose}>Delete Post</MenuItem>
           {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
         </Menu>
       </ThemeProvider>
-    </div>
+    </>
   );
 }
