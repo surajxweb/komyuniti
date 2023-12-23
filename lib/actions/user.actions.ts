@@ -22,10 +22,8 @@ export async function updateUser({
   image,
   path,
 }: Params): Promise<void> {
-  console.log("update se pehle ke time ka username", username);
 
   connectToDB();
-  console.log("update se pehle ke time ka username", username);
 
   try {
     await User.findOneAndUpdate(

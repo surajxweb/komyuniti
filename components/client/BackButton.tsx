@@ -11,7 +11,7 @@ const BackButton = () => {
 
   return (
     <button className={styles.button} onClick={goBack}>
-      <IoArrowBackSharp size='1.3em' color='#ccc' />
+      <IoArrowBackSharp size="1.3em" color="#ccc" />
     </button>
   );
 };

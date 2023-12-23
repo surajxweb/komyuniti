@@ -28,7 +28,7 @@ const LeftBar = () => {
     <div className={styles.container}>
       <div className={styles.logoContainer}>
         <Link href={"/"}>
-          <Image src={logo} height={253.125} width={450} alt='logo' />
+          <Image src={logo} height={253.125} width={450} alt="logo" />
         </Link>
       </div>
       <div className={styles.nav}>
@@ -38,7 +38,7 @@ const LeftBar = () => {
             pathname === "/" ? styles.selected : ""
           }`}
         >
-          <HiHome size='2em' className={styles.icons} />
+          <HiHome size="2em" className={styles.icons} />
           <div className={styles.options}>Home</div>
         </Link>
         <Link
@@ -47,7 +47,7 @@ const LeftBar = () => {
             pathname === "/search" ? styles.selected : ""
           }`}
         >
-          <HiSearch size='2em' className={styles.icons} />
+          <HiSearch size="2em" className={styles.icons} />
           <div className={styles.options}>Search</div>
         </Link>
         <Link
@@ -56,7 +56,7 @@ const LeftBar = () => {
             pathname === "/activity" ? styles.selected : ""
           }`}
         >
-          <HiOutlineHeart size='2em' className={styles.icons} />
+          <HiOutlineHeart size="2em" className={styles.icons} />
           <div className={styles.options}>Activity</div>
         </Link>
         <Link
@@ -65,7 +65,7 @@ const LeftBar = () => {
             pathname === "/messages" ? styles.selected : ""
           }`}
         >
-          <BiMessageAltDots size='2em' className={styles.icons} />
+          <BiMessageAltDots size="2em" className={styles.icons} />
           <div className={styles.options}>Messages</div>
         </Link>
         <Link
@@ -74,7 +74,7 @@ const LeftBar = () => {
             pathname === "/create-post" ? styles.selected : ""
           }`}
         >
-          <HiPencil size='2em' className={styles.icons} />
+          <HiPencil size="2em" className={styles.icons} />
           <div className={styles.options}>Create Post</div>
         </Link>
         <Link
@@ -83,7 +83,7 @@ const LeftBar = () => {
             pathname === "/communities" ? styles.selected : ""
           }`}
         >
-          <MdGroups size='2em' className={styles.icons} />
+          <MdGroups size="2em" className={styles.icons} />
           <div className={styles.options}>Communities</div>
         </Link>
         <Link
@@ -92,7 +92,7 @@ const LeftBar = () => {
             pathname === "/profile" ? styles.selected : ""
           }`}
         >
-          <HiUser size='2em' className={styles.icons} />
+          <HiUser size="2em" className={styles.icons} />
           <div className={styles.options}>Profile</div>
         </Link>
       </div>
@@ -100,7 +100,7 @@ const LeftBar = () => {
         <SignedIn>
           <SignOutButton>
             <div className={`${styles.link} ${styles.logout}`}>
-              <HiOutlineLogout size='2em' className={styles.icons} />
+              <HiOutlineLogout size="2em" className={styles.icons} />
               <div className={styles.options}>Logout</div>
             </div>
           </SignOutButton>
@@ -108,7 +108,7 @@ const LeftBar = () => {
         <SignedOut>
           <SignInButton>
             <div className={`${styles.link}`}>
-              <HiOutlineLogin size='2em' className={styles.icons} />
+              <HiOutlineLogin size="2em" className={styles.icons} />
               <div className={styles.options}>Login</div>
             </div>
           </SignInButton>

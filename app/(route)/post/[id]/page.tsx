@@ -14,10 +14,15 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
 
   const post = await findPostById(params.id);
   if (!post) return <div className={styles.error}>Post not found.</div>;
-  console.log("ye lo tumhara post ka comment: ", post.children);
 
   const comments = post.children;
   const likes = post.likes;
+  const genz=post.children.children;
+
+  console.log(typeof(genz));
+  
+
+  
 
   const isMyPost = user?.id === post?.author.id;
 
@@ -58,11 +63,11 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
             <Comments
               key={comment._id}
               id={comment._id.toString()}
-              author={comment.author}
-              comments={comment.children}
+              authorString={JSON.stringify(comment.author)}
+              commentsString={JSON.stringify(comment.children)}
               content={comment.text}
               createdAt={comment.createdAt.toString()}
-              likes={comment.likes}
+              likesString={JSON.stringify(comment.likes)}
             />
           ))}
         </div>

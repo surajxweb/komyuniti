@@ -42,7 +42,6 @@ const MakeAComment = ({ postId, currentUserImage, currentUserId }: Props) => {
   });
 
   async function onSubmit(values: z.infer<typeof CommentValidation>) {
-    console.log(values);
     await addCommentToPost({
       postId: postId,
       commentText: values.postText,
@@ -58,13 +57,13 @@ const MakeAComment = ({ postId, currentUserImage, currentUserId }: Props) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
         <FormField
           control={form.control}
-          name='postText'
+          name="postText"
           render={({ field }) => (
             <FormItem className={styles.field}>
               <FormLabel className={styles.label}>
                 <Image
                   src={currentUserImage}
-                  alt='current user profile picture'
+                  alt="current user profile picture"
                   height={50}
                   width={50}
                 />
@@ -72,7 +71,7 @@ const MakeAComment = ({ postId, currentUserImage, currentUserId }: Props) => {
               <FormControl>
                 <Input
                   className={styles.input}
-                  placeholder='Drop a comment'
+                  placeholder="Drop a comment"
                   {...field}
                 />
               </FormControl>
@@ -83,7 +82,7 @@ const MakeAComment = ({ postId, currentUserImage, currentUserId }: Props) => {
           )}
         />
 
-        <Button className={styles.submitButton} type='submit'>
+        <Button className={styles.submitButton} type="submit">
           Reply
         </Button>
       </form>

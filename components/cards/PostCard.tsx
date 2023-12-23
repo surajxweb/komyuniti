@@ -62,7 +62,7 @@ const PostCard = ({
           <div className={styles.dp}>
             <Image
               src={author_image}
-              alt='author profile picture'
+              alt="author profile picture"
               height={100}
               width={100}
             />
@@ -70,7 +70,7 @@ const PostCard = ({
           <div className={styles.name_and_uname}>
             <div className={styles.name}>{author_name}</div>
             <div className={styles.uname}>@{author_username}</div>
-            <RxDotFilled color='#b1b1b1' />
+            <RxDotFilled color="#b1b1b1" />
             <div className={styles.date}>{timeAgo}</div>
           </div>
         </Link>
@@ -90,11 +90,11 @@ const PostCard = ({
       </Link>
       <div className={styles.actions}>
         <div className={styles.likebar}>
-          <LikeButton  size="1.5em"/>
+          <LikeButton size="1.5em" />
           <div>{`${likes.length} likes`}</div>
         </div>
         <div className={styles.commentbar}>
-          <FaRegCommentAlt className={styles.comment} size='1.5em' />
+          <FaRegCommentAlt className={styles.comment} size="1.5em" />
           <div>{`${comments.length} comments`}</div>
         </div>
       </div>

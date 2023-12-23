@@ -87,7 +87,7 @@ const NewCard = ({ past }: { past: any }) => {
           <div className={styles.dp}>
             <Image
               src={post.author.image}
-              alt='author profile picture'
+              alt="author profile picture"
               height={100}
               width={100}
             />
@@ -95,7 +95,7 @@ const NewCard = ({ past }: { past: any }) => {
           <div className={styles.name_and_uname}>
             <div className={styles.name}>{post.author.name}</div>
             <div className={styles.uname}>@{post.author.username}</div>
-            <RxDotFilled color='#b1b1b1' />
+            <RxDotFilled color="#b1b1b1" />
             <div className={styles.date}>{timeAgo}</div>
           </div>
         </Link>
@@ -115,11 +115,11 @@ const NewCard = ({ past }: { past: any }) => {
       </Link>
       <div className={styles.actions}>
         <div className={styles.likebar}>
-          <FaRegHeart className={styles.like} size='1.5em' />
+          <FaRegHeart className={styles.like} size="1.5em" />
           <div>{`${post.likes.length} likes`}</div>
         </div>
         <div className={styles.commentbar}>
-          <FaRegCommentAlt className={styles.comment} size='1.5em' />
+          <FaRegCommentAlt className={styles.comment} size="1.5em" />
           {/* <div>{`${comments.length} comments`}</div> */}
         </div>
       </div>

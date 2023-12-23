@@ -36,16 +36,16 @@ export default function BasicMenu({ postId }: { postId: string }) {
     <>
       <ThemeProvider theme={theme}>
         <Button
-          id='basic-button'
+          id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
-          aria-haspopup='true'
+          aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          <SlOptions size='1.5em' />
+          <SlOptions size="1.5em" />
         </Button>
         <Menu
-          id='basic-menu'
+          id="basic-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}

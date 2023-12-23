@@ -5,5 +5,5 @@
   "semi": true,
   "arrowParens": "always",
   "printWidth": 80,
-  "jsxSingleQuote": true
+  "jsxSingleQuote": false
 }

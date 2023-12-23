@@ -12,15 +12,15 @@ const TopBar = () => {
   return (
     <nav className={styles.container}>
       <Link href={"/"} className={styles.link}>
-        <HiPencil size='2em' className={styles.icons} />
+        <HiPencil size="2em" className={styles.icons} />
       </Link>
       <div className={styles.logoContainer}>
         <Link href={"/"}>
-          <Image src={logo} height={253.125} width={450} alt='logo' />
+          <Image src={logo} height={253.125} width={450} alt="logo" />
         </Link>
       </div>
       <Link href={"/"} className={styles.link}>
-        <HiUser size='2em' className={styles.icons} />
+        <HiUser size="2em" className={styles.icons} />
       </Link>
     </nav>
   );

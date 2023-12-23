@@ -35,7 +35,7 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang='en'>
+      <html lang="en">
         <body className={bodyfont.className}>
           <TopBar />
           <main>

@@ -53,7 +53,7 @@ const MakeAPost = ({ userId }: { userId: string }) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
         <FormField
           control={form.control}
-          name='postText'
+          name="postText"
           render={({ field }) => (
             <FormItem className={styles.field}>
               {/* <FormLabel className={styles.label}>Bio</FormLabel> */}
@@ -61,7 +61,7 @@ const MakeAPost = ({ userId }: { userId: string }) => {
                 <Textarea
                   className={styles.input}
                   rows={10}
-                  placeholder='Speak Your Mind!'
+                  placeholder="Speak Your Mind!"
                   autoFocus
                   {...field}
                 />
@@ -74,7 +74,7 @@ const MakeAPost = ({ userId }: { userId: string }) => {
           Please ensure that your post respects the feelings and opinions of
           others on the Komyuniti App, and adhere to our community guidelines.
         </FormDescription>
-        <Button className={styles.submitButton} type='submit'>
+        <Button className={styles.submitButton} type="submit">
           Share ✅
         </Button>
       </form>

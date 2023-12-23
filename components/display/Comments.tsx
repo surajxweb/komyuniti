@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./Comments.module.css";
 import LikeButton from "../client/LikeButton";
@@ -7,29 +9,36 @@ import { FaReply } from "react-icons/fa";
 
 interface Props {
   id: string;
-  author: any;
-  comments: any;
+  authorString: any;
+  commentsString: any;
   content: string;
   createdAt: string;
-  likes: any;
+  likesString: any;
 }
 
 const Comments = ({
   id,
-  author,
-  comments,
+  authorString,
+  commentsString,
   content,
   createdAt,
-  likes,
+  likesString,
 }: Props) => {
-  console.log("Comment pe ittne likes", likes.lenght);
+  // JSON PARSE
+  const comments = JSON.parse(commentsString);
+  const author = JSON.parse(authorString);
+  const likes = JSON.parse(likesString);
+
+  // test logs
+
+  
+
   const timeAgo = calculateTimeAgo(createdAt);
-  console.log(likes, comments);
 
   return (
     <div className={styles.bigbox}>
       <div className={styles.displayPicture}>
-        <Image src={author.image} alt='author image' height={50} width={50} />
+        <Image src={author.image} alt="author image" height={50} width={50} />
       </div>
       <div className={styles.content}>
         <div className={styles.children}>
@@ -37,7 +46,7 @@ const Comments = ({
             <div className={styles.name}>
               {`${author.name} @${author.username}`}
             </div>
-            <RxDotFilled color='#b1b1b1' />
+            <RxDotFilled color="#b1b1b1" />
             <div className={styles.date}>{timeAgo}</div>
           </div>
           <div className={styles.text}>{content}</div>
@@ -50,7 +59,7 @@ const Comments = ({
             className={styles.more}
           >{`View ${comments.lenght} replies.`}</div>
         </div>
-        {/* Secondary comment */}
+        <div className={styles.grandChildren}></div>
       </div>
     </div>
   );

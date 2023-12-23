@@ -30,7 +30,7 @@ const ProfileCard = ({
     <>
       <div className={styles.main}>
         <div className={styles.image}>
-          <Image src={image} alt='display picture' height={400} width={400} />
+          <Image src={image} alt="display picture" height={400} width={400} />
         </div>
         <div className={styles.info}>
           <div className={styles.name}>{name}</div>

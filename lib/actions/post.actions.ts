@@ -22,7 +22,6 @@ export async function createPost({ text, author, communityId, path }: Params) {
       community: null,
     });
 
-    console.log("");
 
     // Update User model
     await User.findByIdAndUpdate(author, {
@@ -69,45 +68,52 @@ export async function findPostById(id: string) {
   try {
     connectToDB();
 
-    // orphan posts
     return await Post.findById(id)
       .populate({
-        path: "author",
+        path: 'author',
         model: User,
-        select: "_id id name username image",
+        select: '_id id name username image',
       })
       .populate({
-        path: "children",
+        path: 'children',
         options: { sort: { createdAt: -1 } }, // sort in descending order
         populate: [
           {
-            path: "author",
+            path: 'author',
             model: User,
-            select: "_id id name username image",
+            select: '_id id name username image',
           },
           {
-            path: "likes",
+            path: 'likes',
             model: User,
-            select: "name username",
+            select: 'name username',
           },
           {
-            path: "children",
+            path: 'children',
             model: Post,
-            populate: {
-              path: "author",
-              model: User,
-              select: "_id id name username image",
-            },
+            populate: [
+              {
+                path: 'author',
+                model: User,
+                select: '_id id name username image',
+              },
+              {
+                path: 'likes',
+                model: User,
+                select: 'name username',
+              },
+              // Add any other population configurations if needed
+            ],
           },
         ],
-      }) 
+      })
       .populate({
-        path: "likes",
+        path: 'likes',
         model: User,
-        select: "name username",
+        select: 'name username',
       });
   } catch (error: any) {
-    console.log("Nahi mila iss bande ka post, ye dekho: ", error);
+    console.log('Nahi mila iss bande ka post, ye dekho: ', error);
   }
 }
 

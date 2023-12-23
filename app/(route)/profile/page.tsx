@@ -9,7 +9,6 @@ import PostCard from "@/components/cards/PostCard";
 const Page = async () => {
   const user = await currentUser();
   const userInfo = await fetchUser(user?.id || "");
-  console.log(userInfo.link);
 
   if (!userInfo) return null;
   3;

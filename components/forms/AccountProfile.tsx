@@ -116,7 +116,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
         <FormField
           control={form.control}
-          name='profile_photo'
+          name="profile_photo"
           render={({ field }) => (
             <FormItem className={styles.field}>
               <FormLabel className={styles.label}>
@@ -128,21 +128,21 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                     src={field.value}
                     height={90}
                     width={90}
-                    alt='profile photo'
+                    alt="profile photo"
                   />
                 ) : (
                   <Image
                     src={camera}
                     height={90}
                     width={90}
-                    alt='profile photo'
+                    alt="profile photo"
                   />
                 )}
                 <FormControl>
                   <Input
-                    type='file'
-                    accept='image/*'
-                    placeholder='Upload a photo'
+                    type="file"
+                    accept="image/*"
+                    placeholder="Upload a photo"
                     onChange={(e) => handleImage(e, field.onChange)}
                     className={styles.fileInput}
                   />
@@ -155,14 +155,14 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         />
         <FormField
           control={form.control}
-          name='name'
+          name="name"
           render={({ field }) => (
             <FormItem className={styles.field}>
               <FormLabel className={styles.label}>Name</FormLabel>
               <FormControl>
                 <Input
                   className={styles.input}
-                  placeholder='Enter your full name.'
+                  placeholder="Enter your full name."
                   {...field}
                 />
               </FormControl>
@@ -172,14 +172,14 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         />
         <FormField
           control={form.control}
-          name='username'
+          name="username"
           render={({ field }) => (
             <FormItem className={styles.field}>
               <FormLabel className={styles.label}>Username</FormLabel>
               <FormControl>
                 <Input
                   className={styles.input}
-                  placeholder='Enter a username. (Spaces ( ) and preiods (.) not allowed.'
+                  placeholder="Enter a username. (Spaces ( ) and preiods (.) not allowed."
                   {...field}
                 />
               </FormControl>
@@ -189,7 +189,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         />
         <FormField
           control={form.control}
-          name='bio'
+          name="bio"
           render={({ field }) => (
             <FormItem className={styles.field}>
               <FormLabel className={styles.label}>Bio</FormLabel>
@@ -197,7 +197,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                 <Textarea
                   className={styles.input}
                   rows={6}
-                  placeholder='Who are you (in 1000 characters or less)?'
+                  placeholder="Who are you (in 1000 characters or less)?"
                   {...field}
                 />
               </FormControl>
@@ -209,7 +209,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           The information entered here is permanent, until we implement the edit
           functionality.
         </FormDescription>
-        <Button className={styles.submitButton} type='submit'>
+        <Button className={styles.submitButton} type="submit">
           {btnTitle} ✅
         </Button>
       </form>

@@ -7,7 +7,7 @@ export default async function Messages() {
     <div className={styles.container}>
       <h1 className={styles.heading}>Messages (Coming Soon) !</h1>
       <div className={styles.image}>
-        <Image src={messages_svg} alt='message svg' height={500} width={500} />
+        <Image src={messages_svg} alt="message svg" height={500} width={500} />
       </div>
     </div>
   );
