@@ -1,5 +1,5 @@
 "use client";
-import logo from "@/resources/logo3.webp";
+import logo from "@/public/images/logo3.webp";
 import styles from "./LeftBar.module.css";
 import Image from "next/image";
 import Link from "next/link";

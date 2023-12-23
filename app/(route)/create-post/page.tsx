@@ -11,9 +11,7 @@ const CreatePostPage = async () => {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  console.log("ye dekho mai kaun hu: ", userInfo);
   const userKaId = userInfo._id.toString();
-  console.log(userKaId);
 
   return (
     <div className={styles.container}>

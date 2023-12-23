@@ -31,7 +31,7 @@ export async function createPost({ text, author, communityId, path }: Params) {
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error(`Failed to create thread: ${error.message}`);
+    throw new Error(`Failed to create post: ${error.message}`);
   }
 }
 
@@ -70,7 +70,7 @@ export async function findPostById(id: string) {
     connectToDB();
 
     // orphan posts
-    return await Post.findOne({ _id: id })
+    return await Post.findById(id)
       .populate({
         path: "author",
         model: User,
@@ -78,19 +78,75 @@ export async function findPostById(id: string) {
       })
       .populate({
         path: "children",
-        populate: {
-          path: "author",
-          model: User,
-          select: "_id name parendId image",
-        },
-      })
+        options: { sort: { createdAt: -1 } }, // sort in descending order
+        populate: [
+          {
+            path: "author",
+            model: User,
+            select: "_id id name username image",
+          },
+          {
+            path: "likes",
+            model: User,
+            select: "name username",
+          },
+          {
+            path: "children",
+            model: Post,
+            populate: {
+              path: "author",
+              model: User,
+              select: "_id id name username image",
+            },
+          },
+        ],
+      }) 
       .populate({
         path: "likes",
-        model: "User",
+        model: User,
         select: "name username",
       });
   } catch (error: any) {
     console.log("Nahi mila iss bande ka post, ye dekho: ", error);
+  }
+}
+
+
+export async function addCommentToPost({
+  postId,
+  commentText,
+  userId,
+  path,
+}: {
+  postId: string;
+  commentText: string;
+  userId: string;
+  path: string;
+}) {
+  try {
+    connectToDB();
+
+    // adding comment
+    const parentPost = await Post.findById(postId);
+    if (!parentPost) throw new Error("Parent Post Not Found!");
+
+    const commentPost = new Post({
+      text: commentText,
+      author: userId,
+      parentId: postId,
+    });
+
+    // save the post
+
+    const savedCommentPost = await commentPost.save();
+
+    parentPost.children.push(savedCommentPost._id);
+
+    await parentPost.save();
+
+    revalidatePath(path);
+  } catch (e: any) {
+    throw new Error("Failed to add comment, ye dekho: ", e);
   }
 }
 

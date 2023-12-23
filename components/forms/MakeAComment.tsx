@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import * as z from "zod";
-import styles from "./MakeAPost.module.css";
+import styles from "./MakeAComment.module.css";
 import Image from "next/image";
-import camera from "../../public/images/camera.svg";
 import { useUploadThing } from "@/lib/uploadthing";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -22,30 +21,36 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import { updateUser } from "@/lib/actions/user.actions";
-import { PostValidation } from "@/lib/validations/post";
-import { createPost } from "@/lib/actions/post.actions";
+import { CommentValidation } from "@/lib/validations/post";
+import { addCommentToPost, createPost } from "@/lib/actions/post.actions";
 
-const MakeAPost = ({ userId }: { userId: string }) => {
+interface Props {
+  postId: string;
+  currentUserImage: string;
+  currentUserId: string;
+}
+
+const MakeAComment = ({ postId, currentUserImage, currentUserId }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
   const form = useForm({
-    resolver: zodResolver(PostValidation),
+    resolver: zodResolver(CommentValidation),
     defaultValues: {
       postText: "",
-      accountId: userId,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof PostValidation>) {
-    await createPost({
-      text: values.postText,
-      author: values.accountId,
-      communityId: null,
+  async function onSubmit(values: z.infer<typeof CommentValidation>) {
+    console.log(values);
+    await addCommentToPost({
+      postId: postId,
+      commentText: values.postText,
+      userId: currentUserId,
       path: pathname,
     });
 
-    router.push("/");
+    form.reset();
   }
 
   return (
@@ -56,30 +61,34 @@ const MakeAPost = ({ userId }: { userId: string }) => {
           name='postText'
           render={({ field }) => (
             <FormItem className={styles.field}>
-              {/* <FormLabel className={styles.label}>Bio</FormLabel> */}
+              <FormLabel className={styles.label}>
+                <Image
+                  src={currentUserImage}
+                  alt='current user profile picture'
+                  height={50}
+                  width={50}
+                />
+              </FormLabel>
               <FormControl>
-                <Textarea
+                <Input
                   className={styles.input}
-                  rows={10}
-                  placeholder='Speak Your Mind!'
-                  autoFocus
+                  placeholder='Drop a comment'
                   {...field}
                 />
               </FormControl>
-              <FormMessage className={styles.errorMessage} />
+              <FormMessage
+                className={`${styles.errorMessage} ${styles.fullWidth}`}
+              />
             </FormItem>
           )}
         />
-        <FormDescription className={styles.description}>
-          Please ensure that your post respects the feelings and opinions of
-          others on the Komyuniti App, and adhere to our community guidelines.
-        </FormDescription>
+
         <Button className={styles.submitButton} type='submit'>
-          Share ✅
+          Reply
         </Button>
       </form>
     </Form>
   );
 };
 
-export default MakeAPost;
+export default MakeAComment;

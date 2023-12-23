@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import * as z from "zod";
 import styles from "./AccountProfile.module.css";
 import Image from "next/image";
-import camera from "../../resources/camera.svg";
+import camera from "../../public/images/camera.svg";
 import { useUploadThing } from "@/lib/uploadthing";
 import { usePathname, useRouter } from "next/navigation";
 

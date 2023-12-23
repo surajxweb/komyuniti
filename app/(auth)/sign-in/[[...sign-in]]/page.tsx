@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs";
 import styles from "../../sign-up/[[...sign-up]]/Clerk.module.css";
 import Image from "next/image";
-import logo from "@/resources/new_trans_blue.svg";
+import logo from "@/public/images/new_trans_blue.svg";
 import {
   Rubik_Wet_Paint,
   Rubik_Mono_One,

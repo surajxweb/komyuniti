@@ -1,16 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import styles from "./PostCard.module.css";
 import Image from "next/image";
-import { FaHeart } from "react-icons/fa6";
-import { FaRegHeart } from "react-icons/fa6";
 import { FaCommentAlt } from "react-icons/fa";
 import { FaRegCommentAlt } from "react-icons/fa";
 import PostOptions from "../mui/PostOptions";
 import { FaPlus } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { RxDotFilled } from "react-icons/rx";
+import LikeButton from "../client/LikeButton";
+import { calculateTimeAgo } from "@/lib/utils";
 
 interface Props {
   id: string;
@@ -53,38 +51,6 @@ const PostCard = ({
   author_image,
   author_id,
 }: Props) => {
-  const calculateTimeAgo = (timestamp: string) => {
-    const postTime = new Date(timestamp);
-    const currentTime = new Date();
-
-    const timeDifference = Math.floor(
-      (currentTime.getTime() - postTime.getTime()) / 1000
-    ); // in seconds
-
-    const secondsInMinute = 60;
-    const secondsInHour = 3600;
-    const secondsInDay = 86400;
-    const secondsInWeek = 604800;
-    const secondsInMonth = 2628000;
-    const secondsInYear = 31536000;
-
-    if (timeDifference < secondsInMinute) {
-      return `${timeDifference}s ago`;
-    } else if (timeDifference < secondsInHour) {
-      return `${Math.floor(timeDifference / secondsInMinute)}m ago`;
-    } else if (timeDifference < secondsInDay) {
-      return `${Math.floor(timeDifference / secondsInHour)}h ago`;
-    } else if (timeDifference < secondsInWeek) {
-      return `${Math.floor(timeDifference / secondsInDay)}d ago`;
-    } else if (timeDifference < secondsInMonth) {
-      return `${Math.floor(timeDifference / secondsInWeek)}w ago`;
-    } else if (timeDifference < secondsInYear) {
-      return `${Math.floor(timeDifference / secondsInMonth)}mo ago`;
-    } else {
-      return `${Math.floor(timeDifference / secondsInYear)}y ago`;
-    }
-  };
-
   const timeAgo = calculateTimeAgo(createdAt);
 
   const isMyPost = currentUserId === author_id;
@@ -124,7 +90,7 @@ const PostCard = ({
       </Link>
       <div className={styles.actions}>
         <div className={styles.likebar}>
-          <FaRegHeart className={styles.like} size='1.5em' />
+          <LikeButton  size="1.5em"/>
           <div>{`${likes.length} likes`}</div>
         </div>
         <div className={styles.commentbar}>

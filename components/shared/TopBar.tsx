@@ -1,4 +1,4 @@
-import logo from "@/resources/komyuniti_white.webp";
+import logo from "@/public/images/komyuniti_white.webp";
 import styles from "./TopBar.module.css";
 import Image from "next/image";
 import Link from "next/link";
