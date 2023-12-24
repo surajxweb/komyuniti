@@ -5,7 +5,10 @@ import styles from "./Comments.module.css";
 import LikeButton from "../client/LikeButton";
 import { RxDotFilled } from "react-icons/rx";
 import { calculateTimeAgo } from "@/lib/utils";
-import { FaReply } from "react-icons/fa";
+import { RiReplyLine } from "react-icons/ri";
+import GenZComments from "./GenZComments";
+import { useState } from "react";
+import MakeAComment from "../forms/MakeAComment";
 
 interface Props {
   id: string;
@@ -14,6 +17,8 @@ interface Props {
   content: string;
   createdAt: string;
   likesString: any;
+  currentUserImage:string;
+        currentUserId: string
 }
 
 const Comments = ({
@@ -23,15 +28,16 @@ const Comments = ({
   content,
   createdAt,
   likesString,
+  currentUserImage,
+currentUserId
 }: Props) => {
+  const [showMoreComments, setShowMoreComments] = useState(false);
+  const [showReply, setShowReply] = useState(false);
+
   // JSON PARSE
-  const comments = JSON.parse(commentsString);
   const author = JSON.parse(authorString);
+  const comments = JSON.parse(commentsString);
   const likes = JSON.parse(likesString);
-
-  // test logs
-
-  
 
   const timeAgo = calculateTimeAgo(createdAt);
 
@@ -51,15 +57,37 @@ const Comments = ({
           </div>
           <div className={styles.text}>{content}</div>
           <div className={styles.actions}>
-            <FaReply size="1.2em" />
+            <RiReplyLine
+              className={styles.commentbar}
+              size="1.2em"
+              onClick={() => setShowReply(!showReply)}
+            />
             <LikeButton size="1.2em" />
             <div>{likes.lenght}</div>
           </div>
-          <div
+          {comments.length > 0 && <button
+            onClick={() => setShowMoreComments(!showMoreComments)}
             className={styles.more}
-          >{`View ${comments.lenght} replies.`}</div>
+          >
+            {showMoreComments ? "Hide replies." : "Show more replies."}
+          </button>}
         </div>
-        <div className={styles.grandChildren}></div>
+        {showReply && <MakeAComment postId={id} currentUserId={currentUserId} currentUserImage={currentUserImage} />}
+        {showMoreComments && (
+          <div className={styles.grandChildren}>
+            {comments.map((cmt: any) => (
+              <GenZComments
+                key={cmt._id}
+                authorString={JSON.stringify(cmt.author)}
+                content={cmt.text}
+                createdAt={cmt.createdAt.toString()}
+                likesString={JSON.stringify(cmt.likes)}
+                showReply={showReply}
+                setShowReply={setShowReply}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

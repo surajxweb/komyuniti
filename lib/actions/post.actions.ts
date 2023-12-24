@@ -22,7 +22,6 @@ export async function createPost({ text, author, communityId, path }: Params) {
       community: null,
     });
 
-
     // Update User model
     await User.findByIdAndUpdate(author, {
       $push: { posts: createdPost._id },
@@ -70,37 +69,38 @@ export async function findPostById(id: string) {
 
     return await Post.findById(id)
       .populate({
-        path: 'author',
+        path: "author",
         model: User,
-        select: '_id id name username image',
+        select: "_id id name username image",
       })
       .populate({
-        path: 'children',
+        path: "children",
         options: { sort: { createdAt: -1 } }, // sort in descending order
         populate: [
           {
-            path: 'author',
+            path: "author",
             model: User,
-            select: '_id id name username image',
+            select: "_id id name username image",
           },
           {
-            path: 'likes',
+            path: "likes",
             model: User,
-            select: 'name username',
+            select: "name username",
           },
           {
-            path: 'children',
+            path: "children",
             model: Post,
+
             populate: [
               {
-                path: 'author',
+                path: "author",
                 model: User,
-                select: '_id id name username image',
+                select: "_id id name username image",
               },
               {
-                path: 'likes',
+                path: "likes",
                 model: User,
-                select: 'name username',
+                select: "name username",
               },
               // Add any other population configurations if needed
             ],
@@ -108,15 +108,14 @@ export async function findPostById(id: string) {
         ],
       })
       .populate({
-        path: 'likes',
+        path: "likes",
         model: User,
-        select: 'name username',
+        select: "name username",
       });
   } catch (error: any) {
-    console.log('Nahi mila iss bande ka post, ye dekho: ', error);
+    console.log("Nahi mila iss bande ka post, ye dekho: ", error);
   }
 }
-
 
 export async function addCommentToPost({
   postId,

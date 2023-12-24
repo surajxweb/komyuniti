@@ -17,12 +17,9 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
 
   const comments = post.children;
   const likes = post.likes;
-  const genz=post.children.children;
+  const genz = post.children.children;
 
-  console.log(typeof(genz));
-  
-
-  
+  console.log(typeof genz);
 
   const isMyPost = user?.id === post?.author.id;
 
@@ -68,6 +65,8 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
               content={comment.text}
               createdAt={comment.createdAt.toString()}
               likesString={JSON.stringify(comment.likes)}
+              currentUserImage={userInfo.image}
+        currentUserId={userInfo._id.toString()}
             />
           ))}
         </div>

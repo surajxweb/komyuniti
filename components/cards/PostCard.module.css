@@ -107,6 +107,10 @@
   color: rgb(61, 102, 172);
 }
 
+.commentbar {
+  cursor: pointer;
+}
+
 .date {
   color: #b1b1b1;
 }

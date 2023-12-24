@@ -1,0 +1,7 @@
+.reactIcon {
+  cursor: pointer;
+}
+
+.reactIcon:hover {
+  color: rgb(200, 43, 43);
+}

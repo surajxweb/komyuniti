@@ -22,7 +22,6 @@ export async function updateUser({
   image,
   path,
 }: Params): Promise<void> {
-
   connectToDB();
 
   try {
