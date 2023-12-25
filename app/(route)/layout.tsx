@@ -6,12 +6,14 @@ import TopBar from "@/components/shared/TopBar";
 import LeftBar from "@/components/shared/LeftBar";
 import RightBar from "@/components/shared/RightBar";
 import BottomBar from "@/components/shared/BottomBar";
-import Loader from "@/components/shared/Loader";
-import { dark, neobrutalism } from "@clerk/themes";
-import { Suspense } from "react";
+import { dark,  } from "@clerk/themes";
 
 const bodyfont = Urbanist({ subsets: ["latin"], weight: "500" });
 
+export const metadata: Metadata = {
+  title: "Home / Komyuniti",
+  description: "Making social media more private and community-focused.",
+};
 export default function RootLayout({
   children,
 }: {
@@ -38,21 +40,16 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        
         <body className={bodyfont.className}>
-       
           <TopBar />
           <main>
             <LeftBar />
-            <Suspense fallback={<Loader />}>
-            {children}
-            </Suspense>
+           {children}
             <RightBar />
           </main>
           <BottomBar />
         </body>
       </html>
     </ClerkProvider>
-  
   );
 }

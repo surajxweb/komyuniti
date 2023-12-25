@@ -17,13 +17,14 @@
 .input,
 .submitButton {
   font-family: inherit;
-  padding: 10px 10px;
   font-size: 20px;
+  padding: 10px;
+
   margin-top: 8px;
-  background-color: #ccc;
-  color: #111;
+  background-color: #222;
+  color: #ccc;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 20px;
   outline: none; /* Remove the blue outline on focus */
 }
 
@@ -34,14 +35,16 @@
   font-size: 15px;
 }
 
-.field textarea:focus,
-.submitButton:focus {
+.field textarea:focus {
   /* Add styles for the focused state if needed */
-  border: 1px solid #111;
+  border: 3px solid #586aea;
 }
 
 .field textarea {
   width: 100%;
+  padding: 20px;
+  resize: none;
+  border: 3px solid #222;
 }
 
 .label {
@@ -51,6 +54,7 @@
 .description {
   margin: 10px 0;
   font-size: 14px;
+  color: #cccccc;
 }
 
 .submitButton {
@@ -60,8 +64,8 @@
   border-radius: 7px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
   color: #ffffff;
+  text-align: center;
 }
 
 .submitButton:hover {

@@ -21,11 +21,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
-import { updateUser } from "@/lib/actions/user.actions";
+import { fetchUser, updateUser } from "@/lib/actions/user.actions";
 import { PostValidation } from "@/lib/validations/post";
 import { createPost } from "@/lib/actions/post.actions";
+import { useAuth } from "@clerk/nextjs";
 
-const MakeAPost = ({ userId }: { userId: string }) => {
+const MakeAPost = () => {
+  const { userId } = useAuth();
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,14 +36,15 @@ const MakeAPost = ({ userId }: { userId: string }) => {
     resolver: zodResolver(PostValidation),
     defaultValues: {
       postText: "",
-      accountId: userId,
     },
   });
 
   async function onSubmit(values: z.infer<typeof PostValidation>) {
+    const userInfo = await fetchUser(userId || "");
+    const userKaId = userInfo._id.toString();
     await createPost({
       text: values.postText,
-      author: values.accountId,
+      author: userKaId,
       communityId: null,
       path: pathname,
     });
@@ -60,7 +64,7 @@ const MakeAPost = ({ userId }: { userId: string }) => {
               <FormControl>
                 <Textarea
                   className={styles.input}
-                  rows={10}
+                  rows={8}
                   placeholder="Speak Your Mind!"
                   autoFocus
                   {...field}
@@ -75,7 +79,7 @@ const MakeAPost = ({ userId }: { userId: string }) => {
           others on the Komyuniti App, and adhere to our community guidelines.
         </FormDescription>
         <Button className={styles.submitButton} type="submit">
-          Share ✅
+          Share
         </Button>
       </form>
     </Form>

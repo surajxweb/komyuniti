@@ -46,8 +46,12 @@ export function calculateTimeAgo(timestamp: string) {
   const postTime = new Date(timestamp);
   const currentTime = new Date();
 
+  const correctedPostTime = new Date(
+    Math.min(postTime.getTime(), currentTime.getTime())
+  );
+
   const timeDifference = Math.floor(
-    (currentTime.getTime() - postTime.getTime()) / 1000
+    (currentTime.getTime() - correctedPostTime.getTime()) / 1000
   ); // in seconds
 
   const secondsInMinute = 60;

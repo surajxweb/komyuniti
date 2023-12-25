@@ -7,7 +7,7 @@ export const PostValidation = z.object({
     .string()
     .min(3, { message: "Minimum 3 characters required." })
     .max(400, { message: "Maximum 400 characters allowed." }),
-  accountId: z.string(),
+ 
 });
 
 export const CommentValidation = z.object({
