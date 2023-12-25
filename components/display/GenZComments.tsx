@@ -11,7 +11,7 @@ interface Props {
   createdAt: any;
   likesString: any;
   showReply: any;
-  setShowReply: any
+  setShowReply: any;
 }
 
 const GenZComments = ({
@@ -20,7 +20,7 @@ const GenZComments = ({
   createdAt,
   likesString,
   showReply,
-  setShowReply
+  setShowReply,
 }: Props) => {
   const author = JSON.parse(authorString);
   const likes = JSON.parse(likesString);
@@ -43,7 +43,7 @@ const GenZComments = ({
           </div>
           <div className={styles.text}>{content}</div>
           <div className={styles.actions}>
-          <RiReplyLine
+            <RiReplyLine
               className={styles.commentbar}
               size="1.2em"
               onClick={() => setShowReply(!showReply)}

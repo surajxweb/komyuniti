@@ -11,11 +11,12 @@ const Page = async () => {
   const userInfo = await fetchUser(user?.id || "");
 
   if (!userInfo) return null;
-  3;
-
+  if (!userInfo.onboarded) redirect("/onboarding");
   const posts = await fetchPostsByUserId({
     id: user?.id || "",
   });
+
+  console.log();
 
   return (
     <div className={styles.container}>

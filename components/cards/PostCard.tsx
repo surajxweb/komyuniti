@@ -94,10 +94,10 @@ const PostCard = ({
           <div>{`${likes.length} likes`}</div>
         </div>
         <Link className={styles.link} href={`/post/${id}`}>
-        <div className={styles.commentbar}>
-          <FaRegCommentAlt className={styles.comment} size="1.5em" />
-          <div>{`${comments.length} comments`}</div>
-        </div>
+          <div className={styles.commentbar}>
+            <FaRegCommentAlt className={styles.comment} size="1.5em" />
+            <div>{`${comments.length} comments`}</div>
+          </div>
         </Link>
       </div>
     </div>

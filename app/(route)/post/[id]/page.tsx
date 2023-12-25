@@ -5,7 +5,6 @@ import PostCard from "@/components/cards/PostCard";
 import BackButton from "@/components/client/BackButton";
 import MakeAComment from "@/components/forms/MakeAComment";
 import { fetchUser } from "@/lib/actions/user.actions";
-import NewCard from "@/components/cards/NewCard";
 import Comments from "@/components/display/Comments";
 
 const PostPage = async ({ params }: { params: { id: string } }) => {
@@ -66,7 +65,7 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
               createdAt={comment.createdAt.toString()}
               likesString={JSON.stringify(comment.likes)}
               currentUserImage={userInfo.image}
-        currentUserId={userInfo._id.toString()}
+              currentUserId={userInfo._id.toString()}
             />
           ))}
         </div>

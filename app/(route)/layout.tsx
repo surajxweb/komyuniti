@@ -6,7 +6,9 @@ import TopBar from "@/components/shared/TopBar";
 import LeftBar from "@/components/shared/LeftBar";
 import RightBar from "@/components/shared/RightBar";
 import BottomBar from "@/components/shared/BottomBar";
+import Loader from "@/components/shared/Loader";
 import { dark, neobrutalism } from "@clerk/themes";
+import { Suspense } from "react";
 
 const bodyfont = Urbanist({ subsets: ["latin"], weight: "500" });
 
@@ -36,16 +38,21 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
+        
         <body className={bodyfont.className}>
+       
           <TopBar />
           <main>
             <LeftBar />
+            <Suspense fallback={<Loader />}>
             {children}
+            </Suspense>
             <RightBar />
           </main>
           <BottomBar />
         </body>
       </html>
     </ClerkProvider>
+  
   );
 }

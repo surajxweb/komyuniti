@@ -17,8 +17,8 @@ interface Props {
   content: string;
   createdAt: string;
   likesString: any;
-  currentUserImage:string;
-        currentUserId: string
+  currentUserImage: string;
+  currentUserId: string;
 }
 
 const Comments = ({
@@ -29,7 +29,7 @@ const Comments = ({
   createdAt,
   likesString,
   currentUserImage,
-currentUserId
+  currentUserId,
 }: Props) => {
   const [showMoreComments, setShowMoreComments] = useState(false);
   const [showReply, setShowReply] = useState(false);
@@ -65,14 +65,22 @@ currentUserId
             <LikeButton size="1.2em" />
             <div>{likes.lenght}</div>
           </div>
-          {comments.length > 0 && <button
-            onClick={() => setShowMoreComments(!showMoreComments)}
-            className={styles.more}
-          >
-            {showMoreComments ? "Hide replies." : "Show more replies."}
-          </button>}
+          {comments.length > 0 && (
+            <button
+              onClick={() => setShowMoreComments(!showMoreComments)}
+              className={styles.more}
+            >
+              {showMoreComments ? "Hide replies." : "Show more replies."}
+            </button>
+          )}
         </div>
-        {showReply && <MakeAComment postId={id} currentUserId={currentUserId} currentUserImage={currentUserImage} />}
+        {showReply && (
+          <MakeAComment
+            postId={id}
+            currentUserId={currentUserId}
+            currentUserImage={currentUserImage}
+          />
+        )}
         {showMoreComments && (
           <div className={styles.grandChildren}>
             {comments.map((cmt: any) => (

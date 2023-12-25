@@ -18,6 +18,7 @@
     "@mui/material": "^5.15.1",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@types/mongoose": "^5.11.97",
     "@uploadthing/react": "^5.7.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
