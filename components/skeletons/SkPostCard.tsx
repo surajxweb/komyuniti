@@ -19,6 +19,7 @@ const SkPostCard = ({}) => {
             <div className={styles.name}>
               <Skeleton
                 variant="text"
+                animation="wave"
                 sx={{ fontSize: "1rem" }}
                 width={100}
                 height={40}
@@ -27,6 +28,7 @@ const SkPostCard = ({}) => {
             <div className={styles.uname}>
               <Skeleton
                 variant="text"
+                animation="wave"
                 sx={{ fontSize: "1rem" }}
                 width={100}
                 height={40}
@@ -35,6 +37,7 @@ const SkPostCard = ({}) => {
             <div className={styles.date}>
               <Skeleton
                 variant="text"
+                animation="wave"
                 sx={{ fontSize: "1rem" }}
                 width={80}
                 height={40}
@@ -53,7 +56,7 @@ const SkPostCard = ({}) => {
         </div>
 
         <div className={styles.post}>
-          <Skeleton variant="text" sx={{ fontSize: "1rem" }} height={100} />
+          <Skeleton  animation="wave" variant="text" sx={{ fontSize: "1rem" }} height={100} />
         </div>
 
         <div className={styles.actions}>
@@ -61,6 +64,7 @@ const SkPostCard = ({}) => {
             <div>
               <Skeleton
                 variant="text"
+                animation="wave"
                 sx={{ fontSize: "1rem" }}
                 width={60}
                 height={40}
@@ -71,6 +75,7 @@ const SkPostCard = ({}) => {
           <div className={styles.commentbar}>
             <div>
               <Skeleton
+               animation="wave"
                 variant="text"
                 sx={{ fontSize: "1rem" }}
                 width={60}

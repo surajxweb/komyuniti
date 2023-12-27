@@ -77,3 +77,23 @@ export function calculateTimeAgo(timestamp: string) {
     return `${Math.floor(timeDifference / secondsInYear)}y ago`;
   }
 }
+
+// File: utils.js
+
+// Function to process and format a tweet
+export const formatPost = (tweet: string) => {
+  // Convert @mentions to links
+  const tweetWithMentions = tweet.replace(
+    /@(\w+)/g,
+    '<a href="/profile/@$1">@$1</a>'
+  );
+
+  // Convert links to clickable links with target blank
+  const tweetWithLinks = tweetWithMentions.replace(
+    /(\b(?:https?|ftp):\/\/[^\s]+)/g,
+    (match) =>
+      `<a href="${match}" target="_blank" rel="noopener noreferrer">${match}</a>`
+  );
+
+  return tweetWithLinks;
+};

@@ -3,13 +3,36 @@
   display: flex;
   object-fit: cover;
   object-position: center;
-  /* background-image: url("https://images.unsplash.com/photo-1512551980832-13df02babc9e?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
-  background-image: url("../../../../public/images/backgroud.svg");
+  background-image: url("../../../../public/images/background.jpg");
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   gap: 40px;
   flex-flow: row wrap;
+
+  /* Apply backdrop filter for better text visibility */
+  backdrop-filter: brightness(0.8) contrast(1.2);
+
+  /* Set background size to cover */
+  background-size: cover;
+}
+
+/* Add a semi-transparent background color to the container content */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the alpha value for transparency */
+  pointer-events: none; /* Ensure the pseudo-element doesn't interfere with interactions */
+  z-index: -1; /* Place the pseudo-element behind the content */
 }
 
 .content {

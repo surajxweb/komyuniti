@@ -6,7 +6,7 @@ import TopBar from "@/components/shared/TopBar";
 import LeftBar from "@/components/shared/LeftBar";
 import RightBar from "@/components/shared/RightBar";
 import BottomBar from "@/components/shared/BottomBar";
-import { dark,  } from "@clerk/themes";
+import { dark } from "@clerk/themes";
 
 const bodyfont = Urbanist({ subsets: ["latin"], weight: "500" });
 
@@ -44,7 +44,7 @@ export default function RootLayout({
           <TopBar />
           <main>
             <LeftBar />
-           {children}
+            {children}
             <RightBar />
           </main>
           <BottomBar />

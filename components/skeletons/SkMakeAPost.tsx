@@ -5,16 +5,9 @@ const MakeAPost = () => {
   return (
     <div className={styles.form}>
       <div className={styles.field}>
-    
-          <div className={styles.input} />
-          <Skeleton
-            animation="wave"
-            variant="rounded"
-            width={210}
-            height={60}
-          />
-        </div>
-     
+        <div className={styles.input} />
+        <Skeleton animation="wave" variant="rounded" width={210} height={60} />
+      </div>
 
       <div className={styles.description}>
         Please ensure that your post respects the feelings and opinions of

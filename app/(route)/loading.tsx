@@ -10,7 +10,6 @@ export const metadata = {
 export default async function Home() {
   return (
     <div className={styles.container}>
-     
       <h1 className={styles.heading}>Your Timeline</h1>
       <div>
         <SkPostCard />
