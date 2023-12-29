@@ -9,6 +9,7 @@ import {
   SignInButton,
   SignedOut,
   OrganizationSwitcher,
+  useAuth,
 } from "@clerk/nextjs";
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiOutlineLogin } from "react-icons/hi";
@@ -21,8 +22,22 @@ import { HiUser } from "react-icons/hi";
 import { BiMessageAltDots } from "react-icons/bi";
 import { dark } from "@clerk/themes";
 import { usePathname, useRouter } from "next/navigation";
+import { fetchUser } from "@/lib/actions/user.actions";
+import { useEffect, useState } from "react";
 
 const LeftBar = () => {
+  const { userId } = useAuth();
+  const [userData, setUserData] = useState({ username: "", imageUrl: "" });
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const userInfo = await fetchUser(userId || "");
+      setUserData({ username: userInfo?.username, imageUrl: userInfo?.image });
+      console.log(userInfo);
+    };
+    getUserData();
+  }, [userId]);
+
   const pathname = usePathname();
   return (
     <div className={styles.container}>
@@ -87,12 +102,26 @@ const LeftBar = () => {
           <div className={styles.options}>Communities</div>
         </Link>
         <Link
-          href={"/profile"}
+          href={
+            userData.imageUrl && userData.imageUrl.length > 1
+              ? `/${userData.username}`
+              : "/profile"
+          }
           className={`${styles.link} ${
-            pathname === "/profile" ? styles.selected : ""
+            pathname === `/${userData.username}` ? styles.selected : ""
           }`}
         >
-          <HiUser size="2em" className={styles.icons} />
+          {userData.imageUrl && userData.imageUrl.length > 1 ? (
+            <Image
+              src={userData.imageUrl}
+              height={100}
+              width={100}
+              alt="profile photo"
+            />
+          ) : (
+            <HiUser size="2em" className={styles.icons} />
+          )}
+
           <div className={styles.options}>Profile</div>
         </Link>
       </div>

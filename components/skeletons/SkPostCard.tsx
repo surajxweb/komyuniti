@@ -56,7 +56,12 @@ const SkPostCard = ({}) => {
         </div>
 
         <div className={styles.post}>
-          <Skeleton  animation="wave" variant="text" sx={{ fontSize: "1rem" }} height={100} />
+          <Skeleton
+            animation="wave"
+            variant="text"
+            sx={{ fontSize: "1rem" }}
+            height={100}
+          />
         </div>
 
         <div className={styles.actions}>
@@ -75,7 +80,7 @@ const SkPostCard = ({}) => {
           <div className={styles.commentbar}>
             <div>
               <Skeleton
-               animation="wave"
+                animation="wave"
                 variant="text"
                 sx={{ fontSize: "1rem" }}
                 width={60}

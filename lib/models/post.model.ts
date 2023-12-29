@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-  text: { type: String, required: true },
+  text: { type: String, maxlength: 500 }, // Common field for text, caption, or question
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -16,9 +16,31 @@ const postSchema = new mongoose.Schema({
       ref: "Post",
     },
   ],
-  postType: { type: String, enum: ["text", "image", "video"], default: "text" },
+  postType: {
+    type: String,
+    enum: ["text", "image", "video", "poll"],
+    default: "text",
+  },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  isEdited: { type: Boolean, default: false, index: true }, // Index on isEdited for quick lookups
+  postVisibility: {
+    type: String,
+    enum: ["private", "public"],
+    default: "public",
+  },
+
+  // Conditional fields based on postType
+  media: { type: String }, // URL for image or video
+  options: {
+    option1: { type: String }, // Option for polls
+    option2: { type: String },
+    option3: { type: String },
+    option4: { type: String },
+  },
 });
+
+// Index on author for fetching posts by author
+postSchema.index({ author: 1 });
 
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 

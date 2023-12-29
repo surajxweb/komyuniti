@@ -12,6 +12,9 @@ interface Params {
   bio: string;
   image: string;
   path: string;
+  link: string;
+  location: string;
+  email: string;
 }
 
 export async function updateUser({
@@ -21,6 +24,9 @@ export async function updateUser({
   bio,
   image,
   path,
+  link,
+  location,
+  email,
 }: Params): Promise<void> {
   connectToDB();
 
@@ -34,7 +40,11 @@ export async function updateUser({
         name: name,
         bio: bio,
         image: image,
+        link: link,
         onboarded: true,
+        termsOfServiceAgreed: true,
+        locationOfUser: location,
+        emailOfUser: email,
       },
       {
         upsert: true,
@@ -52,6 +62,21 @@ export async function fetchUser(userId: string) {
   try {
     connectToDB();
     return await User.findOne({ id: userId });
+    // .populate({ path: "communities", model: Community})
+  } catch (e: any) {
+    throw new Error("User nahi mila, ye dekho: ", e);
+  }
+}
+
+export async function fetchProfilePageDetails(username: string) {
+  try {
+    connectToDB();
+    return await User.findOne({ username: username }).populate({
+      path: "posts",
+      model: Post,
+      select:
+        "_id text community createdAt parentId children postType likes isEdited",
+    });
     // .populate({ path: "communities", model: Community})
   } catch (e: any) {
     throw new Error("User nahi mila, ye dekho: ", e);

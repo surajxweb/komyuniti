@@ -19,7 +19,7 @@ export async function createPost({ text, author, communityId, path }: Params) {
     const createdPost = await Post.create({
       text,
       author,
-      community: null,
+      community: communityId || null,
     });
 
     // Update User model
@@ -44,19 +44,6 @@ export async function fetchPosts() {
         path: "author",
         model: User,
         select: "_id id name username image",
-      })
-      .populate({
-        path: "children",
-        populate: {
-          path: "author",
-          model: User,
-          select: "_id name parendId image",
-        },
-      })
-      .populate({
-        path: "likes",
-        model: "User",
-        select: "name username",
       });
   } catch (error: any) {
     console.log("Nahi mila koi post, ye dekho: ", error);
@@ -163,26 +150,7 @@ export async function fetchPostsByUserId({ id }: { id: string }) {
     return await Post.find({
       parentId: { $in: [null, undefined] },
       "author.id": id,
-    })
-      .sort({ createdAt: "desc" })
-      .populate({
-        path: "author",
-        model: User,
-        select: "_id id name username image",
-      })
-      .populate({
-        path: "children",
-        populate: {
-          path: "author",
-          model: User,
-          select: "_id name parendId image",
-        },
-      })
-      .populate({
-        path: "likes",
-        model: "User",
-        select: "name username",
-      });
+    }).sort({ createdAt: "desc" });
   } catch (error: any) {
     console.log("Nahi mila koi post, ye dekho: ", error);
   }

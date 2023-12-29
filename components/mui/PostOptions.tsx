@@ -55,7 +55,6 @@ export default function BasicMenu({ postId }: { postId: string }) {
         >
           <MenuItem onClick={handleClose}>Edit Post</MenuItem>
           <MenuItem onClick={handleClose}>Delete Post</MenuItem>
-          {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
         </Menu>
       </ThemeProvider>
     </>

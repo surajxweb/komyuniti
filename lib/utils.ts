@@ -97,3 +97,14 @@ export const formatPost = (tweet: string) => {
 
   return tweetWithLinks;
 };
+
+export const formatDate = (inputDate: any) => {
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  const date = new Date(inputDate);
+
+  const day = new Intl.DateTimeFormat("en", { day: "numeric" }).format(date);
+  const month = new Intl.DateTimeFormat("en", { month: "long" }).format(date);
+  const year = new Intl.DateTimeFormat("en", { year: "numeric" }).format(date);
+
+  return `${day} ${month}, ${year}`;
+};

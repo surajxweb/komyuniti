@@ -4,11 +4,15 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin-bottom: 10px;
+  color: #f3f3f3;
 }
 
 .image img {
   width: 180px;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
   border: 3px solid #ccc;
   border-radius: 20px;
 }
@@ -17,6 +21,12 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.name_uname {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .name {
@@ -37,15 +47,15 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  background-color: #586aea;
-  border: 1px solid #4350ad;
+  background-color: rgb(39, 39, 42);
   width: 120px;
   justify-content: center;
-  border-radius: 7px;
+  border-radius: 10px;
+  color: rgb(204, 204, 204);
 }
 
 .edit:hover {
-  background-color: #4c59bc;
+  background-color: rgb(63, 63, 70);
 }
 
 .data {
@@ -57,7 +67,7 @@
   padding: 10px 0;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
-  width: 95%;
+  width: 100%;
 }
 
 .data > * {
@@ -66,4 +76,12 @@
 
 .text {
   margin-bottom: 5px;
+}
+
+.link {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #a6a6a6;
+  font-size: 14px;
 }

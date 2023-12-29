@@ -7,6 +7,9 @@
 .heading {
   font-size: 30px;
 }
+.error {
+  padding: 10px 0px;
+}
 
 .post {
   width: 100%;

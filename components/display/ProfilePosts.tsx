@@ -1,19 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./ProfilePosts.module.css";
 import PostCard from "../cards/PostCard";
 
 const ProfilePosts = ({
-  posts,
-  id,
+  likedPostsString,
+  postsString,
+  currentUserId,
   username,
+  author_id,
+  author__id,
+  author_name,
+  author_username,
+  author_image,
 }: {
-  posts: any;
-  id: string;
+  likedPostsString: any;
+  postsString: any;
+  currentUserId: string;
   username: string;
+  author_id: string;
+  author__id: string;
+  author_name: string;
+  author_username: string;
+  author_image: string;
 }) => {
   const [view, setView] = useState<string>("posts");
+
+  // JSON PARSE
+  const posts = JSON.parse(postsString);
+  const likedPosts = JSON.parse(likedPostsString);
+
+  console.log(posts);
+
+  const postToDisplay =
+    view === "posts"
+      ? posts.filter((post: any) => post.postType === "text")
+      : view === "media"
+      ? posts.filter(
+          (post: any) => post.postType === "image" || post.postType === "video"
+        )
+      : view === "polls"
+      ? posts.filter((post: any) => post.postType === "polls")
+      : view === "likes"
+      ? likedPosts
+      : [];
 
   return (
     <>
@@ -25,19 +56,18 @@ const ProfilePosts = ({
           Posts
         </div>
         <div
-          className={`${styles.tab} ${
-            view === "replies" ? styles.selected : ""
-          }`}
-          onClick={() => setView("replies")}
-        >
-          Replies
-        </div>
-        <div
           className={`${styles.tab} ${view === "media" ? styles.selected : ""}`}
           onClick={() => setView("media")}
         >
           Media
         </div>
+        <div
+          className={`${styles.tab} ${view === "polls" ? styles.selected : ""}`}
+          onClick={() => setView("polls")}
+        >
+          Polls
+        </div>
+
         <div
           className={`${styles.tab} ${view === "likes" ? styles.selected : ""}`}
           onClick={() => setView("likes")}
@@ -46,34 +76,32 @@ const ProfilePosts = ({
         </div>
       </div>
 
-      {/* <div>
-        {posts?.length === 0 ? (
-          <div className={styles.error}>
-            {`${username} has not posted yet!`}
-          </div>
+      <div className={styles.postsDisplay}>
+        {postToDisplay?.length === 0 ? (
+          <div className={styles.error}>{`Nothing to show here yet!`}</div>
         ) : (
           <div>
-            {posts?.map((post: any) => (
+            {postToDisplay?.map((post: any) => (
               <PostCard
                 key={post._id}
                 id={post._id.toString()}
-                currentUserId={id}
+                currentUserId={currentUserId}
                 parentId={post.parentId}
                 content={post.text}
                 community={post.community}
                 createdAt={post.createdAt}
                 comments={post.children}
                 likes={post.likes}
-                author_id={post.author.id}
-                author__id={post.author._id.toString()}
-                author_name={post.author.name}
-                author_username={post.author.username}
-                author_image={post.author.image}
+                author_id={author_id}
+                author__id={author__id}
+                author_name={author_name}
+                author_username={author_username}
+                author_image={author_image}
               />
             ))}
           </div>
         )}
-      </div> */}
+      </div>
     </>
   );
 };

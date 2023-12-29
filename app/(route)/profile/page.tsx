@@ -1,44 +1,16 @@
-import { fetchUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import styles from "./Profile.module.css";
-import ProfileCard from "@/components/cards/ProfileCard";
-import { fetchPostsByUserId } from "@/lib/actions/post.actions";
-import PostCard from "@/components/cards/PostCard";
-import ProfilePosts from "@/components/display/ProfilePosts";
+import { fetchUser } from "@/lib/actions/user.actions";
+import { currentUser } from "@clerk/nextjs";
 
 const Page = async () => {
   const user = await currentUser();
+
   const userInfo = await fetchUser(user?.id || "");
 
-  if (!userInfo) return null;
-  if (!userInfo.onboarded) redirect("/onboarding");
-  const posts = await fetchPostsByUserId({
-    id: user?.id || "",
-  });
+  redirect(`/${userInfo?.username}`);
 
-  console.log();
-
-  return (
-    <div className={styles.container}>
-      <ProfileCard
-        name={userInfo.name}
-        username={userInfo.username}
-        image={userInfo.image}
-        bio={userInfo.bio}
-        id={user?.id}
-        link={userInfo.link}
-        followers={userInfo.followers.length}
-        following={userInfo.following.length}
-        posts={userInfo.posts.length}
-      />
-      <ProfilePosts
-        posts={posts}
-        username={userInfo.username}
-        id={user?.id || ""}
-      />
-    </div>
-  );
+  return <div className={styles.container}>Redirecting...</div>;
 };
 
 export default Page;

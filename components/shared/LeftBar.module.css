@@ -41,6 +41,19 @@
   background-color: #1a1b1d;
 }
 
+.link img {
+  border: 1px solid #b6b6b6;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.selected img {
+  border: 1px solid var(--selected-color);
+}
+
 .nav {
   display: flex;
   gap: 10px;

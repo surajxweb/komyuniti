@@ -1,10 +1,11 @@
+import BackButton from "@/components/client/BackButton";
 import AccountProfile from "@/components/forms/AccountProfile";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Onboarding / Komyuniti",
+  title: "Edit / Profile / Komyuniti",
   description: "Making social media more private and community focused.",
 };
 
@@ -13,7 +14,7 @@ const Page = async () => {
   console.log(typeof user?.emailAddresses[0].emailAddress);
 
   const userInfo = await fetchUser(user?.id || "");
-  if (userInfo?.onboarded) redirect("/");
+  // if (userInfo?.onboarded) redirect("/");
 
   const fullName =
     user?.firstName && user?.lastName
@@ -37,11 +38,14 @@ const Page = async () => {
   };
 
   return (
-    <div style={{ margin: "20px 0" }}>
+    <div className="container">
+      <BackButton />
+      <h2 style={{margin:"10px 0 20px 5px"}}>Edit your Profile</h2>
+
       <AccountProfile
         user={userData}
-        btnTitle={"Submit and Continue ⏭️"}
-        heading={"Welcome to Komyuniti 😁"}
+        btnTitle={"Save Profile"}
+        heading={""}
       />
     </div>
   );

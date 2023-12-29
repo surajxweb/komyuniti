@@ -10,6 +10,16 @@ import Image from "next/image";
 import camera from "../../public/images/camera.svg";
 import { useUploadThing } from "@/lib/uploadthing";
 import { usePathname, useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "../ui/textarea";
+import { ChangeEvent, useState } from "react";
+import { isBase64Image } from "@/lib/utils";
+import { updateUser } from "@/lib/actions/user.actions";
+import { FaHome, FaUser, FaAt } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import CircularProgress from "@mui/material/CircularProgress";
+import { green } from "@mui/material/colors";
+import Box from "@mui/material/Box";
 
 import {
   Form,
@@ -20,11 +30,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "../ui/textarea";
-import { ChangeEvent, useState } from "react";
-import { isBase64Image } from "@/lib/utils";
-import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
   user: {
@@ -34,14 +39,21 @@ interface Props {
     name: string;
     bio: string;
     image: string;
+    link: string;
+    location: string;
+    email: string;
   };
   btnTitle: string;
+  heading: string;
 }
 
-const AccountProfile = ({ user, btnTitle }: Props) => {
+const AccountProfile = ({ user, btnTitle, heading }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const [files, setFiles] = useState<File[]>([]);
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
+  const [success, setSuccess] = useState<Boolean>(false);
+
   const { startUpload } = useUploadThing("media");
 
   const form = useForm({
@@ -51,6 +63,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       name: user?.name || "",
       bio: user?.bio || "",
       profile_photo: user?.image || "",
+      link: user?.link || "",
+      location: user?.location || "",
+      email: user?.email,
     },
   });
 
@@ -66,8 +81,6 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       const file = e.target.files[0];
       setFiles(Array.from(e.target.files));
 
-      // if (!file.type.includes("image")) return;
-
       fileReader.onload = async (event) => {
         const imageDataUrl = event.target?.result?.toString() || "";
         fieldChange(imageDataUrl);
@@ -78,29 +91,32 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
   //submit handler.
   async function onSubmit(values: z.infer<typeof UserValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    // console.log(values);
+    setIsLoading(true);
+
     const blob = values.profile_photo;
     const hasImageChanged = isBase64Image(blob);
     if (hasImageChanged) {
       const imgResponse = await startUpload(files);
-      if (imgResponse && imgResponse[0].fileUrl) {
-        values.profile_photo = imgResponse[0].fileUrl;
+      if (imgResponse && imgResponse[0].url) {
+        values.profile_photo = imgResponse[0].url;
       }
     }
-
-    console.log("submit ke time ka username: ", values.username);
 
     // update user profile
     await updateUser({
       userId: user.id,
-      username: values.username,
+      username: user?.username || values.username,
       name: values.name,
       bio: values.bio,
       image: values.profile_photo,
       path: pathname,
+      link: values.link,
+      location: values.location,
+      email: values.email,
     });
+
+    setIsLoading(false);
+    setSuccess(true);
 
     if (pathname === "/profile/edit") {
       router.back();
@@ -112,7 +128,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
-        <h2 className={styles.heading}>Let&#39;s set you up!</h2>
+        {heading.length>1 && <h1 className={styles.heading}>{heading}</h1>}
 
         <FormField
           control={form.control}
@@ -145,6 +161,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                     placeholder="Upload a photo"
                     onChange={(e) => handleImage(e, field.onChange)}
                     className={styles.fileInput}
+                    disabled={isLoading === true}
                   />
                 </FormControl>
               </div>
@@ -153,52 +170,135 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem className={styles.field}>
-              <FormLabel className={styles.label}>Name</FormLabel>
-              <FormControl>
-                <Input
-                  className={styles.input}
-                  placeholder="Enter your full name."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className={styles.errorMessage} />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem className={styles.field}>
-              <FormLabel className={styles.label}>Username</FormLabel>
-              <FormControl>
-                <Input
-                  className={styles.input}
-                  placeholder="Enter a username. (Spaces ( ) and preiods (.) not allowed."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className={styles.errorMessage} />
-            </FormItem>
-          )}
-        />
+        <div className={styles.flexItems}>
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className={styles.field}>
+                <FormLabel className={styles.label}>Name*</FormLabel>
+                <div className={styles.linkInput}>
+                  <span className={styles.http}>
+                    <FaUser />
+                  </span>
+                  <FormControl>
+                    <Input
+                      className={styles.link}
+                      placeholder="Enter your full name."
+                      {...field}
+                      disabled={isLoading === true}
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className={styles.errorMessage} />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem className={styles.field}>
+                <FormLabel className={styles.label}>Username*</FormLabel>
+                <div className={styles.linkInput}>
+                  <span className={styles.http}>
+                    <FaAt />
+                  </span>
+                  <FormControl>
+                    <Input
+                      className={`${styles.link} ${styles.disabled}`}
+                      placeholder="Enter a username. (Spaces ( ) and preiods (.) not allowed."
+                      {...field}
+                      disabled
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className={styles.errorMessage} />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className={styles.field}>
+                <FormLabel className={styles.label}>Email ID*</FormLabel>
+                <div className={styles.linkInput}>
+                  <span className={styles.http}>
+                    <IoMdMail />
+                  </span>
+                  <FormControl>
+                    <Input
+                      className={`${styles.link} ${styles.disabled}`}
+                      placeholder="Enter Email ID."
+                      {...field}
+                      disabled
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className={styles.errorMessage} />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className={styles.field}>
+                <FormLabel className={styles.label}>Location</FormLabel>
+                <div className={styles.linkInput}>
+                  <span className={styles.http}>
+                    <FaHome />
+                  </span>
+                  <FormControl>
+                    <Input
+                      className={styles.link}
+                      placeholder="Ex. Bangalore, KA, India"
+                      {...field}
+                      disabled={isLoading === true}
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className={styles.errorMessage} />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="link"
+            render={({ field }) => (
+              <FormItem className={styles.field}>
+                <FormLabel className={styles.label}>Link</FormLabel>
+                <div className={styles.linkInput}>
+                  <span className={`${styles.http} ${styles.bold}`}>
+                    https://
+                  </span>
+                  <FormControl>
+                    <Input
+                      className={styles.link}
+                      placeholder="example.com/profile"
+                      {...field}
+                      disabled={isLoading === true}
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className={styles.errorMessage} />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="bio"
           render={({ field }) => (
             <FormItem className={styles.field}>
-              <FormLabel className={styles.label}>Bio</FormLabel>
+              <FormLabel className={styles.label}>Bio*</FormLabel>
               <FormControl>
                 <Textarea
-                  className={styles.input}
                   rows={6}
                   placeholder="Who are you (in 1000 characters or less)?"
                   {...field}
+                  disabled={isLoading === true}
                 />
               </FormControl>
               <FormMessage className={styles.errorMessage} />
@@ -206,12 +306,33 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           )}
         />
         <FormDescription className={styles.description}>
-          The information entered here is permanent, until we implement the edit
-          functionality.
+          Feilds marked * are mandatory. By submiting the form, you agree to the
+          terms and conditions at Komyuniti.
         </FormDescription>
-        <Button className={styles.submitButton} type="submit">
-          {btnTitle} ✅
-        </Button>
+        <Box sx={{ m: 1, position: "relative" }}>
+          <Button
+            className={`${styles.submitButton}  ${
+              isLoading ? styles.loading : ""
+            } ${success ? styles.success : ""}`}
+            disabled={isLoading === true}
+            type="submit"
+          >
+            {!success ? btnTitle : "Redirecting..."}
+          </Button>
+          {isLoading && (
+            <CircularProgress
+              size={24}
+              sx={{
+                color: green[500],
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                marginTop: "-12px",
+                marginLeft: "-12px",
+              }}
+            />
+          )}
+        </Box>
       </form>
     </Form>
   );

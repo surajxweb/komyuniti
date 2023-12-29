@@ -2,6 +2,8 @@
   background-color: rgb(39, 39, 42);
   color: rgb(236, 237, 238);
   width: 100%;
+  margin: 10px auto 20px auto;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -15,11 +17,11 @@
   padding: 5px 10px;
   width: 25%;
   cursor: pointer;
-  color: rgb(236, 237, 238);
+  color: #ccc;
 }
 
 .tab:hover {
-  color: #ccc;
+  color: #b0b0b0;
 }
 
 .selected {

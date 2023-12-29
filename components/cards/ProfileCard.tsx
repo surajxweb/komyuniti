@@ -2,6 +2,9 @@ import Image from "next/image";
 import styles from "./ProfileCard.module.css";
 import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";
+import { IoIosLink } from "react-icons/io";
+import { RxDotFilled } from "react-icons/rx";
+import { IoLocationOutline, IoCalendarOutline } from "react-icons/io5";
 
 interface Props {
   name: string;
@@ -13,6 +16,9 @@ interface Props {
   followers: number;
   following: number;
   posts: number;
+  joinedDate: string;
+  location: string;
+  noOfCommunities: number;
 }
 
 const ProfileCard = ({
@@ -22,9 +28,12 @@ const ProfileCard = ({
   bio,
   id,
   link,
+  joinedDate,
+  location,
   followers,
   following,
   posts,
+  noOfCommunities,
 }: Props) => {
   return (
     <>
@@ -33,16 +42,41 @@ const ProfileCard = ({
           <Image src={image} alt="display picture" height={400} width={400} />
         </div>
         <div className={styles.info}>
-          <div className={styles.name}>{name}</div>
-          <div className={styles.username}>@{username}</div>
+          <div className={styles.name_uname}>
+            <div className={styles.name}>{name}</div>
+            <RxDotFilled color="#b1b1b1" />
+            <div className={styles.username}>@{username}</div>
+          </div>
           <div className={styles.bio}>{bio}</div>
-          {link && <Link href={link}>{link}</Link>}
-          <Link className={styles.edit} href={"/profile/edit"}>
-            <div>Edit Profile</div>
-            <AiFillEdit />
-          </Link>
+          {link && link?.length > 1 && (
+            <div className={styles.link}>
+              <IoIosLink size="0.8em" />
+              <Link target="_blank" href={`https://${link}`}>
+                {" "}
+                {link}
+              </Link>
+            </div>
+          )}
+
+          {location && location?.length > 1 && (
+            <div className={styles.link}>
+              <IoLocationOutline size="0.8em" />
+              <div> {`Lives in ${location}`}</div>
+            </div>
+          )}
+
+          {joinedDate && joinedDate?.length > 1 && (
+            <div className={styles.link}>
+              <IoCalendarOutline size="0.8em" />
+              <div>{` Joined on ${joinedDate}`}</div>
+            </div>
+          )}
         </div>
       </div>
+      <Link className={styles.edit} href={"/profile/edit"}>
+        <div>Edit Profile</div>
+        <AiFillEdit />
+      </Link>
       <div className={styles.data}>
         <div className={styles.posts}>
           <div className={styles.text}>Posts</div>
@@ -55,6 +89,10 @@ const ProfileCard = ({
         <div className={styles.following}>
           <div className={styles.text}>Following</div>
           <div className={styles.number}>{following}</div>
+        </div>
+        <div className={styles.posts}>
+          <div className={styles.text}>Communities</div>
+          <div className={styles.number}>{noOfCommunities}</div>
         </div>
       </div>
     </>
