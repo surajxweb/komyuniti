@@ -1,7 +1,9 @@
 import AccountProfile from "@/components/forms/AccountProfile";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
+import { SignOutButton, SignedIn, currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { HiOutlineLogout } from "react-icons/hi";
+import styles from "./Onboarding.module.css";
 
 export const metadata = {
   title: "Onboarding / Komyuniti",
@@ -38,6 +40,14 @@ const Page = async () => {
 
   return (
     <div style={{ margin: "20px 0" }}>
+      <SignedIn>
+          <SignOutButton>
+            <div className={`${styles.link} ${styles.logout}`}>
+              <HiOutlineLogout size="2em" className={styles.icons} />
+              <div className={styles.options}>Logout</div>
+            </div>
+          </SignOutButton>
+        </SignedIn>
       <AccountProfile
         user={userData}
         btnTitle={"Submit and Continue ⏭️"}
