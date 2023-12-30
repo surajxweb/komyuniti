@@ -14,13 +14,15 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const posts = await fetchPosts();
+  
   const user = await currentUser();
-
+  if (!user) return null;
   const userInfo = await fetchUser(user?.id || "");
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  if (!user) return null;
+
+  const posts = await fetchPosts();
+
 
   return (
     <div className={styles.container}>

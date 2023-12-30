@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   //     push: { type: Boolean, default: true },
   //   },
   //   phoneOfUser: { type: String, unique: true },
-  //   emailOfUser: { type: String, unique: true },
+    emailOfUser: { type: String, unique: true },
   //   termsOfServiceAgreed: { type: Boolean, default: false },
   //   customFields: [
   //     {

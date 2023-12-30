@@ -6,6 +6,25 @@ import { connectToDB } from "../mongoose";
 import Post from "../models/post.model";
 import { FilterQuery, SortOrder } from "mongoose";
 
+export async function createUser({id, name, image, email, username}:{id : string, name: string, image: string, email: string, username: string}) {
+  try {
+    connectToDB();
+
+    await User.create({
+     id : id,
+     username: username,
+     name: name,
+     image: image,
+     emailOfUser: email,
+     onboarded: false
+    });
+
+    
+  } catch (error: any) {
+    throw new Error(`Failed to create user: ${error.message}`);
+  }
+}
+
 interface Params {
   userId: string;
   username: string;
