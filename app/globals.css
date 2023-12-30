@@ -69,9 +69,20 @@ body {
 .cl-footerActionText,
 .cl-internal-1ptfnbv,
 .cl-internal-oaq42g,
-.cl-internal-15amzqo {
+.cl-internal-15amzqo,
+.cl-internal-gofy8m,
+.cl-internal-17bz5n6,
+.cl-internal-1o36i52 {
   color: white;
   font-family: inherit;
+}
+
+.cl-internal-1o36i52 {
+  margin-left: 5px;
+}
+
+.cl-internal-u0g48b {
+  --arrow-opacity: 1;
 }
 
 .cl-socialButtonsBlockButton {
@@ -91,11 +102,19 @@ body {
   padding: 5px 20px;
 } */
 
-.cl-footerActionLink {
+.cl-internal-1cngl90 {
+  border-color: #fff;
+  color: #fff;
+  accent-color: #111;
+}
+
+.cl-footerActionLink,
+.cl-internal-qk1s8p {
   color: #586aea;
 }
 
-.cl-footerActionLink:hover {
+.cl-footerActionLink:hover,
+.cl-internal-qk1s8p:hover {
   color: #4350ad;
 }
 
