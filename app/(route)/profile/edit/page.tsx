@@ -40,13 +40,9 @@ const Page = async () => {
   return (
     <div className="container">
       <BackButton />
-      <h2 style={{margin:"10px 0 20px 5px"}}>Edit your Profile</h2>
+      <h2 style={{ margin: "10px 0 20px 5px" }}>Edit your Profile</h2>
 
-      <AccountProfile
-        user={userData}
-        btnTitle={"Save Profile"}
-        heading={""}
-      />
+      <AccountProfile user={userData} btnTitle={"Save Profile"} heading={""} />
     </div>
   );
 };

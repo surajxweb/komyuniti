@@ -128,7 +128,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
-        {heading.length>1 && <h1 className={styles.heading}>{heading}</h1>}
+        {heading.length > 1 && <h1 className={styles.heading}>{heading}</h1>}
 
         <FormField
           control={form.control}
@@ -317,7 +317,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
             disabled={isLoading === true}
             type="submit"
           >
-            {!success ? btnTitle : "Redirecting..."}
+            {!success ? btnTitle : "Success ✅"}
           </Button>
           {isLoading && (
             <CircularProgress

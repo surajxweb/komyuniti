@@ -66,7 +66,10 @@ body {
 .cl-headerSubtitle,
 .cl-formFieldLabel,
 .cl-dividerText,
-.cl-footerActionText {
+.cl-footerActionText,
+.cl-internal-1ptfnbv,
+.cl-internal-oaq42g,
+.cl-internal-15amzqo {
   color: white;
   font-family: inherit;
 }
