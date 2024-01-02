@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { RxDotFilled } from "react-icons/rx";
 import LikeButton from "../client/LikeButton";
 import { calculateTimeAgo } from "@/lib/utils";
+import mongoose from "mongoose";
 
 interface Props {
   id: string;
@@ -34,6 +35,8 @@ interface Props {
   }[];
   isComment?: boolean;
   likes: any;
+  mongoId: string;
+  userLikes: any
 }
 
 const PostCard = ({
@@ -50,10 +53,16 @@ const PostCard = ({
   author_username,
   author_image,
   author_id,
+  mongoId,
+  userLikes
 }: Props) => {
+  
   const timeAgo = calculateTimeAgo(createdAt);
 
   const isMyPost = currentUserId === author_id;
+
+  const isPostLiked = userLikes.includes(id.toString());
+  
 
   return (
     <div className={styles.main}>
@@ -90,13 +99,13 @@ const PostCard = ({
       </Link>
       <div className={styles.actions}>
         <div className={styles.likebar}>
-          <LikeButton size="1.5em" />
-          <div>{`${likes.length} likes`}</div>
+          <LikeButton isPostLiked={isPostLiked} postId={id} userId={mongoId || ""} size="1.5em" />
+          <div>{`${likes.length} ${likes.length === 1 ? "like" : "likes"}`}</div>
         </div>
         <Link className={styles.link} href={`/post/${id}`}>
           <div className={styles.commentbar}>
             <FaRegCommentAlt className={styles.comment} size="1.5em" />
-            <div>{`${comments.length} comments`}</div>
+            <div>{`${comments.length}  ${comments.length === 1 ? "comment" : "comments"}`}</div>
           </div>
         </Link>
       </div>

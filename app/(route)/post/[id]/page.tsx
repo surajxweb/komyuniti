@@ -10,6 +10,8 @@ import Comments from "@/components/display/Comments";
 const PostPage = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
   const userInfo = await fetchUser(user?.id || "");
+  const mongoId = userInfo?._id;
+  const userLikes = userInfo?.likedPosts;
 
   const post = await findPostById(params.id);
   if (!post) return <div className={styles.error}>Post not found.</div>;
@@ -40,9 +42,10 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
         author_name={post.author.name}
         author_username={post.author.username}
         author_image={post.author.image}
+        mongoId={mongoId}
+        userLikes={userLikes}
       />
 
-      {/* <NewCard past={JSON.stringify(post)} /> */}
 
       <MakeAComment
         postId={post._id.toString()}
@@ -66,6 +69,8 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
               likesString={JSON.stringify(comment.likes)}
               currentUserImage={userInfo.image}
               currentUserId={userInfo._id.toString()}
+              mongoId={mongoId}
+              userLikes={userLikes}
             />
           ))}
         </div>

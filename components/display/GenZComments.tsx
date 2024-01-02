@@ -12,6 +12,9 @@ interface Props {
   likesString: any;
   showReply: any;
   setShowReply: any;
+  mongoId: string;
+  userLikes: any
+  id: string
 }
 
 const GenZComments = ({
@@ -21,11 +24,15 @@ const GenZComments = ({
   likesString,
   showReply,
   setShowReply,
+  mongoId,
+  userLikes,
+  id
 }: Props) => {
   const author = JSON.parse(authorString);
   const likes = JSON.parse(likesString);
 
   const timeAgo = calculateTimeAgo(createdAt);
+  const isPostLiked = userLikes.includes(id.toString());
 
   return (
     <div className={styles.bigbox}>
@@ -48,7 +55,7 @@ const GenZComments = ({
               size="1.2em"
               onClick={() => setShowReply(!showReply)}
             />
-            <LikeButton size="1.2em" />
+            <LikeButton  isPostLiked={isPostLiked} postId={id} userId={mongoId || ""} size="1.2em" />
             <div>{likes.lenght}</div>
           </div>
         </div>

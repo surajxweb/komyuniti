@@ -104,6 +104,13 @@ export async function fetchProfilePageDetails(username: string) {
     return await User.findOne({ username: username }).populate({
       path: "posts",
       model: Post,
+      options: { sort: { createdAt: -1 } },
+      select:
+        "_id text community createdAt parentId children postType likes isEdited",
+    }).populate({
+      path: "likedPosts",
+      model: Post,
+      options: { sort: { createdAt: -1 } },
       select:
         "_id text community createdAt parentId children postType likes isEdited",
     });

@@ -19,6 +19,8 @@ interface Props {
   likesString: any;
   currentUserImage: string;
   currentUserId: string;
+  mongoId: string;
+  userLikes: any
 }
 
 const Comments = ({
@@ -30,6 +32,8 @@ const Comments = ({
   likesString,
   currentUserImage,
   currentUserId,
+  mongoId,
+  userLikes
 }: Props) => {
   const [showMoreComments, setShowMoreComments] = useState(false);
   const [showReply, setShowReply] = useState(false);
@@ -40,6 +44,9 @@ const Comments = ({
   const likes = JSON.parse(likesString);
 
   const timeAgo = calculateTimeAgo(createdAt);
+
+  const isPostLiked = userLikes.includes(id.toString());
+
 
   return (
     <div className={styles.bigbox}>
@@ -62,7 +69,7 @@ const Comments = ({
               size="1.2em"
               onClick={() => setShowReply(!showReply)}
             />
-            <LikeButton size="1.2em" />
+            <LikeButton isPostLiked={isPostLiked} postId={id} userId={mongoId || ""} size="1.2em" />
             <div>{likes.lenght}</div>
           </div>
           {comments.length > 0 && (
@@ -86,12 +93,15 @@ const Comments = ({
             {comments.map((cmt: any) => (
               <GenZComments
                 key={cmt._id}
+                id={cmt._id.toString()}
                 authorString={JSON.stringify(cmt.author)}
                 content={cmt.text}
                 createdAt={cmt.createdAt.toString()}
                 likesString={JSON.stringify(cmt.likes)}
                 showReply={showReply}
                 setShowReply={setShowReply}
+                mongoId={mongoId}
+              userLikes={userLikes}
               />
             ))}
           </div>

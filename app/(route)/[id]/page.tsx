@@ -1,5 +1,5 @@
 import styles from "./Profile.module.css";
-import { fetchProfilePageDetails } from "@/lib/actions/user.actions";
+import { fetchProfilePageDetails, fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import ProfileCard from "@/components/cards/ProfileCard";
@@ -9,39 +9,46 @@ import { formatDate } from "@/lib/utils";
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
-  const userInfo = await fetchProfilePageDetails(params.id || "");
-  const isMyProfile = user?.id === userInfo?.id.toString();
+  const userInfo = await fetchUser(user?.id || "");
+  const profileInfo = await fetchProfilePageDetails(params.id || "");
+  const isMyProfile = user?.id === profileInfo?.id.toString();
 
-  if (!userInfo) return null;
-  if (!userInfo.onboarded) redirect("/onboarding");
+  if (!profileInfo) return null;
+  if (!profileInfo.onboarded) redirect("/onboarding");
+  const mongoId = userInfo?._id;
+  const userLikes = userInfo?.likedPosts;
+  console.log(profileInfo?.likedPosts);
+  
 
   return (
     <div className={styles.container}>
       <ProfileCard
       isMyProfile={isMyProfile}
-        name={userInfo.name}
-        username={userInfo.username}
-        image={userInfo.image}
-        bio={userInfo.bio}
+        name={profileInfo.name}
+        username={profileInfo.username}
+        image={profileInfo.image}
+        bio={profileInfo.bio}
         id={user?.id}
-        link={userInfo.link}
-        followers={userInfo.followers.length}
-        following={userInfo.following.length}
-        noOfCommunities={userInfo.communities.length}
-        posts={userInfo.posts.length}
-        location={userInfo?.locationOfUser}
-        joinedDate={formatDate(userInfo?.joinedAt)}
+        link={profileInfo.link}
+        followers={profileInfo.followers.length}
+        following={profileInfo.following.length}
+        noOfCommunities={profileInfo.communities.length}
+        posts={profileInfo.posts.length}
+        location={profileInfo?.locationOfUser}
+        joinedDate={formatDate(profileInfo?.joinedAt)}
       />
       <ProfilePosts
-        postsString={JSON.stringify(userInfo?.posts)}
-        likedPostsString={JSON.stringify(userInfo?.likedPosts)}
+        postsString={JSON.stringify(profileInfo?.posts)}
+        likedPostsString={JSON.stringify(profileInfo?.likedPosts)}
         currentUserId={user?.id || ""}
-        username={userInfo?.username}
-        author_id={userInfo?.id}
-        author__id={userInfo?._id}
-        author_name={userInfo?.name}
-        author_username={userInfo?.username}
-        author_image={userInfo?.image}
+        username={profileInfo?.username}
+        author_id={profileInfo?.id}
+        author__id={profileInfo?._id}
+        author_name={profileInfo?.name}
+        author_username={profileInfo?.username}
+        author_image={profileInfo?.image}
+        mongoId={mongoId}
+userLikes={userLikes}
       />
     </div>
   );

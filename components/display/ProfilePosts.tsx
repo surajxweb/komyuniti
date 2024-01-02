@@ -14,6 +14,8 @@ const ProfilePosts = ({
   author_name,
   author_username,
   author_image,
+  mongoId,
+userLikes
 }: {
   likedPostsString: any;
   postsString: any;
@@ -24,6 +26,8 @@ const ProfilePosts = ({
   author_name: string;
   author_username: string;
   author_image: string;
+  mongoId : string;
+userLikes: any
 }) => {
   const [view, setView] = useState<string>("posts");
 
@@ -68,12 +72,12 @@ const ProfilePosts = ({
           Polls
         </div>
 
-        <div
+        {/* <div
           className={`${styles.tab} ${view === "likes" ? styles.selected : ""}`}
           onClick={() => setView("likes")}
         >
           Likes
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.postsDisplay}>
@@ -97,6 +101,8 @@ const ProfilePosts = ({
                 author_name={author_name}
                 author_username={author_username}
                 author_image={author_image}
+                mongoId={mongoId}
+userLikes={userLikes}
               />
             ))}
           </div>
