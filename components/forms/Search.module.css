@@ -1,0 +1,26 @@
+.section {
+  margin: 10px 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reactIcons {
+  color: #586aea;
+  size: 2em;
+}
+
+.inputBar {
+  font: inherit;
+  border: none;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-bottom: 1px solid #586aea;
+  color: #ccc;
+  width: 100%;
+  font-size: 16px;
+}
+
+.inputBar:focus {
+  outline: none;
+}

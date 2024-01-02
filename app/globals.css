@@ -109,13 +109,42 @@ body {
 }
 
 .cl-footerActionLink,
-.cl-internal-qk1s8p {
+.cl-internal-qk1s8p,
+.cl-internal-k5atl,
+.cl-internal-1kacczc,
+.cl-internal-qosp7d {
   color: #586aea;
 }
 
+.cl-internal-jqrj10 {
+  background-color: #586aea;
+}
+
+.cl-internal-jqrj10:hover {
+  background-color: #4350ad;
+}
+
 .cl-footerActionLink:hover,
-.cl-internal-qk1s8p:hover {
+.cl-internal-qk1s8p:hover,
+.cl-internal-k5atl:hover {
   color: #4350ad;
+}
+
+.cl-internal-j4atte {
+  display: none;
+}
+
+/* .cl-internal-tr7twz,
+.cl-internal-phfxlr, */
+
+.cl-internal-18zlq2u {
+  margin: 10px;
+  padding: 20px;
+  width: 100%;
+}
+
+.cl-profileSection__username {
+  display: none;
 }
 
 .container {

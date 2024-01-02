@@ -5,6 +5,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { IoIosLink } from "react-icons/io";
 import { RxDotFilled } from "react-icons/rx";
 import { IoLocationOutline, IoCalendarOutline } from "react-icons/io5";
+import { IoIosSettings } from "react-icons/io";
 
 interface Props {
   name: string;
@@ -19,6 +20,7 @@ interface Props {
   joinedDate: string;
   location: string;
   noOfCommunities: number;
+  isMyProfile: boolean
 }
 
 const ProfileCard = ({
@@ -34,6 +36,7 @@ const ProfileCard = ({
   following,
   posts,
   noOfCommunities,
+  isMyProfile
 }: Props) => {
   return (
     <>
@@ -52,7 +55,6 @@ const ProfileCard = ({
             <div className={styles.link}>
               <IoIosLink size="0.8em" />
               <Link target="_blank" href={`https://${link}`}>
-                {" "}
                 {link}
               </Link>
             </div>
@@ -73,10 +75,16 @@ const ProfileCard = ({
           )}
         </div>
       </div>
-      <Link className={styles.edit} href={"/profile/edit"}>
+     {isMyProfile && <div className={styles.edits}>
+     <Link className={styles.edit} href={"/profile/edit"}>
         <div>Edit Profile</div>
         <AiFillEdit />
       </Link>
+      <Link className={styles.edit} href={"/profile/settings"}>
+        <div>Settings</div>
+        <IoIosSettings />
+      </Link>
+     </div>}
       <div className={styles.data}>
         <div className={styles.posts}>
           <div className={styles.text}>Posts</div>

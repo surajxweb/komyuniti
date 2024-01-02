@@ -85,3 +85,8 @@
   color: #a6a6a6;
   font-size: 14px;
 }
+
+.edits {
+  display: flex;
+  gap: 10px;
+}

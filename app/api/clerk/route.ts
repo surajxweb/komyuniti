@@ -47,14 +47,15 @@ export async function POST(req: Request) {
     };
 
     if (emailData.email_addresses && emailData.email_addresses.length > 0) {
-   
-    createUser({
-        id : evt?.data.id , 
-        name : `${evt?.data.first_name ? evt?.data.first_name : ""} ${evt?.data.last_name ? evt?.data.last_name : ""}`, 
-        image: evt?.data.image_url, 
-        email: evt?.data.email_addresses[0].email_address, 
-        username : evt?.data.username ?  evt?.data.username  : "test_ho_raha_hai"});
-    
+      createUser({
+        id: evt?.data.id,
+        name: `${evt?.data.first_name ? evt?.data.first_name : ""} ${
+          evt?.data.last_name ? evt?.data.last_name : ""
+        }`,
+        image: evt?.data.image_url,
+        email: evt?.data.email_addresses[0].email_address,
+        username: evt?.data.username ? evt?.data.username : "test_ho_raha_hai",
+      });
     }
   }
 

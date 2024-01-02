@@ -18,6 +18,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
   return (
     <div className={styles.container}>
       <ProfileCard
+      isMyProfile={isMyProfile}
         name={userInfo.name}
         username={userInfo.username}
         image={userInfo.image}
