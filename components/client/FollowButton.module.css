@@ -1,0 +1,35 @@
+.ctaf {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #586aea;
+  border: 1px solid #4350ad;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.ctaf:hover {
+  background-color: #4350ad;
+}
+
+.ctaunf {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+  color: #fff;
+  background-color: rgb(39, 39, 42);
+  border: 1px solid rgb(82, 82, 82);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.ctaunf:hover {
+  background-color: rgb(63, 63, 70);
+}

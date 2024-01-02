@@ -35,12 +35,12 @@ const Search = () => {
           pageSize: 25,
         });
         console.log(results.users[0]);
-        
+
         setSearchResults(results.users);
 
         setIsLoading(false);
       }
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(delayDebounceFn);
   }, [formData, userId]);
@@ -50,7 +50,7 @@ const Search = () => {
       <div className={styles.section}>
         <IoIosSearch size="1.8em" className={styles.reactIcons} />
         <input
-        className={styles.inputBar}
+          className={styles.inputBar}
           type="text"
           value={formData}
           onChange={(e) => setFormData(e.target.value)}

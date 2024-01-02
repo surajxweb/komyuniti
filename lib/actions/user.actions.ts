@@ -101,19 +101,21 @@ export async function fetchUser(userId: string) {
 export async function fetchProfilePageDetails(username: string) {
   try {
     connectToDB();
-    return await User.findOne({ username: username }).populate({
-      path: "posts",
-      model: Post,
-      options: { sort: { createdAt: -1 } },
-      select:
-        "_id text community createdAt parentId children postType likes isEdited",
-    }).populate({
-      path: "likedPosts",
-      model: Post,
-      options: { sort: { createdAt: -1 } },
-      select:
-        "_id text community createdAt parentId children postType likes isEdited",
-    });
+    return await User.findOne({ username: username })
+      .populate({
+        path: "posts",
+        model: Post,
+        options: { sort: { createdAt: -1 } },
+        select:
+          "_id text community createdAt parentId children postType likes isEdited",
+      })
+      .populate({
+        path: "likedPosts",
+        model: Post,
+        options: { sort: { createdAt: -1 } },
+        select:
+          "_id text community createdAt parentId children postType likes isEdited",
+      });
     // .populate({ path: "communities", model: Community})
   } catch (e: any) {
     throw new Error("User nahi mila, ye dekho: ", e);
@@ -183,5 +185,77 @@ export async function getActivity({ userId }: { userId: string }) {
     connectToDB();
   } catch (e: any) {
     throw new Error("Failed to fetch activity. Ye dekho : ", e.message);
+  }
+}
+
+export async function followUser({
+  path,
+  userId,
+  userToFollow,
+}: {
+  path: string;
+  userId: string;
+  userToFollow: string;
+}) {
+  try {
+    connectToDB();
+
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      throw new Error(`User with ID ${userId} not found!`);
+    }
+
+    currentUser.following.push(userToFollow);
+    await currentUser.save();
+
+    const userTargetted = await User.findById(userToFollow);
+    if (!userTargetted) {
+      throw new Error(`User with ID ${userToFollow} not found!`);
+    }
+
+    userTargetted.followers.push(userId);
+    await userTargetted.save();
+
+    console.log("Revalidating this path: ", path);
+
+    revalidatePath(path);
+  } catch (e: any) {
+    throw new Error("Nahi hua follow :(");
+  }
+}
+
+export async function unfollowUser({
+  path,
+  userId,
+  userToUnfollow,
+}: {
+  path: string;
+  userId: string;
+  userToUnfollow: string;
+}) {
+  try {
+    connectToDB();
+
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      throw new Error(`User with ID ${userId} not found!`);
+    }
+
+    currentUser.following.pull(userToUnfollow);
+    await currentUser.save();
+
+    const userTargetted = await User.findById(userToUnfollow);
+    if (!userTargetted) {
+      throw new Error(`User with ID ${userToUnfollow} not found!`);
+    }
+
+    userTargetted.followers.pull(userId);
+    await userTargetted.save();
+
+    console.log("Revalidating this path: ", path);
+
+    revalidatePath(path);
+  } catch (e: any) {
+    throw new Error("Nahi hua follow :(");
   }
 }

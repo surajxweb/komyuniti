@@ -20,7 +20,7 @@ interface Props {
   currentUserImage: string;
   currentUserId: string;
   mongoId: string;
-  userLikes: any
+  userLikes: any;
 }
 
 const Comments = ({
@@ -33,7 +33,7 @@ const Comments = ({
   currentUserImage,
   currentUserId,
   mongoId,
-  userLikes
+  userLikes,
 }: Props) => {
   const [showMoreComments, setShowMoreComments] = useState(false);
   const [showReply, setShowReply] = useState(false);
@@ -46,7 +46,6 @@ const Comments = ({
   const timeAgo = calculateTimeAgo(createdAt);
 
   const isPostLiked = userLikes.includes(id.toString());
-
 
   return (
     <div className={styles.bigbox}>
@@ -69,7 +68,12 @@ const Comments = ({
               size="1.2em"
               onClick={() => setShowReply(!showReply)}
             />
-            <LikeButton isPostLiked={isPostLiked} postId={id} userId={mongoId || ""} size="1.2em" />
+            <LikeButton
+              isPostLiked={isPostLiked}
+              postId={id}
+              userId={mongoId || ""}
+              size="1.2em"
+            />
             <div>{likes.lenght}</div>
           </div>
           {comments.length > 0 && (
@@ -101,7 +105,7 @@ const Comments = ({
                 showReply={showReply}
                 setShowReply={setShowReply}
                 mongoId={mongoId}
-              userLikes={userLikes}
+                userLikes={userLikes}
               />
             ))}
           </div>

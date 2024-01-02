@@ -90,3 +90,27 @@
   display: flex;
   gap: 10px;
 }
+
+.message {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #586aea;
+  border: 1px solid #4350ad;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.ctactions {
+  display: flex;
+  gap: 10px;
+  flex-flow: row nowrap;
+}
+
+.message:hover {
+  background-color: #4350ad;
+}

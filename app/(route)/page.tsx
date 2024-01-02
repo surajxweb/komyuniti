@@ -19,7 +19,8 @@ export default async function Home() {
   const userInfo = await fetchUser(user?.id || "");
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  
+  console.log(userInfo?.following);
+
   const posts = await fetchPosts();
 
   return (
@@ -49,7 +50,8 @@ export default async function Home() {
                 author_name={post.author.name}
                 author_username={post.author.username}
                 author_image={post.author.image}
-                userLikes={userInfo.likedPosts}
+                userLikes={userInfo?.likedPosts}
+                userFollowing={userInfo?.following}
               />
             ))}
           </div>

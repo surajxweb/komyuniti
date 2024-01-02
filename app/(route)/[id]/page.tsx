@@ -17,18 +17,18 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
   if (!profileInfo.onboarded) redirect("/onboarding");
   const mongoId = userInfo?._id;
   const userLikes = userInfo?.likedPosts;
+  const userFollowing = userInfo?.following;
   console.log(profileInfo?.likedPosts);
-  
 
   return (
     <div className={styles.container}>
       <ProfileCard
-      isMyProfile={isMyProfile}
+        isMyProfile={isMyProfile}
         name={profileInfo.name}
         username={profileInfo.username}
         image={profileInfo.image}
         bio={profileInfo.bio}
-        id={user?.id}
+        id={profileInfo?._id || ""}
         link={profileInfo.link}
         followers={profileInfo.followers.length}
         following={profileInfo.following.length}
@@ -36,6 +36,8 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
         posts={profileInfo.posts.length}
         location={profileInfo?.locationOfUser}
         joinedDate={formatDate(profileInfo?.joinedAt)}
+        userFollowing={userFollowing}
+        mongoId={mongoId}
       />
       <ProfilePosts
         postsString={JSON.stringify(profileInfo?.posts)}
@@ -48,7 +50,8 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
         author_username={profileInfo?.username}
         author_image={profileInfo?.image}
         mongoId={mongoId}
-userLikes={userLikes}
+        userLikes={userLikes}
+        userFollowing={userFollowing}
       />
     </div>
   );

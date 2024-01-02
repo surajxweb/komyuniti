@@ -5,8 +5,8 @@ import styles from "./RightBar.module.css";
 const RightBar = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.communities}>
-        <h2>Discover Communities</h2>
+      <div className={styles.people}>
+        <h2>Discover People</h2>
         <div
           style={{
             width: "100%",
@@ -17,8 +17,8 @@ const RightBar = () => {
           }}
         ></div>
       </div>
-      <div className={styles.people}>
-        <h2 style={{ marginTop: "20px" }}>Discover Friends</h2>
+      <div className={styles.communities}>
+        <h2 style={{ marginTop: "20px" }}>Discover Communities</h2>
         <div
           style={{
             width: "100%",

@@ -10,6 +10,7 @@ import { RxDotFilled } from "react-icons/rx";
 import LikeButton from "../client/LikeButton";
 import { calculateTimeAgo } from "@/lib/utils";
 import mongoose from "mongoose";
+import FollowButton from "../client/FollowButton";
 
 interface Props {
   id: string;
@@ -36,7 +37,8 @@ interface Props {
   isComment?: boolean;
   likes: any;
   mongoId: string;
-  userLikes: any
+  userLikes: any;
+  userFollowing: any;
 }
 
 const PostCard = ({
@@ -54,15 +56,15 @@ const PostCard = ({
   author_image,
   author_id,
   mongoId,
-  userLikes
+  userLikes,
+  userFollowing,
 }: Props) => {
-  
   const timeAgo = calculateTimeAgo(createdAt);
 
   const isMyPost = currentUserId === author_id;
 
   const isPostLiked = userLikes.includes(id.toString());
-  
+  const isFollowing = userFollowing.includes(author__id.toString());
 
   return (
     <div className={styles.main}>
@@ -83,11 +85,18 @@ const PostCard = ({
             <div className={styles.date}>{timeAgo}</div>
           </div>
         </Link>
-        {!isMyPost && (
-          <button className={styles.cta}>
-            Follow <FaPlus />
-          </button>
-        )}
+        {/* {!isMyPost ? (
+          <FollowButton
+            isFollowing={isFollowing}
+            targetUserId={author__id}
+            userId={mongoId || ""}
+          />
+        ) : (
+          <div className={styles.options}>
+            <PostOptions postId={id.toString()} />
+          </div>
+        )} */}
+
         {isMyPost && (
           <div className={styles.options}>
             <PostOptions postId={id.toString()} />
@@ -99,13 +108,22 @@ const PostCard = ({
       </Link>
       <div className={styles.actions}>
         <div className={styles.likebar}>
-          <LikeButton isPostLiked={isPostLiked} postId={id} userId={mongoId || ""} size="1.5em" />
-          <div>{`${likes.length} ${likes.length === 1 ? "like" : "likes"}`}</div>
+          <LikeButton
+            isPostLiked={isPostLiked}
+            postId={id}
+            userId={mongoId || ""}
+            size="1.5em"
+          />
+          <div>{`${likes.length} ${
+            likes.length === 1 ? "like" : "likes"
+          }`}</div>
         </div>
         <Link className={styles.link} href={`/post/${id}`}>
           <div className={styles.commentbar}>
             <FaRegCommentAlt className={styles.comment} size="1.5em" />
-            <div>{`${comments.length}  ${comments.length === 1 ? "comment" : "comments"}`}</div>
+            <div>{`${comments.length}  ${
+              comments.length === 1 ? "comment" : "comments"
+            }`}</div>
           </div>
         </Link>
       </div>

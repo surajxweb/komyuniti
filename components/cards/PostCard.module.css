@@ -43,21 +43,6 @@
   font-size: 16px;
 }
 
-.cta {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  margin-left: auto;
-  padding: 5px 10px;
-  color: #fff;
-  background-color: #586aea;
-  border: 1px solid #4350ad;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  font-family: inherit;
-}
-
 .skcta {
   margin-left: auto;
 }

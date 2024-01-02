@@ -156,37 +156,49 @@ export async function fetchPostsByUserId({ id }: { id: string }) {
   }
 }
 
-export async function likeAPost({ postId, userId, path }: { postId: string, userId: string, path: string }) {
+export async function likeAPost({
+  postId,
+  userId,
+  path,
+}: {
+  postId: string;
+  userId: string;
+  path: string;
+}) {
+  try {
+    connectToDB();
 
-try {
-  connectToDB();
-  
+    const foundPost = await Post.findById(postId);
+    if (!foundPost) {
+      throw new Error(`Post with ID ${postId} not found!`);
+    }
 
-  const foundPost = await Post.findById(postId);
-  if (!foundPost) {
-    throw new Error(`Post with ID ${postId} not found!`);
+    foundPost.likes.push(userId);
+    await foundPost.save();
+
+    const userLikingThePost = await User.findById(userId);
+    if (!userLikingThePost) {
+      throw new Error(`User with ID ${userId} not found!`);
+    }
+
+    userLikingThePost.likedPosts.push(postId);
+    await userLikingThePost.save();
+
+    revalidatePath(path);
+  } catch (e: any) {
+    throw new Error("Nahi hua like :(");
   }
-
-  foundPost.likes.push(userId);
-  await foundPost.save();
-
-  const userLikingThePost = await User.findById(userId);
-  if (!userLikingThePost) {
-    throw new Error(`User with ID ${userId} not found!`);
-  }
-
-  userLikingThePost.likedPosts.push(postId);
-  await userLikingThePost.save();
-
-  revalidatePath(path);
-} catch (e:any) {
-  throw new Error ("Nahi hua like :("); 
-  
-}
 }
 
-
-export async function unlikeAPost({ postId, userId, path }: { postId: string, userId: string, path: string }) {
+export async function unlikeAPost({
+  postId,
+  userId,
+  path,
+}: {
+  postId: string;
+  userId: string;
+  path: string;
+}) {
   try {
     connectToDB();
 
@@ -207,7 +219,6 @@ export async function unlikeAPost({ postId, userId, path }: { postId: string, us
     // Remove the postId from the likedPosts array
     userUnLikingThePost.likedPosts.pull(postId);
     await userUnLikingThePost.save();
-
 
     revalidatePath(path);
   } catch (e: any) {

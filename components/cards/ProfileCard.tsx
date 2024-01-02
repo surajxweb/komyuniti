@@ -6,6 +6,8 @@ import { IoIosLink } from "react-icons/io";
 import { RxDotFilled } from "react-icons/rx";
 import { IoLocationOutline, IoCalendarOutline } from "react-icons/io5";
 import { IoIosSettings } from "react-icons/io";
+import FollowButton from "../client/FollowButton";
+import { FaMessage } from "react-icons/fa6";
 
 interface Props {
   name: string;
@@ -20,7 +22,9 @@ interface Props {
   joinedDate: string;
   location: string;
   noOfCommunities: number;
-  isMyProfile: boolean
+  isMyProfile: boolean;
+  userFollowing: any;
+  mongoId: string;
 }
 
 const ProfileCard = ({
@@ -36,8 +40,12 @@ const ProfileCard = ({
   following,
   posts,
   noOfCommunities,
-  isMyProfile
+  isMyProfile,
+  userFollowing,
+  mongoId,
 }: Props) => {
+  const isFollowing = id ? userFollowing.includes(id.toString()) : "";
+
   return (
     <>
       <div className={styles.main}>
@@ -75,16 +83,29 @@ const ProfileCard = ({
           )}
         </div>
       </div>
-     {isMyProfile && <div className={styles.edits}>
-     <Link className={styles.edit} href={"/profile/edit"}>
-        <div>Edit Profile</div>
-        <AiFillEdit />
-      </Link>
-      <Link className={styles.edit} href={"/profile/settings"}>
-        <div>Settings</div>
-        <IoIosSettings />
-      </Link>
-     </div>}
+      {isMyProfile ? (
+        <div className={styles.edits}>
+          <Link className={styles.edit} href={"/profile/edit"}>
+            <div>Edit Profile</div>
+            <AiFillEdit />
+          </Link>
+          <Link className={styles.edit} href={"/profile/settings"}>
+            <div>Settings</div>
+            <IoIosSettings />
+          </Link>
+        </div>
+      ) : (
+        <div className={styles.ctactions}>
+          <FollowButton
+            isFollowing={isFollowing}
+            userId={mongoId}
+            targetUserId={id || ""}
+          />
+          {/* <Link className={styles.message} href={"/messages"}>
+            Message <FaMessage />
+          </Link> */}
+        </div>
+      )}
       <div className={styles.data}>
         <div className={styles.posts}>
           <div className={styles.text}>Posts</div>

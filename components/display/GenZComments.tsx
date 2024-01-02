@@ -13,8 +13,8 @@ interface Props {
   showReply: any;
   setShowReply: any;
   mongoId: string;
-  userLikes: any
-  id: string
+  userLikes: any;
+  id: string;
 }
 
 const GenZComments = ({
@@ -26,7 +26,7 @@ const GenZComments = ({
   setShowReply,
   mongoId,
   userLikes,
-  id
+  id,
 }: Props) => {
   const author = JSON.parse(authorString);
   const likes = JSON.parse(likesString);
@@ -55,7 +55,12 @@ const GenZComments = ({
               size="1.2em"
               onClick={() => setShowReply(!showReply)}
             />
-            <LikeButton  isPostLiked={isPostLiked} postId={id} userId={mongoId || ""} size="1.2em" />
+            <LikeButton
+              isPostLiked={isPostLiked}
+              postId={id}
+              userId={mongoId || ""}
+              size="1.2em"
+            />
             <div>{likes.lenght}</div>
           </div>
         </div>

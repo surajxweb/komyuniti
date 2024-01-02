@@ -15,7 +15,8 @@ const ProfilePosts = ({
   author_username,
   author_image,
   mongoId,
-userLikes
+  userLikes,
+  userFollowing,
 }: {
   likedPostsString: any;
   postsString: any;
@@ -26,8 +27,9 @@ userLikes
   author_name: string;
   author_username: string;
   author_image: string;
-  mongoId : string;
-userLikes: any
+  mongoId: string;
+  userLikes: any;
+  userFollowing: any;
 }) => {
   const [view, setView] = useState<string>("posts");
 
@@ -102,7 +104,8 @@ userLikes: any
                 author_username={author_username}
                 author_image={author_image}
                 mongoId={mongoId}
-userLikes={userLikes}
+                userLikes={userLikes}
+                userFollowing={userFollowing}
               />
             ))}
           </div>

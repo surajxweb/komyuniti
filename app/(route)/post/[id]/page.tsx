@@ -12,6 +12,7 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
   const userInfo = await fetchUser(user?.id || "");
   const mongoId = userInfo?._id;
   const userLikes = userInfo?.likedPosts;
+  const userFollowing = userInfo?.following;
 
   const post = await findPostById(params.id);
   if (!post) return <div className={styles.error}>Post not found.</div>;
@@ -44,8 +45,8 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
         author_image={post.author.image}
         mongoId={mongoId}
         userLikes={userLikes}
+        userFollowing={userFollowing}
       />
-
 
       <MakeAComment
         postId={post._id.toString()}

@@ -10,14 +10,14 @@ const SearchResults = ({
   image,
   bio,
   name,
-  location
+  location,
 }: {
   id: string;
   username: string;
   image: string;
   bio: string;
   name: string;
-location: string;
+  location: string;
 }) => {
   return (
     <div className={styles.main}>
@@ -26,17 +26,15 @@ location: string;
       </div>
       <div>
         <div className={styles.flexMe}>
-            
-      <div className={styles.name}>{name}</div>
-      <RxDotFilled color="#b1b1b1" />
+          <div className={styles.name}>{name}</div>
+          <RxDotFilled color="#b1b1b1" />
 
-      <div className={styles.uname}>@{username}</div>
+          <div className={styles.uname}>@{username}</div>
         </div>
 
-
-      {location && location?.length > 1 && (
-              <div className={styles.location}> {`Lives in ${location}`}</div>
-          )}
+        {location && location?.length > 1 && (
+          <div className={styles.location}> {`Lives in ${location}`}</div>
+        )}
       </div>
 
       <Link className={styles.link} href={`/${username}`}>
