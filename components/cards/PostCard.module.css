@@ -12,6 +12,17 @@
   align-items: center;
 }
 
+.content img {
+  display: block;
+  border-radius: 20px;
+  margin: 10px auto;
+  height: 400px;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .info {
   display: flex;
   align-items: center;
@@ -57,6 +68,12 @@
   color: #e0e0e0;
   /* text-align: justify;
   text-justify: inter-word; */
+}
+
+.caption {
+  padding: 10px 0;
+  font-size: 16px;
+  color: #ccc;
 }
 
 .actions {

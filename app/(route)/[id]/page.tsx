@@ -3,7 +3,6 @@ import { fetchProfilePageDetails, fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import ProfileCard from "@/components/cards/ProfileCard";
-import PostCard from "@/components/cards/PostCard";
 import ProfilePosts from "@/components/display/ProfilePosts";
 import { formatDate } from "@/lib/utils";
 

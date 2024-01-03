@@ -52,6 +52,8 @@ export default async function Home() {
                 author_image={post.author.image}
                 userLikes={userInfo?.likedPosts}
                 userFollowing={userInfo?.following}
+                type={post.postType}
+                media={post.media}
               />
             ))}
           </div>

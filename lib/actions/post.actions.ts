@@ -28,6 +28,43 @@ export async function createPost({ text, author, communityId, path }: Params) {
     });
 
     revalidatePath(path);
+    revalidatePath("/");
+  } catch (error: any) {
+    throw new Error(`Failed to create post: ${error.message}`);
+  }
+}
+
+export async function postAImage({
+  text,
+  image,
+  author,
+  communityId,
+  path,
+}: {
+  text: string;
+  image: string;
+  author: string;
+  communityId: string | null;
+  path: string;
+}) {
+  try {
+    connectToDB();
+
+    const createdPost = await Post.create({
+      text,
+      author,
+      postType: "image",
+      media: image,
+      community: communityId || null,
+    });
+
+    // Update User model
+    await User.findByIdAndUpdate(author, {
+      $push: { posts: createdPost._id },
+    });
+
+    revalidatePath(path);
+    revalidatePath("/");
   } catch (error: any) {
     throw new Error(`Failed to create post: ${error.message}`);
   }

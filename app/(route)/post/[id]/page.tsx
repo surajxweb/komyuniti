@@ -46,6 +46,8 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
         mongoId={mongoId}
         userLikes={userLikes}
         userFollowing={userFollowing}
+        type={post.postType}
+        media={post.media}
       />
 
       <MakeAComment

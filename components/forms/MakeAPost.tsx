@@ -60,7 +60,6 @@ const MakeAPost = () => {
           name="postText"
           render={({ field }) => (
             <FormItem className={styles.field}>
-              {/* <FormLabel className={styles.label}>Bio</FormLabel> */}
               <FormControl>
                 <Textarea
                   className={styles.input}

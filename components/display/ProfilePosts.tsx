@@ -106,6 +106,8 @@ const ProfilePosts = ({
                 mongoId={mongoId}
                 userLikes={userLikes}
                 userFollowing={userFollowing}
+                type={post.postType}
+                media={post.media}
               />
             ))}
           </div>

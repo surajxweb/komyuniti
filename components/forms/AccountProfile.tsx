@@ -309,7 +309,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
           Feilds marked * are mandatory. By submiting the form, you agree to the
           terms and conditions at Komyuniti.
         </FormDescription>
-        <Box sx={{ m: 1, position: "relative" }}>
+        <Box sx={{ position: "relative" }}>
           <Button
             className={`${styles.submitButton}  ${
               isLoading ? styles.loading : ""

@@ -16,13 +16,14 @@ interface Props {
   id: string;
   currentUserId?: string | undefined | null;
   parentId?: string;
+  type?: string;
+  media?: string;
   content: string;
   author__id: string;
   author_name: string;
   author_username: string;
   author_image: string;
   author_id: string;
-
   community?: {
     _id: string;
     name: string;
@@ -58,6 +59,8 @@ const PostCard = ({
   mongoId,
   userLikes,
   userFollowing,
+  media,
+  type,
 }: Props) => {
   const timeAgo = calculateTimeAgo(createdAt);
 
@@ -103,8 +106,17 @@ const PostCard = ({
           </div>
         )}
       </div>
-      <Link className={styles.link} href={`/post/${id}`}>
-        <div className={styles.post}>{content}</div>
+      <Link className={styles.content} href={`/post/${id}`}>
+        {type === "image" && media && media.length > 1 && (
+          <Image src={media} alt="content image" height={400} width={400} />
+        )}
+        <div
+          className={`${
+            media && media.length > 1 ? styles.caption : styles.post
+          }`}
+        >
+          {content}
+        </div>
       </Link>
       <div className={styles.actions}>
         <div className={styles.likebar}>

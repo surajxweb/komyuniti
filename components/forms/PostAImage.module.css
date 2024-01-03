@@ -1,0 +1,91 @@
+.fileInput,
+.input,
+.submitButton {
+  font-family: inherit;
+}
+
+.fileInput {
+  margin: 10px 0;
+}
+
+.fileInput > button {
+  font-family: inherit;
+}
+
+.reanderPhoto {
+  overflow: hidden;
+}
+
+.reanderPhoto img {
+  border-radius: 20px;
+  margin: 10px 0;
+  height: 400px;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.input {
+  width: 100%;
+  padding: 20px;
+  resize: none;
+  border: 3px solid #222;
+
+  font-family: inherit;
+  font-size: 17px;
+  padding: 10px;
+
+  margin-top: 8px;
+  background-color: #222;
+  color: #ccc;
+  border-radius: 20px;
+  outline: none; /* Remove the blue outline on focus */
+}
+
+.success {
+  background-color: rgb(49, 114, 49);
+  border: 1px solid rgb(5, 51, 5);
+}
+
+.success:hover {
+  background-color: rgb(49, 114, 49);
+  border: 1px solid rgb(5, 51, 5);
+}
+
+.loading {
+  background-color: rgb(75, 75, 75);
+  border: 1px solid rgb(39, 39, 39);
+}
+
+.loading:hover {
+  background-color: rgb(75, 75, 75);
+  border: 1px solid rgb(39, 39, 39);
+}
+
+.submitButton {
+  font-family: inherit;
+  padding: 10px;
+
+  margin-top: 8px;
+  outline: none;
+
+  width: 100%;
+  background-color: #586aea;
+  border: 1px solid #4350ad;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.submitButton:hover {
+  background-color: #4c59bc;
+}
+
+.description {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #cccccc;
+}
