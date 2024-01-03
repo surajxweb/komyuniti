@@ -5,10 +5,15 @@ let isConnected = false;
 export const connectToDB = async () => {
   mongoose.set("strictQuery", true);
 
-  if (!process.env.MONGODB_URL) return console.log("URL nahi hai mongo db ka.");
+  if (!process.env.MONGODB_URL) {
+    console.log("URL nahi hai mongo db ka.");
+    return;
+  }
 
-  if (isConnected)
-    return console.log("Kitni baar connect karo ge? Already connected hai.");
+  if (isConnected) {
+    console.log("Kitni baar connect karo ge? Already connected hai.");
+    return;
+  }
 
   try {
     await mongoose.connect(process.env.MONGODB_URL);

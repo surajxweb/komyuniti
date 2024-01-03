@@ -5,6 +5,7 @@ import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
 import Post from "../models/post.model";
 import { FilterQuery, SortOrder } from "mongoose";
+import Community from "../models/community.model";
 
 export async function createUser({
   id,
@@ -257,5 +258,18 @@ export async function unfollowUser({
     revalidatePath(path);
   } catch (e: any) {
     throw new Error("Nahi hua follow :(");
+  }
+}
+
+export async function fetchUserAndCommunities(userId: string) {
+  try {
+    connectToDB();
+    return await User.findOne({ id: userId }).populate({
+      path: "communities",
+      model: Community,
+      select: "_id header_image name themeColor",
+    });
+  } catch (e: any) {
+    throw new Error("User nahi mila, ye dekho: ", e);
   }
 }

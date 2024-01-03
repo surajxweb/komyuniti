@@ -169,3 +169,14 @@
 .disabled {
   cursor: not-allowed;
 }
+
+.colorGroup {
+  display: flex;
+  align-items: center;
+}
+
+.colorPreview {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}

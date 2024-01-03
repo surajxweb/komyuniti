@@ -1,5 +1,11 @@
+import BackButton from "../client/BackButton";
+
 const ExtraPageInfo = () => {
-  return <>hey</>;
+  return (
+    <>
+      <BackButton />
+    </>
+  );
 };
 
 export default ExtraPageInfo;

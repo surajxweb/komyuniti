@@ -1,0 +1,29 @@
+.main {
+  border-radius: 10px;
+  margin: 10px 0;
+  border: 1px solid #586aea;
+  position: relative;
+  width: 130px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.main img {
+  width: 130px;
+  height: 80px;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.name {
+  position: absolute;
+  white-space: nowrap;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #586aea;
+  color: white;
+  padding: 5px;
+  font-size: 13px;
+}
