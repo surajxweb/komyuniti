@@ -47,7 +47,7 @@ const ProfilePosts = ({
           (post: any) => post.postType === "image" || post.postType === "video"
         )
       : view === "polls"
-      ? posts.filter((post: any) => post.postType === "polls")
+      ? posts.filter((post: any) => post.postType === "poll")
       : view === "likes"
       ? likedPosts
       : [];

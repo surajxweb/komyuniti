@@ -32,10 +32,22 @@ const postSchema = new mongoose.Schema({
   // Conditional fields based on postType
   media: { type: String }, // URL for image or video
   options: {
-    option1: { type: String }, // Option for polls
-    option2: { type: String },
-    option3: { type: String },
-    option4: { type: String },
+    option1: {
+      text: { type: String },
+      votes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    },
+    option2: {
+      text: { type: String },
+      votes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    },
+    option3: {
+      text: { type: String },
+      votes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    },
+    option4: {
+      text: { type: String },
+      votes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    },
   },
 });
 

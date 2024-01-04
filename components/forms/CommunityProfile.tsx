@@ -320,7 +320,7 @@ const CommunityProfile = ({
         <FormDescription className={styles.description}>
           Feilds marked * are mandatory.
         </FormDescription>
-        <Box sx={{ m: 1, position: "relative" }}>
+        <Box sx={{ position: "relative" }}>
           <Button
             className={`${styles.submitButton}  ${
               isLoading ? styles.loading : ""

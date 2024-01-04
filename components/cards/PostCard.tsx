@@ -11,6 +11,7 @@ import LikeButton from "../client/LikeButton";
 import { calculateTimeAgo } from "@/lib/utils";
 import mongoose from "mongoose";
 import FollowButton from "../client/FollowButton";
+import PollVoting from "../client/PollVoting";
 
 interface Props {
   id: string;
@@ -40,6 +41,7 @@ interface Props {
   mongoId: string;
   userLikes: any;
   userFollowing: any;
+  options?: any;
 }
 
 const PostCard = ({
@@ -61,6 +63,7 @@ const PostCard = ({
   userFollowing,
   media,
   type,
+  options,
 }: Props) => {
   const timeAgo = calculateTimeAgo(createdAt);
 
@@ -118,6 +121,16 @@ const PostCard = ({
           {content}
         </div>
       </Link>
+
+      {type === "poll" && options && (
+        <PollVoting
+          id={id}
+          hasVoted={true}
+          userId={mongoId}
+          options={options}
+        />
+      )}
+
       <div className={styles.actions}>
         <div className={styles.likebar}>
           <LikeButton

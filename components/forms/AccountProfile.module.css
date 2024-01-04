@@ -16,6 +16,7 @@
 .errorMessage {
   color: red;
   margin-top: 5px;
+  font-size: 12px;
 }
 
 .reanderPhoto {

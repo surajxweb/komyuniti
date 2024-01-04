@@ -1,10 +1,7 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import { UserButton } from "@clerk/nextjs";
 import { fetchPosts } from "@/lib/actions/post.actions";
 import PostCard from "@/components/cards/PostCard";
 import { currentUser } from "@clerk/nextjs";
-import PostOptions from "@/components/mui/PostOptions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 
@@ -19,9 +16,8 @@ export default async function Home() {
   const userInfo = await fetchUser(user?.id || "");
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  console.log(userInfo?.following);
-
   const posts = await fetchPosts();
+  console.log(posts);
 
   return (
     <div className={styles.container}>
@@ -54,6 +50,7 @@ export default async function Home() {
                 userFollowing={userInfo?.following}
                 type={post.postType}
                 media={post.media}
+                options={post?.options}
               />
             ))}
           </div>

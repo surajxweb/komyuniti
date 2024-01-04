@@ -70,6 +70,65 @@ export async function postAImage({
   }
 }
 
+export async function postAPoll({
+  author,
+  question,
+  option1,
+  option2,
+  option3,
+  option4,
+  communityId,
+  path,
+}: {
+  author: string;
+  question: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
+  communityId?: string | null;
+  path: string;
+}) {
+  try {
+    connectToDB();
+
+    const createdPost = await Post.create({
+      text: question,
+      author: author,
+      postType: "poll",
+      options: {
+        option1: {
+          text: option1,
+          votes: [],
+        },
+        option2: {
+          text: option2,
+          votes: [],
+        },
+        option3: {
+          text: option3,
+          votes: [],
+        },
+        option4: {
+          text: option4,
+          votes: [],
+        },
+      },
+      community: communityId || null,
+    });
+
+    // Update User model
+    await User.findByIdAndUpdate(author, {
+      $push: { posts: createdPost._id },
+    });
+
+    revalidatePath(path);
+    revalidatePath("/");
+  } catch (error: any) {
+    throw new Error(`Failed to create post: ${error.message}`);
+  }
+}
+
 export async function fetchPosts() {
   try {
     connectToDB();
@@ -260,5 +319,53 @@ export async function unlikeAPost({
     revalidatePath(path);
   } catch (e: any) {
     throw new Error("Nahi hua unlike :(");
+  }
+}
+
+export async function castAVote({
+  postId,
+  userId,
+  voteOption,
+}: {
+  postId: string;
+  userId: string;
+  voteOption: number;
+}) {
+  console.log("Lets start casting vote!");
+  console.log("Post Id: ", postId);
+  console.log("User Id: ", userId);
+  console.log("Voilence: ", voteOption);
+
+  try {
+    connectToDB();
+
+    const foundPost = await Post.findById(postId);
+    if (!foundPost) {
+      throw new Error(`Post with ID ${postId} not found!`);
+    }
+
+    console.log("ye dekho kaun mila: ", foundPost);
+
+    switch (voteOption) {
+      case 1:
+        foundPost.options.option1.votes.push(userId);
+        break;
+      case 2:
+        foundPost.options.option2.votes.push(userId);
+        break;
+      case 3:
+        foundPost.options.option3.votes.push(userId);
+        break;
+      case 4:
+        foundPost.options.option4.votes.push(userId);
+        break;
+      default:
+        throw new Error("Invalid vote option!");
+    }
+
+    // Save the changes
+    await foundPost.save();
+  } catch (e: any) {
+    throw new Error("Voting failed like elections in UP lol. " + e.message);
   }
 }

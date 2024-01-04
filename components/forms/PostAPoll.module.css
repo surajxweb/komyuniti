@@ -2,34 +2,6 @@
   padding: 10px;
 }
 
-.fileInput,
-.input,
-.submitButton {
-  font-family: inherit;
-}
-
-.fileInput {
-  margin: 10px 0;
-}
-
-.fileInput > button {
-  font-family: inherit;
-}
-
-.reanderPhoto {
-  overflow: hidden;
-}
-
-.reanderPhoto img {
-  border-radius: 20px;
-  margin: 10px 0;
-  height: 400px;
-  width: auto;
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 .input {
   width: 100%;
   padding: 20px;
@@ -38,11 +10,29 @@
   font-family: inherit;
   font-size: 17px;
   padding: 10px;
-  margin-top: 8px;
+  margin: 8px 0;
   background-color: #222;
   color: #ccc;
   border-radius: 20px;
   outline: none; /* Remove the blue outline on focus */
+}
+
+.input:focus {
+  /* Add styles for the focused state if needed */
+  border: 3px solid #586aea;
+}
+
+.option {
+  padding: 5px 10px;
+  border: 1px solid #222;
+  font-size: 15px;
+  font-family: inherit;
+  background-color: #bebebe;
+  color: #000;
+  border-radius: 7px;
+  outline: none;
+  margin: 5px 0;
+  width: 100%;
 }
 
 .success {
@@ -88,6 +78,20 @@
   margin: 10px 0;
   font-size: 14px;
   color: #cccccc;
+}
+
+.optionGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.field {
+  width: 50%;
+}
+
+.label {
+  font-size: 14px;
+  margin: 5px 0 8px 0;
 }
 
 .errorMessage {

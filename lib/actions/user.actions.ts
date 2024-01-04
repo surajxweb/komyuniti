@@ -102,21 +102,20 @@ export async function fetchUser(userId: string) {
 export async function fetchProfilePageDetails(username: string) {
   try {
     connectToDB();
-    return await User.findOne({ username: username })
-      .populate({
-        path: "posts",
-        model: Post,
-        options: { sort: { createdAt: -1 } },
-        select:
-          "_id text community createdAt parentId children postType media likes isEdited",
-      })
-      .populate({
-        path: "likedPosts",
-        model: Post,
-        options: { sort: { createdAt: -1 } },
-        select:
-          "_id text community createdAt parentId children postType likes isEdited",
-      });
+    return await User.findOne({ username: username }).populate({
+      path: "posts",
+      model: Post,
+      options: { sort: { createdAt: -1 } },
+      select:
+        "_id text community createdAt parentId children postType media likes isEdited option1 option2 option3 option4",
+    });
+    // .populate({
+    //   path: "likedPosts",
+    //   model: Post,
+    //   options: { sort: { createdAt: -1 } },
+    //   select:
+    //     "_id text community createdAt parentId children postType likes isEdited",
+    // });
     // .populate({ path: "communities", model: Community})
   } catch (e: any) {
     throw new Error("User nahi mila, ye dekho: ", e);

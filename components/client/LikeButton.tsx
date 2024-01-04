@@ -18,7 +18,6 @@ const LikeButton = ({
   size: string;
 }) => {
   const [optimisticLike, setOptimisticLike] = useState<Boolean>(isPostLiked);
-  console.log(isPostLiked);
 
   const pathname = usePathname();
   const likeKaro = async () => {

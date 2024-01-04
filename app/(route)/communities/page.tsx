@@ -6,6 +6,7 @@ import { SiAddthis } from "react-icons/si";
 import { IoSearch } from "react-icons/io5";
 import Link from "next/link";
 import CommunityCard from "@/components/cards/CommunityCard";
+import CarouselComponent from "@/components/display/Carousel";
 
 const Page = async () => {
   const user = await currentUser();
@@ -27,21 +28,7 @@ const Page = async () => {
           </Link>
         </div>
       </div>
-      {userInfo?.communities.lenght === 0 ? (
-        <div className={styles.error}></div>
-      ) : (
-        <div className={styles.comcards}>
-          {userInfo.communities.map((com: any) => (
-            <CommunityCard
-              key={com._id}
-              id={com._id.toString()}
-              image={com.header_image}
-              name={com.name}
-              themeColor={com.themeColor}
-            />
-          ))}
-        </div>
-      )}
+      <CarouselComponent comms={JSON.stringify(userInfo?.communities)} />
     </div>
   );
 };
