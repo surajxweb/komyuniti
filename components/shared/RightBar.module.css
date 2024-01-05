@@ -14,6 +14,31 @@
   overflow: scroll;
 }
 
+.listContainer {
+  width: 100%;
+  background-color: #222;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+}
+
+.link {
+  color: #586aea;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.link:hover {
+  color: #3c49ab;
+}
+
 @media (max-width: 1200px) {
   .container {
     width: 40%;

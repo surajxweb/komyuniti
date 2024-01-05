@@ -331,7 +331,7 @@ export async function castAVote({
   postId: string;
   userId: string;
   voteOption: number;
-  pathname: string
+  pathname: string;
 }) {
   try {
     connectToDB();
@@ -340,7 +340,6 @@ export async function castAVote({
     if (!foundPost) {
       throw new Error(`Post with ID ${postId} not found!`);
     }
-
 
     switch (voteOption) {
       case 1:
@@ -367,8 +366,13 @@ export async function castAVote({
   }
 }
 
-
-export async function deleteAPost({ postId, path }: { postId: string, path: string }) {
+export async function deleteAPost({
+  postId,
+  path,
+}: {
+  postId: string;
+  path: string;
+}) {
   try {
     connectToDB();
 
@@ -413,8 +417,9 @@ export async function deleteAPost({ postId, path }: { postId: string, path: stri
     await Post.deleteOne({ _id: postId });
 
     revalidatePath(path);
-
   } catch (error: any) {
-    throw new Error(`Failed to delete post  with ID ${postId}: ${error.message}`);
+    throw new Error(
+      `Failed to delete post  with ID ${postId}: ${error.message}`
+    );
   }
 }

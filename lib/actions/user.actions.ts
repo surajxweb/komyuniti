@@ -216,7 +216,6 @@ export async function followUser({
     userTargetted.followers.push(userId);
     await userTargetted.save();
 
-
     revalidatePath(path);
   } catch (e: any) {
     throw new Error("Nahi hua follow :(");
@@ -251,7 +250,6 @@ export async function unfollowUser({
     userTargetted.followers.pull(userId);
     await userTargetted.save();
 
-
     revalidatePath(path);
   } catch (e: any) {
     throw new Error("Nahi hua follow :(");
@@ -268,5 +266,25 @@ export async function fetchUserAndCommunities(userId: string) {
     });
   } catch (e: any) {
     throw new Error("User nahi mila, ye dekho: ", e);
+  }
+}
+
+export async function fetchUsersWithHighestV(userId: string) {
+  try {
+    connectToDB();
+
+    // Define the sort options for fetching users based on the __v field in descending order.
+    const sortOptions: { __v: SortOrder } = { __v: -1 };
+
+    // Use the limit method to fetch only 5 users.
+    const users = await User.find({ id: { $ne: userId } }) // Exclude the user with the specified userId
+      .sort(sortOptions)
+      .limit(5)
+      .exec();
+
+    return users;
+  } catch (error: any) {
+    console.error("Error fetching users with highest __v:", error.message);
+    throw error;
   }
 }

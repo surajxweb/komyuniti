@@ -5,7 +5,6 @@ import { castAVote } from "@/lib/actions/post.actions";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-
 const PollVoting = ({
   options,
   hasVoted,
@@ -29,12 +28,11 @@ const PollVoting = ({
     });
   };
 
-
   const votes = {
-    opt1 : options.option1.votes.length,
-    opt2 : options.option2.votes.length,
-    opt3 : options.option3.votes.length,
-    opt4 : options.option4.votes.length,
+    opt1: options.option1.votes.length,
+    opt2: options.option2.votes.length,
+    opt3: options.option3.votes.length,
+    opt4: options.option4.votes.length,
     getTotalVotes: function () {
       // Calculate the sum of all votes
       return this.opt1 + this.opt2 + this.opt3 + this.opt4;
@@ -44,26 +42,25 @@ const PollVoting = ({
       const totalVotes = this.getTotalVotes();
       return (this.opt1 / totalVotes) * 100 || 0; // Return 0 if totalVotes is 0 to avoid division by zero
     },
-    
+
     percentOfOpt2: function () {
       // Calculate the percentage of votes for opt2
       const totalVotes = this.getTotalVotes();
       return (this.opt2 / totalVotes) * 100 || 0;
     },
-    
+
     percentOfOpt3: function () {
       // Calculate the percentage of votes for opt3
       const totalVotes = this.getTotalVotes();
       return (this.opt3 / totalVotes) * 100 || 0;
     },
-    
+
     percentOfOpt4: function () {
       // Calculate the percentage of votes for opt4
       const totalVotes = this.getTotalVotes();
       return (this.opt4 / totalVotes) * 100 || 0;
     },
   };
-  
 
   return optimisticVote ? (
     <div className={styles.results}>
@@ -112,13 +109,15 @@ const PollVoting = ({
           <motion.div
             className={styles.resultBar}
             initial={{ width: 0 }}
-            animate={{ width:`${votes.percentOfOpt4()}%` }}
+            animate={{ width: `${votes.percentOfOpt4()}%` }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           ></motion.div>
           <div className={styles.resultsText}>{options.option4.text}</div>
         </div>
       )}
-      <div className={styles.message}>{`Based on ${votes.getTotalVotes()} ${votes.getTotalVotes() === 1 ? "vote":"votes"}.`}</div>
+      <div className={styles.message}>{`Based on ${votes.getTotalVotes()} ${
+        votes.getTotalVotes() === 1 ? "vote" : "votes"
+      }.`}</div>
     </div>
   ) : (
     <div className={styles.options}>
@@ -142,7 +141,10 @@ const PollVoting = ({
           {options.option4.text}
         </div>
       )}
-      <div className={styles.message}>To keep the sprite of democracy alive, voting is anonymous and cannot be changed.</div>
+      <div className={styles.message}>
+        To keep the sprite of democracy alive, voting is anonymous and cannot be
+        changed.
+      </div>
     </div>
   );
 };

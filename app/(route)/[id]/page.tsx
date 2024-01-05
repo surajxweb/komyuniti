@@ -13,7 +13,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const isMyProfile = user?.id === profileInfo?.id.toString();
 
   if (!profileInfo) return null;
-  if (!profileInfo.onboarded) redirect("/onboarding");
+  if (!profileInfo?.onboarded) redirect("/onboarding");
   const mongoId = userInfo?._id;
   const userLikes = userInfo?.likedPosts;
   const userFollowing = userInfo?.following;
@@ -22,16 +22,16 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
     <div className={styles.container}>
       <ProfileCard
         isMyProfile={isMyProfile}
-        name={profileInfo.name}
-        username={profileInfo.username}
+        name={profileInfo?.name}
+        username={profileInfo?.username}
         image={profileInfo.image}
-        bio={profileInfo.bio}
+        bio={profileInfo?.bio}
         id={profileInfo?._id || ""}
-        link={profileInfo.link}
-        followers={profileInfo.followers.length}
-        following={profileInfo.following.length}
-        noOfCommunities={profileInfo.communities.length}
-        posts={profileInfo.posts.length}
+        link={profileInfo?.link}
+        followers={profileInfo?.followers.length}
+        following={profileInfo?.following.length}
+        noOfCommunities={profileInfo?.communities.length}
+        posts={profileInfo?.posts?.length}
         location={profileInfo?.locationOfUser}
         joinedDate={formatDate(profileInfo?.joinedAt)}
         userFollowing={userFollowing}

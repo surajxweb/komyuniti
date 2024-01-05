@@ -165,7 +165,9 @@ const PostAPoll = () => {
           />
         </div>
         <FormDescription className={styles.description}>
-        Please ensure that your poll and options respects the feelings and opinions of others on the Komyuniti App, and adhere to our community guidelines.
+          Please ensure that your poll and options respects the feelings and
+          opinions of others on the Komyuniti App, and adhere to our community
+          guidelines.
         </FormDescription>
         <Box sx={{ position: "relative" }}>
           <Button

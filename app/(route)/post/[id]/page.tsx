@@ -17,10 +17,9 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
   const post = await findPostById(params.id);
   if (!post) return <div className={styles.error}>Post not found.</div>;
 
-  const comments = post.children;
-  const likes = post.likes;
-  const genz = post.children.children;
-
+  const comments = post?.children;
+  const likes = post?.likes;
+  const genz = post?.children.children;
 
   const isMyPost = user?.id === post?.author.id;
 
@@ -28,33 +27,32 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
     <div className={styles.container}>
       <BackButton />
       <PostCard
-        key={post._id}
-        id={post._id.toString()}
+        key={post?._id}
+        id={post?._id.toString()}
         currentUserId={user?.id}
-        parentId={post.parentId}
+        parentId={post?.parentId}
         content={post.text}
-        community={post.community}
-        createdAt={post.createdAt}
+        community={post?.community}
+        createdAt={post?.createdAt}
         comments={comments}
-        likes={post.likes}
-        author_id={post.author.id}
-        author__id={post.author._id.toString()}
-        author_name={post.author.name}
-        author_username={post.author.username}
-        author_image={post.author.image}
+        likes={post?.likes}
+        author_id={post?.author.id}
+        author__id={post?.author._id.toString()}
+        author_name={post?.author.name}
+        author_username={post?.author.username}
+        author_image={post?.author.image}
         mongoId={mongoId}
         userLikes={userLikes}
         userFollowing={userFollowing}
-        type={post.postType}
-        media={post.media}
+        type={post?.postType}
+        media={post?.media}
         options={post?.options}
-
       />
 
       <MakeAComment
-        postId={post._id.toString()}
-        currentUserImage={userInfo.image}
-        currentUserId={userInfo._id.toString()}
+        postId={post?._id.toString()}
+        currentUserImage={userInfo?.image}
+        currentUserId={userInfo?._id.toString()}
       />
       {comments.length === 0 ? (
         <div className={styles.description}>
@@ -64,15 +62,15 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
         <div className={styles.mainCommentBox}>
           {comments.map((comment: any) => (
             <Comments
-              key={comment._id}
-              id={comment._id.toString()}
-              authorString={JSON.stringify(comment.author)}
-              commentsString={JSON.stringify(comment.children)}
-              content={comment.text}
-              createdAt={comment.createdAt.toString()}
-              likesString={JSON.stringify(comment.likes)}
-              currentUserImage={userInfo.image}
-              currentUserId={userInfo._id.toString()}
+              key={comment?._id}
+              id={comment?._id.toString()}
+              authorString={JSON.stringify(comment?.author)}
+              commentsString={JSON.stringify(comment?.children)}
+              content={comment?.text}
+              createdAt={comment?.createdAt.toString()}
+              likesString={JSON.stringify(comment?.likes)}
+              currentUserImage={userInfo?.image}
+              currentUserId={userInfo?._id.toString()}
               mongoId={mongoId}
               userLikes={userLikes}
             />

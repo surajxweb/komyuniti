@@ -70,10 +70,11 @@ const PostCard = ({
 
   const isPostLiked = userLikes.includes(id.toString());
   // const isFollowing = userFollowing.includes(author__id.toString());
-  const hasVoted = options.option1.votes.includes(mongoId) || 
-  options.option2.votes.includes(mongoId) ||
-  options.option3.votes.includes(mongoId)||
-  options.option4.votes.includes(mongoId);
+  const hasVoted =
+    options.option1.votes.includes(mongoId) ||
+    options.option2.votes.includes(mongoId) ||
+    options.option3.votes.includes(mongoId) ||
+    options.option4.votes.includes(mongoId);
 
   return (
     <div className={styles.main}>

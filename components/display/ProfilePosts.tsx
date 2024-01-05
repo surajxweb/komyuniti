@@ -37,7 +37,6 @@ const ProfilePosts = ({
   const posts = JSON.parse(postsString);
   const likedPosts = JSON.parse(likedPostsString);
 
-
   const postToDisplay =
     view === "posts"
       ? posts.filter((post: any) => post.postType === "text")

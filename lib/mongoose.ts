@@ -19,7 +19,7 @@ export const connectToDB = async () => {
     await mongoose.connect(process.env.MONGODB_URL);
     isConnected = true;
     console.log("Ho gaya DB Connect!");
-  } catch (e:any) {
+  } catch (e: any) {
     throw new Error("Error ho gaya ye wala : ", e.message);
   }
 };

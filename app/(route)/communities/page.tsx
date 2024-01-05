@@ -13,7 +13,6 @@ const Page = async () => {
   const userInfo = await fetchUserAndCommunities(user?.id || "");
   if (userInfo?.onboarded === false) redirect("/onboarding");
 
-
   return (
     <div className={styles.container}>
       <div className={styles.headingSection}>
@@ -27,7 +26,14 @@ const Page = async () => {
           </Link>
         </div>
       </div>
-      <CarouselComponent comms={JSON.stringify(userInfo?.communities)} />
+      {userInfo.communities.length > 0 ? (
+        <CarouselComponent comms={JSON.stringify(userInfo?.communities)} />
+      ) : (
+        <div className={styles.error}>
+          You are not part of any community. Either look for one, or create one
+          and invite your friends.
+        </div>
+      )}
     </div>
   );
 };

@@ -7,8 +7,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { purple, grey } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { SlOptions } from "react-icons/sl";
-import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 import styles from "./Mui.module.css";
 import { deleteAPost } from "@/lib/actions/post.actions";
 import { usePathname } from "next/navigation";
@@ -18,7 +18,9 @@ export default function ModifiedMenu({ postId }: { postId: string }) {
   const [isloading, setIsLoading] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(null);
+  const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(
+    null
+  );
   const isOpen = Boolean(anchorElement);
 
   const path = usePathname();
@@ -36,22 +38,17 @@ export default function ModifiedMenu({ postId }: { postId: string }) {
     handleCloseMenu(); // Call the common function
   };
 
-  const  deleteKaro = async () => {
+  const deleteKaro = async () => {
     setIsLoading(true);
 
     await deleteAPost({
-      postId : postId,
+      postId: postId,
       path: path,
     });
 
-    
-
-
-
     setIsLoading(false);
-    handleClose(); 
+    handleClose();
     handleCloseMenu();
-    
   };
 
   const modifiedTheme = createTheme({
@@ -76,8 +73,6 @@ export default function ModifiedMenu({ postId }: { postId: string }) {
     boxShadow: 24,
     p: 4,
   };
-
-  
 
   return (
     <>
@@ -104,28 +99,28 @@ export default function ModifiedMenu({ postId }: { postId: string }) {
           <MenuItem onClick={handleOpeningModel}>Delete Post </MenuItem>
         </Menu>
         <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <h3 className={styles.modalTitle}  id="modal-modal-title">
-                    Are you sure you want to delete the post?
-                  </h3>
-                  {/* <div className={styles.modalDes} id="modal-modal-description">
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <h3 className={styles.modalTitle} id="modal-modal-title">
+              Are you sure you want to delete the post?
+            </h3>
+            {/* <div className={styles.modalDes} id="modal-modal-description">
                     This cannot be undone.
                   </div> */}
-                  <div className={styles.deleteButtons}>
-                    <button onClick={deleteKaro} className={styles.yesButton}>
-                      Yes
-                    </button>
-                    <button onClick={handleClose} className={styles.noButton}>
-                      No
-                    </button>
-                  </div>
-                </Box>
-              </Modal>
+            <div className={styles.deleteButtons}>
+              <button onClick={deleteKaro} className={styles.yesButton}>
+                Yes
+              </button>
+              <button onClick={handleClose} className={styles.noButton}>
+                No
+              </button>
+            </div>
+          </Box>
+        </Modal>
       </ThemeProvider>
     </>
   );

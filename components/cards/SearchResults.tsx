@@ -11,6 +11,7 @@ const SearchResults = ({
   bio,
   name,
   location,
+  type,
 }: {
   id: string;
   username: string;
@@ -18,6 +19,7 @@ const SearchResults = ({
   bio: string;
   name: string;
   location: string;
+  type?: string;
 }) => {
   return (
     <div className={styles.main}>
@@ -27,18 +29,23 @@ const SearchResults = ({
       <div>
         <div className={styles.flexMe}>
           <div className={styles.name}>{name}</div>
-          <RxDotFilled color="#b1b1b1" />
+          {type !== "community" && <RxDotFilled color="#b1b1b1" />}
 
-          <div className={styles.uname}>@{username}</div>
+          {type !== "community" && (
+            <div className={styles.uname}>@{username}</div>
+          )}
         </div>
 
-        {location && location?.length > 1 && (
+        {type !== "community" && location && location?.length > 1 && (
           <div className={styles.location}> {`Lives in ${location}`}</div>
         )}
       </div>
 
-      <Link className={styles.link} href={`/${username}`}>
-        View Profile
+      <Link
+        className={styles.link}
+        href={type === "community" ? `/communities/${id}` : `/${username}`}
+      >
+        {type === "community" ? "View" : "View Profile"}
       </Link>
     </div>
   );

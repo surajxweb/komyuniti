@@ -1,0 +1,46 @@
+.main {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.image {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+}
+
+.image img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.name {
+  font-size: 16px;
+  color: #dedede;
+}
+
+.uname {
+  font-size: 14px;
+  color: #b1b1b1;
+}
+
+.cta {
+  background-color: #586aea;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.cta:hover {
+  background-color: #3c49ab;
+}
