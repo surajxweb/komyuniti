@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Home / Komyuniti",
-  description: "Making social media more prive and community focused.",
+  description: "Making social media more private and community focused.",
 };
 
 export default async function Home() {

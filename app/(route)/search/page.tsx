@@ -7,7 +7,7 @@ import Search from "@/components/forms/Search";
 
 export const metadata = {
   title: "Search / Komyuniti",
-  description: "Making social media more prive and community focused.",
+  description: "Making social media more private and community focused.",
 };
 
 export default async function Page() {

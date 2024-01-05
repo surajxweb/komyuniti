@@ -7,7 +7,7 @@ const font = Urbanist({ subsets: ["latin"], weight: "500" });
 
 export const metadata = {
   title: "Komyuniti",
-  description: "Making social media more prive and community focused.",
+  description: "Making social media more private and community focused.",
 };
 
 export default function RootLayout({
