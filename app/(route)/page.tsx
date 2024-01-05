@@ -17,7 +17,6 @@ export default async function Home() {
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   const posts = await fetchPosts();
-  console.log(posts);
 
   return (
     <div className={styles.container}>

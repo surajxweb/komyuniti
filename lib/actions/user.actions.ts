@@ -107,7 +107,7 @@ export async function fetchProfilePageDetails(username: string) {
       model: Post,
       options: { sort: { createdAt: -1 } },
       select:
-        "_id text community createdAt parentId children postType media likes isEdited option1 option2 option3 option4",
+        "_id text community createdAt parentId children postType media likes isEdited options",
     });
     // .populate({
     //   path: "likedPosts",
@@ -216,7 +216,6 @@ export async function followUser({
     userTargetted.followers.push(userId);
     await userTargetted.save();
 
-    console.log("Revalidating this path: ", path);
 
     revalidatePath(path);
   } catch (e: any) {
@@ -252,7 +251,6 @@ export async function unfollowUser({
     userTargetted.followers.pull(userId);
     await userTargetted.save();
 
-    console.log("Revalidating this path: ", path);
 
     revalidatePath(path);
   } catch (e: any) {

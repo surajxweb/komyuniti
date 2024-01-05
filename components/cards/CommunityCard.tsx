@@ -12,10 +12,9 @@ const CommunityCard = ({
   id: string;
   themeColor: string;
 }) => {
-  console.log(themeColor);
 
   return (
-    <Link href={`/communities/${id}`}>
+    // <Link href={`/communities/${id}`}>
       <div
         className={styles.main}
         style={{ border: `1px solid ${themeColor}` }}
@@ -28,7 +27,7 @@ const CommunityCard = ({
           {name}
         </div>
       </div>
-    </Link>
+    // </Link>
   );
 };
 

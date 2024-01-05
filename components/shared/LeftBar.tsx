@@ -33,7 +33,6 @@ const LeftBar = () => {
     const getUserData = async () => {
       const userInfo = await fetchUser(userId || "");
       setUserData({ username: userInfo?.username, imageUrl: userInfo?.image });
-      console.log(userInfo);
     };
     getUserData();
   }, [userId]);

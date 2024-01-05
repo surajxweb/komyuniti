@@ -5,7 +5,6 @@ import { FaCommentAlt } from "react-icons/fa";
 import { FaRegCommentAlt } from "react-icons/fa";
 import PostOptions from "../mui/PostOptions";
 import { FaPlus } from "react-icons/fa6";
-import { usePathname } from "next/navigation";
 import { RxDotFilled } from "react-icons/rx";
 import LikeButton from "../client/LikeButton";
 import { calculateTimeAgo } from "@/lib/utils";
@@ -70,7 +69,11 @@ const PostCard = ({
   const isMyPost = currentUserId === author_id;
 
   const isPostLiked = userLikes.includes(id.toString());
-  const isFollowing = userFollowing.includes(author__id.toString());
+  // const isFollowing = userFollowing.includes(author__id.toString());
+  const hasVoted = options.option1.votes.includes(mongoId) || 
+  options.option2.votes.includes(mongoId) ||
+  options.option3.votes.includes(mongoId)||
+  options.option4.votes.includes(mongoId);
 
   return (
     <div className={styles.main}>
@@ -125,7 +128,7 @@ const PostCard = ({
       {type === "poll" && options && (
         <PollVoting
           id={id}
-          hasVoted={true}
+          hasVoted={hasVoted}
           userId={mongoId}
           options={options}
         />

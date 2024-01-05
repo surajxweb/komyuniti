@@ -13,7 +13,6 @@ const Page = async () => {
   const userInfo = await fetchUserAndCommunities(user?.id || "");
   if (userInfo?.onboarded === false) redirect("/onboarding");
 
-  console.log(userInfo);
 
   return (
     <div className={styles.container}>

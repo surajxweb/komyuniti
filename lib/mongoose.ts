@@ -6,7 +6,7 @@ export const connectToDB = async () => {
   mongoose.set("strictQuery", true);
 
   if (!process.env.MONGODB_URL) {
-    console.log("URL nahi hai mongo db ka.");
+    throw new Error("URL nahi hai mongo db ka.");
     return;
   }
 
@@ -19,8 +19,8 @@ export const connectToDB = async () => {
     await mongoose.connect(process.env.MONGODB_URL);
     isConnected = true;
     console.log("Ho gaya DB Connect!");
-  } catch (e) {
-    console.log("Error ho gaya ye wala : ", e);
+  } catch (e:any) {
+    throw new Error("Error ho gaya ye wala : ", e.message);
   }
 };
 

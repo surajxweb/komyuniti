@@ -17,7 +17,6 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const mongoId = userInfo?._id;
   const userLikes = userInfo?.likedPosts;
   const userFollowing = userInfo?.following;
-  console.log(profileInfo.posts);
 
   return (
     <div className={styles.container}>

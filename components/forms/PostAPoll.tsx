@@ -165,8 +165,7 @@ const PostAPoll = () => {
           />
         </div>
         <FormDescription className={styles.description}>
-          Feilds marked * are mandatory. By submiting the form, you agree to the
-          terms and conditions at Komyuniti.
+        Please ensure that your poll and options respects the feelings and opinions of others on the Komyuniti App, and adhere to our community guidelines.
         </FormDescription>
         <Box sx={{ position: "relative" }}>
           <Button

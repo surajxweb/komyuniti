@@ -34,7 +34,6 @@ const Search = () => {
           pageNumber: 1,
           pageSize: 25,
         });
-        console.log(results.users[0]);
 
         setSearchResults(results.users);
 

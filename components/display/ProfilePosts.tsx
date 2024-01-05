@@ -37,7 +37,6 @@ const ProfilePosts = ({
   const posts = JSON.parse(postsString);
   const likedPosts = JSON.parse(likedPostsString);
 
-  console.log(posts);
 
   const postToDisplay =
     view === "posts"
@@ -108,6 +107,7 @@ const ProfilePosts = ({
                 userFollowing={userFollowing}
                 type={post.postType}
                 media={post.media}
+                options={post?.options}
               />
             ))}
           </div>

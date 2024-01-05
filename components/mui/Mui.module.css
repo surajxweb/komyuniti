@@ -1,0 +1,170 @@
+.container {
+  border-bottom: 1px solid rgb(197, 197, 197);
+  padding: 20px 10px;
+}
+
+.productContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image_name {
+  display: flex;
+}
+
+.productImage {
+  margin-right: 25px;
+  width: 110px;
+}
+
+.productImage img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.productInfo {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+
+  flex: 1;
+}
+
+.size {
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.prices {
+  display: flex;
+}
+
+.mrp {
+  text-decoration: line-through;
+  font-size: 15px;
+}
+
+.price {
+  font-size: 18px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.quantity {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.qbutton {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: rgb(212, 212, 212);
+  border: 0.5px solid #222;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 3px;
+  color: black;
+}
+
+.qbutton:disabled,
+.qbutton[disabled] {
+  border: 0.5px solid grey;
+  cursor: not-allowed;
+  background-color: rgb(235, 235, 235);
+}
+
+.qtext {
+  font-size: 20px;
+  width: 30px;
+  text-align: center;
+}
+
+.removeCont {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rmtext {
+  text-decoration: underline;
+}
+
+.icons {
+  color: black;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.icons:hover {
+  color: rgb(66, 66, 66);
+}
+
+.modalTitle {
+  color: #222;
+  margin: 10px 0 20px 0;
+}
+
+.modalDes {
+  margin: 15px 0;
+  color: #222;
+}
+
+.deleteButtons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.yesButton,
+.noButton {
+  width: 100px;
+  height: 30px;
+  font: inherit;
+  border: 1px solid #222;
+  cursor: pointer;
+}
+
+.yesButton {
+  background-color: #111;
+  color: #fff;
+}
+
+.noButton {
+  background-color: #fff;
+  color: #222;
+  margin-left: 20px;
+}
+
+.noButton:hover {
+  background-color: #f1eeee;
+}
+
+.yesButton:hover {
+  background-color: #222;
+}
+
+@media (max-width: 900px) {
+  .name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .prices {
+    margin-top: 20px;
+  }
+  .productContainer {
+    flex-flow: column nowrap;
+  }
+}

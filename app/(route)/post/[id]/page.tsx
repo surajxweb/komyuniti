@@ -21,7 +21,6 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
   const likes = post.likes;
   const genz = post.children.children;
 
-  console.log(typeof genz);
 
   const isMyPost = user?.id === post?.author.id;
 
@@ -48,6 +47,8 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
         userFollowing={userFollowing}
         type={post.postType}
         media={post.media}
+        options={post?.options}
+
       />
 
       <MakeAComment

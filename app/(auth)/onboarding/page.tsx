@@ -12,7 +12,6 @@ export const metadata = {
 
 const Page = async () => {
   const user = await currentUser();
-  console.log(typeof user?.emailAddresses[0].emailAddress);
 
   const userInfo = await fetchUser(user?.id || "");
   if (userInfo?.onboarded) redirect("/");

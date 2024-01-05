@@ -142,7 +142,7 @@ export async function fetchPosts() {
         select: "_id id name username image",
       });
   } catch (error: any) {
-    console.log("Nahi mila koi post, ye dekho: ", error);
+    throw new Error("Nahi mila koi post, ye dekho: ", error);
   }
 }
 
@@ -196,7 +196,7 @@ export async function findPostById(id: string) {
         select: "name username",
       });
   } catch (error: any) {
-    console.log("Nahi mila iss bande ka post, ye dekho: ", error);
+    throw new Error("Nahi mila iss bande ka post, ye dekho: ", error);
   }
 }
 
@@ -248,7 +248,7 @@ export async function fetchPostsByUserId({ id }: { id: string }) {
       "author.id": id,
     }).sort({ createdAt: "desc" });
   } catch (error: any) {
-    console.log("Nahi mila koi post, ye dekho: ", error);
+    throw new Error("Nahi mila koi post, ye dekho: ", error);
   }
 }
 
@@ -326,16 +326,13 @@ export async function castAVote({
   postId,
   userId,
   voteOption,
+  pathname,
 }: {
   postId: string;
   userId: string;
   voteOption: number;
+  pathname: string
 }) {
-  console.log("Lets start casting vote!");
-  console.log("Post Id: ", postId);
-  console.log("User Id: ", userId);
-  console.log("Voilence: ", voteOption);
-
   try {
     connectToDB();
 
@@ -344,7 +341,6 @@ export async function castAVote({
       throw new Error(`Post with ID ${postId} not found!`);
     }
 
-    console.log("ye dekho kaun mila: ", foundPost);
 
     switch (voteOption) {
       case 1:
@@ -365,7 +361,60 @@ export async function castAVote({
 
     // Save the changes
     await foundPost.save();
+    revalidatePath(pathname);
   } catch (e: any) {
     throw new Error("Voting failed like elections in UP lol. " + e.message);
+  }
+}
+
+
+export async function deleteAPost({ postId, path }: { postId: string, path: string }) {
+  try {
+    connectToDB();
+
+    // Find the post to be deleted
+    const postToDelete = await Post.findById(postId);
+    if (!postToDelete) {
+      throw new Error(`Post with ID ${postId} not found!`);
+    }
+
+    // Delete all the children (comments) of the post
+    if (postToDelete.children.length > 0) {
+      await Post.deleteMany({ _id: { $in: postToDelete.children } });
+    }
+
+    // If the post has a parent, remove the post from its parent's children array
+    if (postToDelete.parentId) {
+      const parentPost = await Post.findById(postToDelete.parentId);
+      if (parentPost) {
+        parentPost.children.pull(postId);
+        await parentPost.save();
+      }
+    }
+
+    // Remove post ID from likedPosts array of users who liked the post
+    for (const userId of postToDelete.likes) {
+      const user = await User.findById(userId);
+      if (user) {
+        user.likedPosts.pull(postId);
+        await user.save();
+      }
+    }
+
+    // Remove post ID from the posts array of the author
+    const authorId = postToDelete.author;
+    const author = await User.findById(authorId);
+    if (author) {
+      author.posts.pull(postId);
+      await author.save();
+    }
+
+    // Delete the post
+    await Post.deleteOne({ _id: postId });
+
+    revalidatePath(path);
+
+  } catch (error: any) {
+    throw new Error(`Failed to delete post  with ID ${postId}: ${error.message}`);
   }
 }
