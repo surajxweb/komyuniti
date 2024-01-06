@@ -91,7 +91,7 @@ const PostCard = ({
           <div className={styles.name_and_uname}>
             <div className={styles.name}>{author_name}</div>
             <div className={styles.uname}>@{author_username}</div>
-            <RxDotFilled color="#b1b1b1" />
+            <RxDotFilled className={styles.reactIcon} color="#b1b1b1" />
             <div className={styles.date}>{timeAgo}</div>
           </div>
         </Link>

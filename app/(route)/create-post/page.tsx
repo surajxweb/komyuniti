@@ -20,7 +20,7 @@ const CreatePostPage = () => {
           className={`${styles.tab} ${view === "text" ? styles.selected : ""}`}
           onClick={() => setView("text")}
         >
-          Text
+          <div className={styles.text}>Text</div>
           <FaPencilAlt size="0.8em" />
         </div>
 
@@ -28,14 +28,14 @@ const CreatePostPage = () => {
           className={`${styles.tab} ${view === "image" ? styles.selected : ""}`}
           onClick={() => setView("image")}
         >
-          Image
+         <div className={styles.text}>Image</div>
           <FaImage />
         </div>
         <div
           className={`${styles.tab} ${view === "poll" ? styles.selected : ""}`}
           onClick={() => setView("poll")}
         >
-          Poll
+          <div className={styles.text}>Poll</div>
           <FaPoll />
         </div>
 

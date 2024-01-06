@@ -1,36 +1,116 @@
+"use client";
 import styles from "./BottomMenu.module.css";
 import Link from "next/link";
-import { HiHome } from "react-icons/hi";
-import { HiSearch } from "react-icons/hi";
-import { HiOutlineHeart } from "react-icons/hi";
-import { MdGroups } from "react-icons/md";
-import { HiUser } from "react-icons/hi";
-import { BiMessageAltDots } from "react-icons/bi";
+
+import { fetchUser } from "@/lib/actions/user.actions";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import {
+  MdHome,
+  MdOutlineSearch,
+  MdPostAdd,
+  MdAccountCircle,
+  MdOutlineNotifications,
+} from "react-icons/md";
 
 const Bottom = () => {
+  const pathname = usePathname();
+  const { userId } = useAuth();
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [userData, setUserData] = useState({ username: "", imageUrl: "" });
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const userInfo = await fetchUser(userId || "");
+      setUserData({ username: userInfo?.username, imageUrl: userInfo?.image });
+    };
+    getUserData();
+  }, [userId]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > prevScrollY) {
+        setScrollDirection("down");
+      } else {
+        setScrollDirection("up");
+      }
+
+      setPrevScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollY]);
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{
+        backgroundColor: scrollDirection === "up" ? "#111111" : "#111111b7",
+      }}
+    >
       <div className={styles.nav}>
-        <Link href={"/"} className={`${styles.link} ${styles.selected}`}>
-          <HiHome size="2.2em" className={styles.icons} />
-          <div className={styles.options}>Home</div>
+        <Link
+          href={"/"}
+          className={`${styles.link} ${
+            pathname === "/" ? styles.selected : ""
+          }`}
+        >
+          <MdHome size="2.2em" className={styles.icons} />
         </Link>
-        <Link href={"/"} className={styles.link}>
-          <HiSearch size="2.2em" className={styles.icons} />
-          <div className={styles.options}>Search</div>
+        <Link
+          href={"/search"}
+          className={`${styles.link} ${
+            pathname === "/search" ? styles.selected : ""
+          }`}
+        >
+          <MdOutlineSearch size="2.2em" className={styles.icons} />
         </Link>
-        <Link href={"/"} className={styles.link}>
-          <HiOutlineHeart size="2em" className={styles.icons} />
-          <div className={styles.options}>Activity</div>
+        <Link
+          href={"/create-post"}
+          className={`${styles.link} ${
+            pathname === "/create-post" ? styles.selected : ""
+          }`}
+        >
+          <MdPostAdd size="2em" className={styles.icons} />
         </Link>
-        <Link href={"/"} className={styles.link}>
-          <BiMessageAltDots size="2.2em" className={styles.icons} />
-          <div className={styles.options}>Messages</div>
+        <Link
+          href={"/notifications"}
+          className={`${styles.link} ${
+            pathname === "/notifications" ? styles.selected : ""
+          }`}
+        >
+          <MdOutlineNotifications size="2em" className={styles.icons} />
         </Link>
 
-        <Link href={"/"} className={styles.link}>
-          <MdGroups size="2.2em" className={styles.icons} />
-          <div className={styles.options}>Communities</div>
+        <Link
+          href={
+            userData.imageUrl && userData.imageUrl.length > 1
+              ? `/${userData.username}`
+              : "/profile"
+          }
+          className={`${styles.link} ${
+            pathname === `/${userData.username}` ? styles.selected : ""
+          }`}
+        >
+          {userData.imageUrl && userData.imageUrl.length > 1 ? (
+            <Image
+              src={userData.imageUrl}
+              height={100}
+              width={100}
+              alt="profile photo"
+            />
+          ) : (
+            <MdAccountCircle size="2em" className={styles.icons} />
+          )}
         </Link>
       </div>
     </div>

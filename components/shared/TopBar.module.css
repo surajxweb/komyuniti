@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  background-color: var(--background-nav-color);
+  background-color: #111111da;
   padding: 0 10px;
   top: 0;
   display: flex;
@@ -12,6 +12,7 @@
   z-index: 30;
   height: 60px;
   flex-flow: row wrap;
+  color: #ccc;
 }
 
 .logoContainer {
@@ -25,7 +26,10 @@
 
 .icons {
   cursor: pointer;
-  color: #fff;
+}
+
+.selected {
+  color: var(--selected-color);
 }
 
 @media (max-width: 700px) {

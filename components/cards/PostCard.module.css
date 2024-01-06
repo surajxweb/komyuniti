@@ -120,3 +120,24 @@
 .date {
   color: #b1b1b1;
 }
+
+@media (max-width: 768px) {
+  .main {
+    margin: 10px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .name {
+    display: none;
+  }
+  .reactIcon {
+    display: none;
+    color: red;
+  }
+  .name_and_uname {
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

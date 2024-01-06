@@ -147,6 +147,10 @@ body {
   display: none;
 }
 
+.cl-card {
+  width: 100%;
+}
+
 .container {
   margin-left: 22%;
   margin-right: 30%;

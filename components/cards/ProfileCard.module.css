@@ -114,3 +114,27 @@
 .message:hover {
   background-color: #4350ad;
 }
+
+@media (max-width: 768px) {
+  .main {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .image img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  .name_uname {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .icon {
+    display: none;
+  }
+  .data {
+    font-size: 12px;
+  }
+}

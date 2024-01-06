@@ -23,13 +23,15 @@ const CarouselComponent = ({ comms }: { comms: any }) => {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 2.3,
+      swipeable :true,
+      draggable: true,
     },
   };
   return (
     <Carousel
-      swipeable={false}
-      draggable={false}
+      swipeable={true}
+      draggable={true}
       showDots={false}
       responsive={responsive}
       ssr={true} // means to render carousel on server-side.
@@ -40,7 +42,6 @@ const CarouselComponent = ({ comms }: { comms: any }) => {
       customTransition="transform 300ms ease-in-out"
       transitionDuration={500}
       containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
       // deviceType={this.props.deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"

@@ -55,7 +55,7 @@ const ProfileCard = ({
         <div className={styles.info}>
           <div className={styles.name_uname}>
             <div className={styles.name}>{name}</div>
-            <RxDotFilled color="#b1b1b1" />
+            <RxDotFilled className={styles.icon} color="#b1b1b1" />
             <div className={styles.username}>@{username}</div>
           </div>
           <div className={styles.bio}>{bio}</div>

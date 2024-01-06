@@ -47,6 +47,8 @@
 
 .name {
   color: #fff;
+  display: flex;
+  gap: 10px;
 }
 
 .actions {
@@ -77,4 +79,10 @@
 
 .commentbar {
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .fname {
+    display: none;
+  }
 }

@@ -16,6 +16,9 @@
 
 .logoContainer {
   width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 10px;
 }
 
@@ -77,6 +80,12 @@
   .container {
     width: 10%;
     align-items: center;
+  }
+
+  .logoContainer img {
+    padding: 10px;
+    margin: 10px;
+    width: 50px;
   }
 
   .link {
