@@ -6,7 +6,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { purple, grey } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { SlOptions } from "react-icons/sl";
+import { MdExpandMore } from "react-icons/md";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import styles from "./Mui.module.css";
@@ -84,7 +84,7 @@ export default function ModifiedMenu({ postId }: { postId: string }) {
           aria-expanded={isOpen ? "true" : undefined}
           onClick={handleButtonClick}
         >
-          <SlOptions size="1.5em" />
+          <MdExpandMore size="1.5em" />
         </Button>
         <Menu
           id="custom-menu"

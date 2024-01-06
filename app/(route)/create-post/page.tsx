@@ -5,10 +5,7 @@ import MakeAPost from "@/components/forms/MakeAPost";
 import PostAImage from "@/components/forms/PostAImage";
 import PostAPoll from "@/components/forms/PostAPoll";
 import { useState } from "react";
-import { FaPencilAlt } from "react-icons/fa";
-import { FaImage } from "react-icons/fa";
-import { FaPoll } from "react-icons/fa";
-import { FaVideo } from "react-icons/fa";
+import { MdEdit, MdImage, MdPoll ,MdOutlineVideoLibrary    } from "react-icons/md";
 
 const CreatePostPage = () => {
   const [view, setView] = useState<string>("text");
@@ -21,7 +18,7 @@ const CreatePostPage = () => {
           onClick={() => setView("text")}
         >
           <div className={styles.text}>Text</div>
-          <FaPencilAlt size="0.8em" />
+          <MdEdit size="0.8em" />
         </div>
 
         <div
@@ -29,14 +26,14 @@ const CreatePostPage = () => {
           onClick={() => setView("image")}
         >
           <div className={styles.text}>Image</div>
-          <FaImage />
+          <MdImage  />
         </div>
         <div
           className={`${styles.tab} ${view === "poll" ? styles.selected : ""}`}
           onClick={() => setView("poll")}
         >
           <div className={styles.text}>Poll</div>
-          <FaPoll />
+          <MdPoll  />
         </div>
 
         {/* <div
@@ -44,7 +41,7 @@ const CreatePostPage = () => {
           onClick={() => setView("video")}
         >
           Video
-          <FaVideo />
+          <MdOutlineVideoLibrary  />
         </div> */}
       </div>
       {view === "text" && <MakeAPost />}

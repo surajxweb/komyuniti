@@ -1,6 +1,6 @@
 "use client";
 
-import { IoIosSearch } from "react-icons/io";
+import { MdOutlineSearch } from "react-icons/md";
 import styles from "./Search.module.css";
 import { useAuth } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
@@ -51,7 +51,7 @@ const Search = ({ type }: { type?: string }) => {
   return (
     <div>
       <div className={styles.section}>
-        <IoIosSearch size="1.8em" className={styles.reactIcons} />
+        <MdOutlineSearch size="1.8em" className={styles.reactIcons} />
         <input
           className={styles.inputBar}
           type="text"

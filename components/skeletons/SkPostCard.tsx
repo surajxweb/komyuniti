@@ -1,5 +1,4 @@
 import styles from "../cards/PostCard.module.css";
-import { FaCommentAlt, FaPlus } from "react-icons/fa";
 import Stack from "@mui/material/Stack";
 import Skeleton from "@mui/material/Skeleton";
 

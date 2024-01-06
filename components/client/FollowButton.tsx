@@ -1,6 +1,6 @@
 "use client";
 
-import { FaPlus } from "react-icons/fa";
+import { MdAdd  } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import styles from "./FollowButton.module.css";
 import { useState } from "react";
@@ -42,7 +42,7 @@ const FollowButton = ({
     <>
       {!optimisticFollow ? (
         <button className={styles.ctaf} onClick={followKaro}>
-          Follow <FaPlus />
+          Follow <MdAdd  />
         </button>
       ) : (
         <button className={styles.ctaunf} onClick={unFollowKaro}>

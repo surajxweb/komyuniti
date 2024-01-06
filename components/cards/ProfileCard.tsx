@@ -1,13 +1,17 @@
 import Image from "next/image";
 import styles from "./ProfileCard.module.css";
 import Link from "next/link";
-import { AiFillEdit } from "react-icons/ai";
-import { IoIosLink } from "react-icons/io";
 import { RxDotFilled } from "react-icons/rx";
-import { IoLocationOutline, IoCalendarOutline } from "react-icons/io5";
-import { IoIosSettings } from "react-icons/io";
 import FollowButton from "../client/FollowButton";
-import { FaMessage } from "react-icons/fa6";
+
+import {
+  MdMessage,
+  MdOutlineSettings ,
+  MdEdit,
+  MdLocationPin,
+  MdAddLink ,
+  MdOutlineDateRange 
+} from "react-icons/md";
 
 interface Props {
   name: string;
@@ -61,7 +65,7 @@ const ProfileCard = ({
           <div className={styles.bio}>{bio}</div>
           {link && link?.length > 1 && (
             <div className={styles.link}>
-              <IoIosLink size="0.8em" />
+              <MdAddLink  size="0.8em" />
               <Link target="_blank" href={`https://${link}`}>
                 {link}
               </Link>
@@ -70,14 +74,14 @@ const ProfileCard = ({
 
           {location && location?.length > 1 && (
             <div className={styles.link}>
-              <IoLocationOutline size="0.8em" />
+              <MdLocationPin size="0.8em" />
               <div> {`Lives in ${location}`}</div>
             </div>
           )}
 
           {joinedDate && joinedDate?.length > 1 && (
             <div className={styles.link}>
-              <IoCalendarOutline size="0.8em" />
+              <MdOutlineDateRange  size="0.8em" />
               <div>{` Joined on ${joinedDate}`}</div>
             </div>
           )}
@@ -87,11 +91,11 @@ const ProfileCard = ({
         <div className={styles.edits}>
           <Link className={styles.edit} href={"/profile/edit"}>
             <div>Edit Profile</div>
-            <AiFillEdit />
+            <MdEdit  />
           </Link>
           <Link className={styles.edit} href={"/profile/settings"}>
             <div>Settings</div>
-            <IoIosSettings />
+            <MdOutlineSettings  />
           </Link>
         </div>
       ) : (
@@ -101,9 +105,9 @@ const ProfileCard = ({
             userId={mongoId}
             targetUserId={id || ""}
           />
-          {/* <Link className={styles.message} href={"/messages"}>
-            Message <FaMessage />
-          </Link> */}
+           <Link className={styles.message} href={"/messages"}>
+            Message <MdMessage />
+          </Link> 
         </div>
       )}
       <div className={styles.data}>

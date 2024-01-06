@@ -8,22 +8,22 @@ import {
   SignOutButton,
   SignInButton,
   SignedOut,
-  OrganizationSwitcher,
   useAuth,
 } from "@clerk/nextjs";
-import { HiOutlineLogout } from "react-icons/hi";
-import { HiOutlineLogin } from "react-icons/hi";
-import { HiHome } from "react-icons/hi";
-import { HiSearch } from "react-icons/hi";
-import { HiOutlineHeart } from "react-icons/hi";
-import { HiPencil } from "react-icons/hi";
-import { MdGroups } from "react-icons/md";
-import { HiUser } from "react-icons/hi";
-import { BiMessageAltDots } from "react-icons/bi";
-import { dark } from "@clerk/themes";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname  } from "next/navigation";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { useEffect, useState } from "react";
+import {
+  MdHome,
+  MdOutlineSearch,
+  MdPostAdd,
+  MdAccountCircle,
+  MdOutlineNotifications,
+  MdLogout,
+  MdLogin,
+  MdGroups,
+  MdMessage
+} from "react-icons/md";
 
 const LeftBar = () => {
   const { userId } = useAuth();
@@ -52,7 +52,7 @@ const LeftBar = () => {
             pathname === "/" ? styles.selected : ""
           }`}
         >
-          <HiHome size="2em" className={styles.icons} />
+          <MdHome size="2em" className={styles.icons} />
           <div className={styles.options}>Home</div>
         </Link>
         <Link
@@ -61,7 +61,7 @@ const LeftBar = () => {
             pathname === "/search" ? styles.selected : ""
           }`}
         >
-          <HiSearch size="2em" className={styles.icons} />
+          <MdOutlineSearch size="2em" className={styles.icons} />
           <div className={styles.options}>Search</div>
         </Link>
         <Link
@@ -70,7 +70,7 @@ const LeftBar = () => {
             pathname === "/activity" ? styles.selected : ""
           }`}
         >
-          <HiOutlineHeart size="2em" className={styles.icons} />
+          <MdOutlineNotifications size="2em" className={styles.icons} />
           <div className={styles.options}>Activity</div>
         </Link>
         <Link
@@ -79,7 +79,7 @@ const LeftBar = () => {
             pathname === "/messages" ? styles.selected : ""
           }`}
         >
-          <BiMessageAltDots size="2em" className={styles.icons} />
+          <MdMessage size="2em" className={styles.icons} />
           <div className={styles.options}>Messages</div>
         </Link>
         <Link
@@ -88,7 +88,7 @@ const LeftBar = () => {
             pathname === "/create-post" ? styles.selected : ""
           }`}
         >
-          <HiPencil size="2em" className={styles.icons} />
+          <MdPostAdd size="2em" className={styles.icons} />
           <div className={styles.options}>Create Post</div>
         </Link>
         <Link
@@ -118,7 +118,7 @@ const LeftBar = () => {
               alt="profile photo"
             />
           ) : (
-            <HiUser size="2em" className={styles.icons} />
+            <MdAccountCircle size="2em" className={styles.icons} />
           )}
 
           <div className={styles.options}>Profile</div>
@@ -128,7 +128,7 @@ const LeftBar = () => {
         <SignedIn>
           <SignOutButton>
             <div className={`${styles.link} ${styles.logout}`}>
-              <HiOutlineLogout size="2em" className={styles.icons} />
+              <MdLogout  size="2em" className={styles.icons} />
               <div className={styles.options}>Logout</div>
             </div>
           </SignOutButton>
@@ -136,7 +136,7 @@ const LeftBar = () => {
         <SignedOut>
           <SignInButton>
             <div className={`${styles.link}`}>
-              <HiOutlineLogin size="2em" className={styles.icons} />
+              <MdLogin  size="2em" className={styles.icons} />
               <div className={styles.options}>Login</div>
             </div>
           </SignInButton>

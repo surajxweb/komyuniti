@@ -15,8 +15,7 @@ import { Textarea } from "../ui/textarea";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { createCommunity } from "@/lib/actions/community.actions";
-import { FaHome, FaUser, FaAt } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
+import {  MdGroups  } from "react-icons/md";
 import CircularProgress from "@mui/material/CircularProgress";
 import { green } from "@mui/material/colors";
 import Box from "@mui/material/Box";
@@ -191,7 +190,7 @@ const CommunityProfile = ({
                 <FormLabel className={styles.label}>Community Name*</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <FaUser />
+                    <MdGroups />
                   </span>
                   <FormControl>
                     <Input

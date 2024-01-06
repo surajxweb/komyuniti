@@ -1,6 +1,6 @@
 "use client";
 import styles from "./BackButton.module.css";
-import { IoArrowBackSharp } from "react-icons/io5";
+import { MdKeyboardBackspace  } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
 const BackButton = () => {
@@ -11,7 +11,7 @@ const BackButton = () => {
 
   return (
     <button className={styles.button} onClick={goBack}>
-      <IoArrowBackSharp size="1.3em" color="#ccc" />
+      <MdKeyboardBackspace size="1.3em" color="#ccc" />
     </button>
   );
 };

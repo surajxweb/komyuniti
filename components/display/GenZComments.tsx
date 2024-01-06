@@ -3,7 +3,7 @@ import styles from "./Comments.module.css";
 import Image from "next/image";
 import { RxDotFilled } from "react-icons/rx";
 import LikeButton from "../client/LikeButton";
-import { RiReplyLine } from "react-icons/ri";
+import { MdOutlineReply  } from "react-icons/md";
 
 interface Props {
   authorString: any;
@@ -51,7 +51,7 @@ const GenZComments = ({
           </div>
           <div className={styles.text}>{content}</div>
           <div className={styles.actions}>
-            <RiReplyLine
+            <MdOutlineReply 
               className={styles.commentbar}
               size="1.2em"
               onClick={() => setShowReply(!showReply)}

@@ -4,9 +4,9 @@ import { motion, useAnimation } from "framer-motion";
 import logo from "@/public/images/komyuniti.png";
 import styles from "./TopBar.module.css";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { MdMessage, MdPeopleAlt } from "react-icons/md";
+import { MdGroups, MdMessage } from "react-icons/md";
 
 const TopBar = () => {
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -62,7 +62,7 @@ const TopBar = () => {
           pathname === "/communities" ? styles.selected : ""
         }`}
       >
-        <MdPeopleAlt size="1.8em" className={styles.icons} />
+        <MdGroups size="1.8em" className={styles.icons} />
       </Link>
     </motion.nav>
   );

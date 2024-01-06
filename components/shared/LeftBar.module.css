@@ -82,6 +82,13 @@
     align-items: center;
   }
 
+  .selected:hover,
+  .link:hover,
+  .selected {
+    border-right: none;
+    background-color: transparent;
+  }
+
   .logoContainer img {
     padding: 10px;
     margin: 10px;

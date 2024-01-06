@@ -2,7 +2,6 @@ import styles from "./Search.module.css";
 import { currentUser } from "@clerk/nextjs";
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
-import { BiSolidSearch } from "react-icons/bi";
 import Search from "@/components/forms/Search";
 
 export const metadata = {

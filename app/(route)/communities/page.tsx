@@ -2,10 +2,8 @@ import { currentUser } from "@clerk/nextjs";
 import styles from "./Communities.module.css";
 import { fetchUserAndCommunities } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
-import { SiAddthis } from "react-icons/si";
-import { IoSearch } from "react-icons/io5";
+import { MdGroupAdd , MdOutlineSearch } from "react-icons/md";
 import Link from "next/link";
-import CommunityCard from "@/components/cards/CommunityCard";
 import CarouselComponent from "@/components/display/Carousel";
 
 const Page = async () => {
@@ -19,10 +17,10 @@ const Page = async () => {
         <h1 className={styles.heading}>Communities</h1>
         <div className={styles.action}>
           <Link href={"/communities/search"}>
-            <IoSearch size="1.6em" />
+            <MdOutlineSearch size="1.6em" />
           </Link>
           <Link href={"/communities/add"}>
-            <SiAddthis size="1.6em" />
+            <MdGroupAdd  size="1.6em" />
           </Link>
         </div>
       </div>

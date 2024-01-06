@@ -15,8 +15,7 @@ import { Textarea } from "../ui/textarea";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { updateUser } from "@/lib/actions/user.actions";
-import { FaHome, FaUser, FaAt } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
+import { MdEmail , MdLocationPin , MdAccountCircle, MdAlternateEmail  } from "react-icons/md";
 import CircularProgress from "@mui/material/CircularProgress";
 import { green } from "@mui/material/colors";
 import Box from "@mui/material/Box";
@@ -178,7 +177,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
                 <FormLabel className={styles.label}>Name*</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <FaUser />
+                    <MdAccountCircle />
                   </span>
                   <FormControl>
                     <Input
@@ -201,7 +200,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
                 <FormLabel className={styles.label}>Username*</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <FaAt />
+                    <MdAlternateEmail />
                   </span>
                   <FormControl>
                     <Input
@@ -224,7 +223,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
                 <FormLabel className={styles.label}>Email ID*</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <IoMdMail />
+                    <MdEmail  />
                   </span>
                   <FormControl>
                     <Input
@@ -247,7 +246,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
                 <FormLabel className={styles.label}>Location</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <FaHome />
+                    <MdLocationPin  />
                   </span>
                   <FormControl>
                     <Input

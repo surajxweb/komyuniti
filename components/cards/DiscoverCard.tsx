@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FollowButton from "../client/FollowButton";
 import styles from "./DiscoverCard.module.css";
-import { GrFormNextLink } from "react-icons/gr";
+import { MdArrowRightAlt  } from "react-icons/md";
 
 const DiscoverCard = ({
   type,
@@ -42,7 +42,7 @@ const DiscoverCard = ({
         href={type === "user" ? `/${username}` : `/communities/${id}`}
         className={styles.cta}
       >
-        View <GrFormNextLink />
+        View <MdArrowRightAlt  />
       </Link>
     </div>
   );

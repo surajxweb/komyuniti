@@ -1,14 +1,11 @@
 import Link from "next/link";
 import styles from "./PostCard.module.css";
 import Image from "next/image";
-import { FaCommentAlt } from "react-icons/fa";
-import { FaRegCommentAlt } from "react-icons/fa";
+import { MdComment  } from "react-icons/md";
 import PostOptions from "../mui/PostOptions";
-import { FaPlus } from "react-icons/fa6";
 import { RxDotFilled } from "react-icons/rx";
 import LikeButton from "../client/LikeButton";
 import { calculateTimeAgo } from "@/lib/utils";
-import mongoose from "mongoose";
 import FollowButton from "../client/FollowButton";
 import PollVoting from "../client/PollVoting";
 
@@ -149,7 +146,7 @@ const PostCard = ({
         </div>
         <Link className={styles.link} href={`/post/${id}`}>
           <div className={styles.commentbar}>
-            <FaRegCommentAlt className={styles.comment} size="1.5em" />
+            <MdComment  className={styles.comment} size="1.5em" />
             <div>{`${comments.length}  ${
               comments.length === 1 ? "comment" : "comments"
             }`}</div>

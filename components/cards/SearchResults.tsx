@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./SearchResults.module.css";
-import { IoLocationOutline } from "react-icons/io5";
 import { RxDotFilled } from "react-icons/rx";
 
 const SearchResults = ({

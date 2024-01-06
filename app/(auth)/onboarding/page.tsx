@@ -2,7 +2,7 @@ import AccountProfile from "@/components/forms/AccountProfile";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { SignOutButton, SignedIn, currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { HiOutlineLogout } from "react-icons/hi";
+import { MdLogout } from "react-icons/md";
 import styles from "./Onboarding.module.css";
 
 export const metadata = {
@@ -14,7 +14,7 @@ const Page = async () => {
   const user = await currentUser();
 
   const userInfo = await fetchUser(user?.id || "");
-  // if (userInfo?.onboarded) redirect("/");
+  if (userInfo?.onboarded) redirect("/");
 
   const fullName =
     user?.firstName && user?.lastName
@@ -42,7 +42,7 @@ const Page = async () => {
       <SignedIn>
         <SignOutButton>
           <div className={`${styles.link} ${styles.logout}`}>
-            <HiOutlineLogout size="2em" className={styles.icons} />
+            <MdLogout size="2em" className={styles.icons} />
             <div className={styles.options}>Logout</div>
           </div>
         </SignOutButton>

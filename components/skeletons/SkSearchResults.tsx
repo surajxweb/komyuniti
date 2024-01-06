@@ -1,6 +1,4 @@
 import styles from "../cards/SearchResults.module.css";
-import { IoLocationOutline } from "react-icons/io5";
-import { RxDotFilled } from "react-icons/rx";
 import Skeleton from "@mui/material/Skeleton";
 
 const SkSearchResults = () => {
