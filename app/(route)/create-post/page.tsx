@@ -5,7 +5,7 @@ import MakeAPost from "@/components/forms/MakeAPost";
 import PostAImage from "@/components/forms/PostAImage";
 import PostAPoll from "@/components/forms/PostAPoll";
 import { useState } from "react";
-import { MdEdit, MdImage, MdPoll ,MdOutlineVideoLibrary    } from "react-icons/md";
+import { MdEdit, MdImage, MdPoll, MdOutlineVideoLibrary } from "react-icons/md";
 
 const CreatePostPage = () => {
   const [view, setView] = useState<string>("text");
@@ -26,14 +26,14 @@ const CreatePostPage = () => {
           onClick={() => setView("image")}
         >
           <div className={styles.text}>Image</div>
-          <MdImage  />
+          <MdImage />
         </div>
         <div
           className={`${styles.tab} ${view === "poll" ? styles.selected : ""}`}
           onClick={() => setView("poll")}
         >
           <div className={styles.text}>Poll</div>
-          <MdPoll  />
+          <MdPoll />
         </div>
 
         {/* <div

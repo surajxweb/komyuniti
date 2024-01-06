@@ -14,6 +14,7 @@ const Search = ({ type }: { type?: string }) => {
 
   const [formData, setFormData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [nobodyFound, setNobodyFound] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
 
   useEffect(() => {
@@ -33,8 +34,12 @@ const Search = ({ type }: { type?: string }) => {
                 pageNumber: 1,
                 pageSize: 25,
               });
-        console.log(results);
-
+        setNobodyFound(
+          type === "community"
+            ? (results as { communities: any[]; isNext: boolean }).communities
+                .length === 0
+            : (results as { users: any[]; isNext: boolean }).users.length === 0
+        );
         setSearchResults(
           type === "community"
             ? (results as { communities: any[]; isNext: boolean }).communities
@@ -48,15 +53,20 @@ const Search = ({ type }: { type?: string }) => {
     return () => clearTimeout(delayDebounceFn);
   }, [formData, type, userId]);
 
+  const inputChangeHandeller = (e: any) => {
+    setNobodyFound(false);
+    setFormData(e.target.value);
+  };
+
   return (
     <div>
-      <div className={styles.section}>
+      <div className={styles.search}>
         <MdOutlineSearch size="1.8em" className={styles.reactIcons} />
         <input
           className={styles.inputBar}
           type="text"
           value={formData}
-          onChange={(e) => setFormData(e.target.value)}
+          onChange={inputChangeHandeller}
           placeholder={
             type === "community"
               ? `Enter name of the community.`
@@ -79,7 +89,11 @@ const Search = ({ type }: { type?: string }) => {
           />
         ))}
         {isLoading && <SkSearchResults />}
+        {nobodyFound && (
+          <div>{`Nobody with the name/username "${formData}" found on Komyuniti.`}</div>
+        )}
       </div>
+      <div>{/* <h2>Search History </h2> */}</div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./PostCard.module.css";
 import Image from "next/image";
-import { MdComment  } from "react-icons/md";
+import { MdComment } from "react-icons/md";
 import PostOptions from "../mui/PostOptions";
 import { RxDotFilled } from "react-icons/rx";
 import LikeButton from "../client/LikeButton";
@@ -146,7 +146,7 @@ const PostCard = ({
         </div>
         <Link className={styles.link} href={`/post/${id}`}>
           <div className={styles.commentbar}>
-            <MdComment  className={styles.comment} size="1.5em" />
+            <MdComment className={styles.comment} size="1.5em" />
             <div>{`${comments.length}  ${
               comments.length === 1 ? "comment" : "comments"
             }`}</div>

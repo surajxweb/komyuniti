@@ -99,3 +99,15 @@
   margin-top: 5px;
   font-size: 12px;
 }
+
+@media (max-width: 700px) {
+  .form {
+    margin-bottom: 60px;
+  }
+  .optionGroup {
+    flex-direction: column;
+  }
+  .field {
+    width: 100%;
+  }
+}

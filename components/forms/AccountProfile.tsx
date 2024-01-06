@@ -15,7 +15,12 @@ import { Textarea } from "../ui/textarea";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { updateUser } from "@/lib/actions/user.actions";
-import { MdEmail , MdLocationPin , MdAccountCircle, MdAlternateEmail  } from "react-icons/md";
+import {
+  MdEmail,
+  MdLocationPin,
+  MdAccountCircle,
+  MdAlternateEmail,
+} from "react-icons/md";
 import CircularProgress from "@mui/material/CircularProgress";
 import { green } from "@mui/material/colors";
 import Box from "@mui/material/Box";
@@ -223,7 +228,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
                 <FormLabel className={styles.label}>Email ID*</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <MdEmail  />
+                    <MdEmail />
                   </span>
                   <FormControl>
                     <Input
@@ -246,7 +251,7 @@ const AccountProfile = ({ user, btnTitle, heading }: Props) => {
                 <FormLabel className={styles.label}>Location</FormLabel>
                 <div className={styles.linkInput}>
                   <span className={styles.http}>
-                    <MdLocationPin  />
+                    <MdLocationPin />
                   </span>
                   <FormControl>
                     <Input

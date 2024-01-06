@@ -6,11 +6,11 @@ import FollowButton from "../client/FollowButton";
 
 import {
   MdMessage,
-  MdOutlineSettings ,
+  MdOutlineSettings,
   MdEdit,
   MdLocationPin,
-  MdAddLink ,
-  MdOutlineDateRange 
+  MdAddLink,
+  MdOutlineDateRange,
 } from "react-icons/md";
 
 interface Props {
@@ -65,7 +65,7 @@ const ProfileCard = ({
           <div className={styles.bio}>{bio}</div>
           {link && link?.length > 1 && (
             <div className={styles.link}>
-              <MdAddLink  size="0.8em" />
+              <MdAddLink size="0.8em" />
               <Link target="_blank" href={`https://${link}`}>
                 {link}
               </Link>
@@ -81,7 +81,7 @@ const ProfileCard = ({
 
           {joinedDate && joinedDate?.length > 1 && (
             <div className={styles.link}>
-              <MdOutlineDateRange  size="0.8em" />
+              <MdOutlineDateRange size="0.8em" />
               <div>{` Joined on ${joinedDate}`}</div>
             </div>
           )}
@@ -91,11 +91,11 @@ const ProfileCard = ({
         <div className={styles.edits}>
           <Link className={styles.edit} href={"/profile/edit"}>
             <div>Edit Profile</div>
-            <MdEdit  />
+            <MdEdit />
           </Link>
           <Link className={styles.edit} href={"/profile/settings"}>
             <div>Settings</div>
-            <MdOutlineSettings  />
+            <MdOutlineSettings />
           </Link>
         </div>
       ) : (
@@ -105,9 +105,9 @@ const ProfileCard = ({
             userId={mongoId}
             targetUserId={id || ""}
           />
-           <Link className={styles.message} href={"/messages"}>
+          <Link className={styles.message} href={"/messages"}>
             Message <MdMessage />
-          </Link> 
+          </Link>
         </div>
       )}
       <div className={styles.data}>

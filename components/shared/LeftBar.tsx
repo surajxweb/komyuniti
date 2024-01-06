@@ -10,7 +10,7 @@ import {
   SignedOut,
   useAuth,
 } from "@clerk/nextjs";
-import { usePathname  } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { useEffect, useState } from "react";
 import {
@@ -22,7 +22,7 @@ import {
   MdLogout,
   MdLogin,
   MdGroups,
-  MdMessage
+  MdMessage,
 } from "react-icons/md";
 
 const LeftBar = () => {
@@ -65,13 +65,13 @@ const LeftBar = () => {
           <div className={styles.options}>Search</div>
         </Link>
         <Link
-          href={"/activity"}
+          href={"/notifications"}
           className={`${styles.link} ${
-            pathname === "/activity" ? styles.selected : ""
+            pathname === "/notifications" ? styles.selected : ""
           }`}
         >
           <MdOutlineNotifications size="2em" className={styles.icons} />
-          <div className={styles.options}>Activity</div>
+          <div className={styles.options}>Notifications</div>
         </Link>
         <Link
           href={"/messages"}
@@ -128,7 +128,7 @@ const LeftBar = () => {
         <SignedIn>
           <SignOutButton>
             <div className={`${styles.link} ${styles.logout}`}>
-              <MdLogout  size="2em" className={styles.icons} />
+              <MdLogout size="2em" className={styles.icons} />
               <div className={styles.options}>Logout</div>
             </div>
           </SignOutButton>
@@ -136,7 +136,7 @@ const LeftBar = () => {
         <SignedOut>
           <SignInButton>
             <div className={`${styles.link}`}>
-              <MdLogin  size="2em" className={styles.icons} />
+              <MdLogin size="2em" className={styles.icons} />
               <div className={styles.options}>Login</div>
             </div>
           </SignInButton>

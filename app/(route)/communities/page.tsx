@@ -2,7 +2,7 @@ import { currentUser } from "@clerk/nextjs";
 import styles from "./Communities.module.css";
 import { fetchUserAndCommunities } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
-import { MdGroupAdd , MdOutlineSearch } from "react-icons/md";
+import { MdGroupAdd, MdOutlineSearch } from "react-icons/md";
 import Link from "next/link";
 import CarouselComponent from "@/components/display/Carousel";
 
@@ -20,7 +20,7 @@ const Page = async () => {
             <MdOutlineSearch size="1.6em" />
           </Link>
           <Link href={"/communities/add"}>
-            <MdGroupAdd  size="1.6em" />
+            <MdGroupAdd size="1.6em" />
           </Link>
         </div>
       </div>

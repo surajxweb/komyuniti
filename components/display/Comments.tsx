@@ -5,7 +5,7 @@ import styles from "./Comments.module.css";
 import LikeButton from "../client/LikeButton";
 import { RxDotFilled } from "react-icons/rx";
 import { calculateTimeAgo } from "@/lib/utils";
-import { MdOutlineReply  } from "react-icons/md";
+import { MdOutlineReply } from "react-icons/md";
 import GenZComments from "./GenZComments";
 import { useState } from "react";
 import MakeAComment from "../forms/MakeAComment";
@@ -64,7 +64,7 @@ const Comments = ({
           </div>
           <div className={styles.text}>{content}</div>
           <div className={styles.actions}>
-            <MdOutlineReply 
+            <MdOutlineReply
               className={styles.commentbar}
               size="1.2em"
               onClick={() => setShowReply(!showReply)}

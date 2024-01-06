@@ -1,7 +1,4 @@
 import styles from "./Search.module.css";
-import { currentUser } from "@clerk/nextjs";
-import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
-import { redirect } from "next/navigation";
 import Search from "@/components/forms/Search";
 
 export const metadata = {
@@ -9,24 +6,11 @@ export const metadata = {
   description: "Making social media more private and community focused.",
 };
 
-export default async function Page() {
-  const user = await currentUser();
-
-  const userInfo = await fetchUser(user?.id || "");
-  if (!userInfo?.onboarded) redirect("/onboarding");
-
-  if (!user) return null;
-
-  const results = await fetchUsers({
-    searchString: "ruhi",
-    userId: user?.id,
-    pageNumber: 1,
-    pageSize: 25,
-  });
-
+export default function Page() {
   return (
     <div className={styles.container}>
-      <Search />
+      {/* <h1 className={styles.heading}>Search for people on Komyunity</h1> */}
+      <Search type={"user"} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { IoMdHeart , IoMdHeartEmpty  } from "react-icons/io";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import styles from "./LikeButton.module.css";
 import { likeAPost, unlikeAPost } from "@/lib/actions/post.actions";
 import { usePathname } from "next/navigation";
@@ -38,9 +38,13 @@ const LikeButton = ({
     });
   };
   return optimisticLike ? (
-    <IoMdHeart  onClick={disLikeKaro} color="rgb(249, 24, 128)" size={size} />
+    <IoMdHeart onClick={disLikeKaro} color="rgb(249, 24, 128)" size={size} />
   ) : (
-    <IoMdHeartEmpty  onClick={likeKaro} className={styles.reactIcon} size={size} />
+    <IoMdHeartEmpty
+      onClick={likeKaro}
+      className={styles.reactIcon}
+      size={size}
+    />
   );
 };
 

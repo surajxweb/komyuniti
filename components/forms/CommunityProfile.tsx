@@ -15,7 +15,7 @@ import { Textarea } from "../ui/textarea";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { createCommunity } from "@/lib/actions/community.actions";
-import {  MdGroups  } from "react-icons/md";
+import { MdGroups } from "react-icons/md";
 import CircularProgress from "@mui/material/CircularProgress";
 import { green } from "@mui/material/colors";
 import Box from "@mui/material/Box";

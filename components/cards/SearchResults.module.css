@@ -55,8 +55,19 @@
   font-size: 14px;
   border-radius: 7px;
   cursor: pointer;
+  text-align: center;
 }
 
 .link:hover {
   background-color: #3c49ab;
+}
+
+@media (max-width: 768px) {
+  .flexMe {
+    flex-direction: column;
+  }
+
+  .icon {
+    display: none;
+  }
 }

@@ -1,8 +1,11 @@
-.section {
-  margin: 10px 0 20px 0;
+.search {
+  margin: 20px 0;
   display: flex;
   align-items: center;
   gap: 5px;
+  background-color: #222;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .reactIcons {
@@ -13,12 +16,12 @@
 .inputBar {
   font: inherit;
   border: none;
-  padding: 5px 10px;
+  padding: 10px;
   background-color: transparent;
   border-bottom: 1px solid #586aea;
   color: #ccc;
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .inputBar:focus {

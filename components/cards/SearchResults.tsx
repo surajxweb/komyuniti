@@ -28,7 +28,9 @@ const SearchResults = ({
       <div>
         <div className={styles.flexMe}>
           <div className={styles.name}>{name}</div>
-          {type !== "community" && <RxDotFilled color="#b1b1b1" />}
+          {type !== "community" && (
+            <RxDotFilled className={styles.icon} color="#b1b1b1" />
+          )}
 
           {type !== "community" && (
             <div className={styles.uname}>@{username}</div>
