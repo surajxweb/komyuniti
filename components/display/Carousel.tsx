@@ -24,7 +24,7 @@ const CarouselComponent = ({ comms }: { comms: any }) => {
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 2.3,
-      swipeable :true,
+      swipeable: true,
       draggable: true,
     },
   };

@@ -5,5 +5,7 @@
   "semi": true,
   "arrowParens": "always",
   "printWidth": 80,
-  "jsxSingleQuote": false
+  "jsxSingleQuote": false,
+  "bracketSpacing": true,
+  "useTabs": false
 }

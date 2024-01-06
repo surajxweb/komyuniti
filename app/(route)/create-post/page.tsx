@@ -28,7 +28,7 @@ const CreatePostPage = () => {
           className={`${styles.tab} ${view === "image" ? styles.selected : ""}`}
           onClick={() => setView("image")}
         >
-         <div className={styles.text}>Image</div>
+          <div className={styles.text}>Image</div>
           <FaImage />
         </div>
         <div

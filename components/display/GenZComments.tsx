@@ -43,7 +43,7 @@ const GenZComments = ({
         <div className={styles.children}>
           <div className={styles.info}>
             <div className={styles.name}>
-            <div className={styles.fname}>{author.name} </div>
+              <div className={styles.fname}>{author.name} </div>
               <div className={styles.uname}>@{author.username}</div>
             </div>
             <RxDotFilled color="#b1b1b1" />
