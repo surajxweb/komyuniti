@@ -5,7 +5,6 @@
   gap: 5px;
   background-color: #222;
   padding: 10px;
-  border-radius: 10px;
 }
 
 .reactIcons {
@@ -21,7 +20,7 @@
   border-bottom: 1px solid #586aea;
   color: #ccc;
   width: 100%;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .inputBar:focus {

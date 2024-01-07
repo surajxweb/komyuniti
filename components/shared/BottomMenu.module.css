@@ -1,5 +1,5 @@
 .container {
-  background-color: #111111b7;
+  background-color: #111111e7;
   bottom: 0;
   z-index: 60;
   width: 100%;
@@ -17,11 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.link:hover {
-  color: var(--link-color);
-  background-color: #131415;
 }
 
 .nav {

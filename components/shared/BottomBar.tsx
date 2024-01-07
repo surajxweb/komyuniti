@@ -58,7 +58,7 @@ const Bottom = () => {
     <div
       className={styles.container}
       style={{
-        backgroundColor: scrollDirection === "up" ? "#111111e9" : "#1111118f",
+        backgroundColor: scrollDirection === "up" ? "#111111e7" : "#1111118f",
       }}
     >
       <div className={styles.nav}>
