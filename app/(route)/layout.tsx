@@ -27,7 +27,6 @@ export default function RootLayout({
           card: {
             backgroundColor: "#222222",
           },
-
           formButtonPrimary: {
             fontSize: 14,
             textTransform: "none",

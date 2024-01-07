@@ -149,7 +149,6 @@ const PostAImage = () => {
                   className={styles.input}
                   rows={4}
                   placeholder="Write an optional caption!"
-                  autoFocus
                   {...field}
                 />
               </FormControl>

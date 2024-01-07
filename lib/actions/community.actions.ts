@@ -57,7 +57,7 @@ export async function createCommunity({
   }
 }
 
-export async function fetchCommunityWithHighestV() {
+export async function fetchCommunityWithHighestV(size: number) {
   try {
     connectToDB();
 

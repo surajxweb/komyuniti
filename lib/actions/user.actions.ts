@@ -269,17 +269,16 @@ export async function fetchUserAndCommunities(userId: string) {
   }
 }
 
-export async function fetchUsersWithHighestV(userId: string) {
+export async function fetchUsersWithHighestV(userId: string, size: number) {
   try {
     connectToDB();
 
     // Define the sort options for fetching users based on the __v field in descending order.
     const sortOptions: { __v: SortOrder } = { __v: -1 };
 
-    // Use the limit method to fetch only 5 users.
     const users = await User.find({ id: { $ne: userId } }) // Exclude the user with the specified userId
       .sort(sortOptions)
-      .limit(5)
+      .limit(size)
       .exec();
 
     return users;
