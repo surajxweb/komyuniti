@@ -13,6 +13,10 @@ import {
   MdPostAdd,
   MdAccountCircle,
   MdOutlineNotifications,
+  MdOutlineNotificationsActive,
+  MdNotifications,
+  MdSearch,
+  MdOutlineHome,
 } from "react-icons/md";
 
 const Bottom = () => {
@@ -64,7 +68,11 @@ const Bottom = () => {
             pathname === "/" ? styles.selected : ""
           }`}
         >
-          <MdHome size="2.2em" className={styles.icons} />
+          {pathname === "/" ? (
+            <MdHome size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineHome size="2em" className={styles.icons} />
+          )}
         </Link>
         <Link
           href={"/search"}
@@ -72,7 +80,11 @@ const Bottom = () => {
             pathname === "/search" ? styles.selected : ""
           }`}
         >
-          <MdOutlineSearch size="2.2em" className={styles.icons} />
+          {pathname === "/" ? (
+            <MdSearch size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineSearch size="2em" className={styles.icons} />
+          )}
         </Link>
         <Link
           href={"/create-post"}
@@ -88,7 +100,17 @@ const Bottom = () => {
             pathname === "/notifications" ? styles.selected : ""
           }`}
         >
-          <MdOutlineNotifications size="2em" className={styles.icons} />
+          {pathname === "/notifications" ? (
+            <MdNotifications
+              MdOutlineNotifications
+              size="2em"
+              className={styles.icons}
+            />
+          ) : 0 ? (
+            <MdOutlineNotificationsActive size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineNotifications size="2em" className={styles.icons} />
+          )}
         </Link>
 
         <Link

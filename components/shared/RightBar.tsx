@@ -9,7 +9,7 @@ import { fetchCommunityWithHighestV } from "@/lib/actions/community.actions";
 const RightBar = async () => {
   const user = await currentUser();
   if (!user) return null;
-  const topUsers = await fetchUsersWithHighestV(user?.id || "", 5);
+  const topUsers = await fetchUsersWithHighestV(user?.id || "", 8);
   const topCommunities = await fetchCommunityWithHighestV(5);
 
   return (

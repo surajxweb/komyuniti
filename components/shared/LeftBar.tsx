@@ -15,14 +15,21 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { useEffect, useState } from "react";
 import {
   MdHome,
+  MdOutlineHome,
+  MdSearch,
   MdOutlineSearch,
   MdPostAdd,
+  MdOutlinePostAdd,
   MdAccountCircle,
+  MdNotifications,
   MdOutlineNotifications,
+  MdOutlineNotificationsActive,
   MdLogout,
   MdLogin,
   MdGroups,
+  MdOutlineGroups,
   MdMessage,
+  MdOutlineMessage,
 } from "react-icons/md";
 
 const LeftBar = () => {
@@ -52,7 +59,11 @@ const LeftBar = () => {
             pathname === "/" ? styles.selected : ""
           }`}
         >
-          <MdHome size="2em" className={styles.icons} />
+          {pathname === "/" ? (
+            <MdHome size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineHome size="2em" className={styles.icons} />
+          )}
           <div className={styles.options}>Home</div>
         </Link>
         <Link
@@ -61,7 +72,12 @@ const LeftBar = () => {
             pathname === "/search" ? styles.selected : ""
           }`}
         >
-          <MdOutlineSearch size="2em" className={styles.icons} />
+          {pathname === "/" ? (
+            <MdSearch size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineSearch size="2em" className={styles.icons} />
+          )}
+
           <div className={styles.options}>Search</div>
         </Link>
         <Link
@@ -70,7 +86,18 @@ const LeftBar = () => {
             pathname === "/notifications" ? styles.selected : ""
           }`}
         >
-          <MdOutlineNotifications size="2em" className={styles.icons} />
+          {pathname === "/notifications" ? (
+            <MdNotifications
+              MdOutlineNotifications
+              size="2em"
+              className={styles.icons}
+            />
+          ) : 0 ? (
+            <MdOutlineNotificationsActive size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineNotifications size="2em" className={styles.icons} />
+          )}
+
           <div className={styles.options}>Notifications</div>
         </Link>
         <Link
@@ -79,7 +106,12 @@ const LeftBar = () => {
             pathname === "/messages" ? styles.selected : ""
           }`}
         >
-          <MdMessage size="2em" className={styles.icons} />
+          {pathname === "/messages" ? (
+            <MdMessage size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineMessage size="2em" className={styles.icons} />
+          )}
+
           <div className={styles.options}>Messages</div>
         </Link>
         <Link
@@ -88,7 +120,7 @@ const LeftBar = () => {
             pathname === "/create-post" ? styles.selected : ""
           }`}
         >
-          <MdPostAdd size="2em" className={styles.icons} />
+          <MdOutlinePostAdd size="2em" className={styles.icons} />
           <div className={styles.options}>Create Post</div>
         </Link>
         <Link
@@ -97,7 +129,11 @@ const LeftBar = () => {
             pathname === "/communities" ? styles.selected : ""
           }`}
         >
-          <MdGroups size="2em" className={styles.icons} />
+          {pathname === "/communities" ? (
+            <MdGroups size="2em" className={styles.icons} />
+          ) : (
+            <MdOutlineGroups size="2em" className={styles.icons} />
+          )}
           <div className={styles.options}>Communities</div>
         </Link>
         <Link

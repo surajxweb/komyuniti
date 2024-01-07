@@ -6,7 +6,12 @@ import styles from "./TopBar.module.css";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { MdGroups, MdMessage } from "react-icons/md";
+import {
+  MdGroups,
+  MdMessage,
+  MdOutlineGroups,
+  MdOutlineMessage,
+} from "react-icons/md";
 
 const TopBar = () => {
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -49,7 +54,11 @@ const TopBar = () => {
           pathname === "/messages" ? styles.selected : ""
         }`}
       >
-        <MdMessage size="1.8em" className={styles.icons} />
+        {pathname === "/messages" ? (
+          <MdMessage size="2em" className={styles.icons} />
+        ) : (
+          <MdOutlineMessage size="2em" className={styles.icons} />
+        )}
       </Link>
       <div className={styles.logoContainer}>
         <Link href={"/"}>
@@ -62,7 +71,11 @@ const TopBar = () => {
           pathname === "/communities" ? styles.selected : ""
         }`}
       >
-        <MdGroups size="1.8em" className={styles.icons} />
+        {pathname === "/communities" ? (
+          <MdGroups size="2em" className={styles.icons} />
+        ) : (
+          <MdOutlineGroups size="2em" className={styles.icons} />
+        )}
       </Link>
     </motion.nav>
   );
