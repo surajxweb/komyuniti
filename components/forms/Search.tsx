@@ -90,7 +90,7 @@ const Search = ({ type }: { type?: string }) => {
         ))}
         {isLoading && <SkSearchResults />}
         {nobodyFound && (
-          <div>{`Nobody with the name/username "${formData}" found on Komyuniti.`}</div>
+          <div>{type === "community" ? `Community with the name "${formData}" not found.` : `Nobody with the name/username "${formData}" found on Komyuniti.` }</div>
         )}
       </div>
       <div>{/* <h2>Search History </h2> */}</div>
