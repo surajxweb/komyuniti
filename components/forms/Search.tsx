@@ -69,7 +69,7 @@ const Search = ({ type }: { type?: string }) => {
           onChange={inputChangeHandeller}
           placeholder={
             type === "community"
-              ? `Enter name of the community.`
+              ? `Enter name of the community you're looking for.`
               : `Who are you looking for? `
           }
           autoFocus
